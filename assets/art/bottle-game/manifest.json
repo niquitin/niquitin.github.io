@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "canvas": {
+    "width": 1024,
+    "height": 1024
+  },
+  "pivot": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "axis": "vertical",
+  "projection": "orthographic-spinner-token",
+  "head": "cap",
+  "headDirectionAtZeroDeg": "up",
+  "skins": {
+    "beer": {
+      "src": "01-green.webp",
+      "bytes": 349896,
+      "sha256": "cf000a6af93410cabab910f703c3c9347a6fc665a31f54e60cae21300b389077",
+      "contentBounds": {
+        "minX": 341,
+        "minY": 37,
+        "maxX": 687,
+        "maxY": 987,
+        "width": 347,
+        "height": 951
+      },
+      "center": {
+        "x": 514.5,
+        "y": 512.5
+      },
+      "sweptRadiusPx": 490.666894
+    },
+    "whisky": {
+      "src": "02-amber.webp",
+      "bytes": 348852,
+      "sha256": "0af6ecc1189c155d6d9812c9629c014ec61c1b764ac9948e0b6ccb87ffa8f311",
+      "contentBounds": {
+        "minX": 341,
+        "minY": 35,
+        "maxX": 683,
+        "maxY": 994,
+        "width": 343,
+        "height": 960
+      },
+      "center": {
+        "x": 512.5,
+        "y": 515
+      },
+      "sweptRadiusPx": 489.238184
+    },
+    "soju": {
+      "src": "03-clear.webp",
+      "bytes": 403770,
+      "sha256": "9023dd2ca3a1209a74ea6b2ddf31d34c7dfe985f29d7274104f6810863455062",
+      "contentBounds": {
+        "minX": 339,
+        "minY": 33,
+        "maxX": 685,
+        "maxY": 999,
+        "width": 347,
+        "height": 967
+      },
+      "center": {
+        "x": 512.5,
+        "y": 516.5
+      },
+      "sweptRadiusPx": 492.733194
+    },
+    "wine": {
+      "src": "04-wine.webp",
+      "bytes": 325904,
+      "sha256": "27f27385ccfaf7957b831d564ba3c0b72c8be920220fd4d6efcb8b1506750c93",
+      "contentBounds": {
+        "minX": 340,
+        "minY": 34,
+        "maxX": 683,
+        "maxY": 988,
+        "width": 344,
+        "height": 955
+      },
+      "center": {
+        "x": 512,
+        "y": 511.5
+      },
+      "sweptRadiusPx": 490.666894
+    }
+  }
+}

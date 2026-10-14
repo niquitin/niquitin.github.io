@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "coordinateSpace": "croc-rig",
+  "assets": {
+    "upperHead": {
+      "src": "01-upper-head.webp",
+      "owner": "upper",
+      "anchorX": 0.4997160704145372,
+      "anchorY": 0.6900129701686122,
+      "target": "upper-jaw-center",
+      "zOrder": 40
+    },
+    "mouthCavity": {
+      "src": "02-mouth-cavity.webp",
+      "owner": "static",
+      "anchorX": 0.49974502804691484,
+      "anchorY": 0.4993342210386152,
+      "target": "mouth-cavity-center",
+      "zOrder": 10
+    },
+    "tongue": {
+      "src": "03-tongue.webp",
+      "owner": "static",
+      "anchorX": 0.49957228400342174,
+      "anchorY": 0.5215384615384615,
+      "target": "tongue-center",
+      "zOrder": 20
+    },
+    "upperGum": {
+      "src": "04-upper-gum.webp",
+      "owner": "upper",
+      "anchorX": 0.49976213130352043,
+      "anchorY": 0.6657142857142857,
+      "target": "upper-gum-baseline",
+      "zOrder": 50
+    },
+    "lowerGum": {
+      "src": "05-lower-gum.webp",
+      "owner": "lower",
+      "anchorX": 0.4997674418604651,
+      "anchorY": 0.5666666666666667,
+      "target": "lower-gum-baseline",
+      "zOrder": 60
+    },
+    "lowerJawBody": {
+      "src": "06-lower-jaw-body.webp",
+      "owner": "lower",
+      "anchorX": 0.5007915567282322,
+      "anchorY": 0.5796178343949044,
+      "target": "lower-jaw-center",
+      "zOrder": 30
+    },
+    "paws": {
+      "src": "07-paws.webp",
+      "owner": "static",
+      "anchorX": 0.4997629208155524,
+      "anchorY": 0.9456521739130435,
+      "target": "paw-baseline",
+      "zOrder": 70
+    }
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "version": 1,
+  "status": "P1B_ART_PACK_APPROVED_FOR_P2_ASSEMBLY_NOT_FINAL_GAME_ACCEPTANCE",
+  "scene": {
+    "width": 340,
+    "height": 420,
+    "units": "barrel-local; s=rendered-width/340",
+    "origin": "barrel top-left",
+    "layout": "native 4x4 buttons independently over static barrel art"
+  },
+  "budget": {
+    "compressedMaxBytes": 614400,
+    "decodedRgbaMaxBytes": 12582912
+  },
+  "assets": {
+    "barrelBack": {
+      "file": "barrel-back.webp",
+      "canvas": [
+        680,
+        840
+      ],
+      "bytes": 131304,
+      "sha256": "fb199425525d08f1f488aa6937e097ead453bc462af5ae973e2789e0816ae16b",
+      "alphaBounds": [
+        13,
+        14,
+        666,
+        825
+      ],
+      "anchorAsset": [
+        340,
+        420
+      ],
+      "anchorScene": [
+        170,
+        210
+      ],
+      "role": "wood/opening/metal, no pre-baked slots; central wood re-composited to provide 16-hitbox safe field"
+    },
+    "pirateMascot": {
+      "file": "pirate-mascot.webp",
+      "canvas": [
+        384,
+        384
+      ],
+      "bytes": 45606,
+      "sha256": "691d9b3a951d231e30f78c8867dbd214b8bc4a769b4203bb94e9f1085dc9f766",
+      "alphaBounds": [
+        14,
+        11,
+        369,
+        347
+      ],
+      "anchorAsset": [
+        192,
+        348
+      ],
+      "anchorScene": [
+        170,
+        8
+      ],
+      "role": "independent noninteractive character; animation-only child owner"
+    },
+    "pirateTrapMascot": {
+      "file": "pirate-mascot-trap.webp",
+      "canvas": [
+        384,
+        384
+      ],
+      "bytes": 42798,
+      "sha256": "85cf1943baea9b067153b348450189211f7643e99040c31506ed0ea1f111171d",
+      "alphaBounds": [
+        16,
+        11,
+        367,
+        343
+      ],
+      "anchorAsset": [
+        192,
+        348
+      ],
+      "anchorScene": [
+        170,
+        8
+      ],
+      "role": "R3A trap-only frightened/grimacing expression; same registered 384-square character pose, selected by existing pirate-launched class; idle/safe keeps pirate-mascot.webp"
+    },
+    "barrelFrontLip": {
+      "file": "barrel-front-lip.webp",
+      "canvas": [
+        680,
+        64
+      ],
+      "bytes": 15314,
+      "sha256": "90d7e9f4dd1f9fc7322e21c0250d11e768812ae72f296f41241fb43ceb9d09c8",
+      "alphaBounds": [
+        20,
+        9,
+        659,
+        53
+      ],
+      "anchorAsset": [
+        340,
+        16
+      ],
+      "anchorScene": [
+        170,
+        8
+      ],
+      "role": "optional decorative overlay; NOT enabled by default because barrel back already has a complete rim",
+      "enabledByDefault": false
+    },
+    "swordNeutral": {
+      "file": "sword-neutral.webp",
+      "canvas": [
+        256,
+        96
+      ],
+      "bytes": 7124,
+      "sha256": "83662bf58cc4df8532027c3b9e9f5a110cc785867dd144ecd7bd11198f09355f",
+      "alphaBounds": [
+        53,
+        11,
+        201,
+        84
+      ],
+      "tipAnchorAsset": [
+        202,
+        48
+      ],
+      "handleAnchorAsset": [
+        53,
+        48
+      ],
+      "role": "reusable sword in each native button, per-index --sword-color glow/rotation, shadow rectangle must be disabled"
+    },
+    "swordCutlass": {
+      "file": "sword-cutlass.webp",
+      "canvas": [
+        320,
+        160
+      ],
+      "bytes": 13434,
+      "sha256": "1927e9420b4c1546841f1646174d3435a4f5f07a485ae7f0978bc985f23d01b3",
+      "alphaBounds": [
+        10,
+        11,
+        309,
+        148
+      ],
+      "tipAnchorAsset": [
+        300,
+        72
+      ],
+      "handleAnchorAsset": [
+        40,
+        86
+      ],
+      "role": "Owner-approved substantial gold-and-red cutlass; interactive tip anchored to existing DOM slot, hilt faces outward; replaces rendered neutral sword, old frozen asset retained for provenance."
+    }
+  },
+  "provenance": {
+    "downloadedCandidate": "Pirate-P1B-V2R1-assembly-candidate.zip",
+    "candidateZipSha256": "87955be052b727c8b99b23cb38fbad3cdaa1d3698ee465f77d12c9de46fb0776",
+    "transform": "barrel-back-tall.webp composed in disposable browser canvas from original 680x580 barrel-back.webp: top rows0..209 unchanged, wood rows210..469 stretched 260->520, bottom rows470..579 shifted to730..839; WebP quality0.88",
+    "qaFolder": "C:/Users/ntdun/AppData/Local/Temp/VBN-518-PIRATE-P1B-V2-20261009"
+  },
+  "preflight": {
+    "viewports": [
+      "320x568",
+      "390x844",
+      "844x390",
+      "1280x800"
+    ],
+    "expectedNativeButtons": 16,
+    "minimumTarget": [
+      44,
+      44
+    ],
+    "measuredNarrowTarget": [
+      48.90625,
+      44
+    ],
+    "naturalPointerSafeAccumulation": 12,
+    "zeroHorizontalOverflow": true,
+    "requiredScrollOnShortScreens": true,
+    "networkAndServiceWorker": "P1B visual QA excluded SW/cache; offline and same-origin upgrade remain P3",
+    "browserQAOnly": true
+  },
+  "integrationBounds": [
+    "Do not alter js/games/pirate.js mechanics, timers, RNG, History or lifecycle",
+    "At320 widths, native four-row 44px targets must all remain reachable after normal vertical scroll",
+    "Decorative shake must not translate native targets; mascot launch ≤850ms",
+    "Prevent duplicate foreground rim; optional lip is intentionally dormant",
+    "Control header wrap on320 and short landscape without hiding Lượt đâm",
+    "Production PWA asset cache/version changes require explicit check and later migration QA"
+  ],
+  "ownerVisualRevision": {
+    "status": "R1_IMPLEMENTATION_QA_PENDING_OWNER_WEBTEST_REACCEPTANCE",
+    "date": "2026-10-09",
+    "approvedMockups": [
+      "vua_bàn_nhậu_thùng_hải_tặc.png",
+      "vua_bàn_nhậu_hải_tặc_bùng_nổ.png"
+    ],
+    "sourceAsset": "thanh_kiếm_hải_tặc_vàng_đỏ_bóng_bẩy.png",
+    "preparation": "isolated source RGBA cutlass -> rotate -42deg for horizontal blade -> crop alpha bounds -> 320x160 transparent WebP quality84 -> remove exactly six detached 8-connected alpha pixels maxAlpha 4/2 -> re-encode. Main pixel component preserved before re-encode.",
+    "readyRule": "pirate hidden on idle and every safe insertion; only trap .pirate-launched reveals",
+    "renderSprite": "sword-cutlass.webp",
+    "legacySword": "sword-neutral.webp (kept, not painted)",
+    "approval": "AWAITING_OWNER_VISUAL_REVIEW"
+  },
+  "ownerVisualR3A": {
+    "status": "IMPLEMENTATION_PENDING_OWNER_VISUAL_REVIEW",
+    "sourcePrompt": "Edit the existing pirate mascot only: preserve identity, hat, eyepatch, clothing, pose, framing and transparent background; change joyful smile into a startled painful comic grimace, with no gore or new props.",
+    "generatedPng": "C:/Users/ntdun/AppData/Local/Temp/VBN-518-PIRATE-R3A-20261009/pirate-trap-generated-source.png",
+    "generatedPngSha256": "773ae3c5c3013dc77bbde59dff57d92e03b8d8671c4199fbadfb84f0a6800080",
+    "export": "Source RGBA 1254x1254; crop nonzero-alpha bbox (30,30,1240,1188); uniform Lanczos fit into original mascot alpha target 356x337 within transparent 384x384 canvas centered at y=11; WebP quality90. Remove eight detached alpha-1 components (24 pixels total) only; preserve the principal character alpha component. Original mascot WebP byte-unchanged.",
+    "renderRule": "Only #pirate-character.pirate-launched uses pirate-mascot-trap.webp; reset removes class and restores original background while occlusion still hides idle/safe."
+  }
+}

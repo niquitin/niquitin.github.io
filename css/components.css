@@ -1,0 +1,2932 @@
+/* ===================================================
+   VUA BÀN NHẬU - COMPONENTS & GAME STAGES STYLES
+   =================================================== */
+
+/* ===================================================
+   GAME 1: CROCODILE DENTIST (HÀM RĂNG CÁ SẤU 2 HÀM)
+   =================================================== */
+.crocodile-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    height: 100%;
+    min-height: 0;
+    padding: 6px 0 16px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Thanh chỉnh nhanh số lượng răng sâu */
+.croc-quick-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    background: var(--color-surface-control);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-pill);
+    padding: var(--space-1) var(--space-3);
+    backdrop-filter: blur(8px);
+}
+
+.quick-bar-label {
+    font-size: var(--font-size-meta);
+    font-weight: var(--font-weight-supporting);
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+}
+
+.bad-teeth-pills {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.bad-teeth-pills .pill-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #e0e0e0;
+    font-size: 12px;
+    font-weight: 800;
+    width: 28px;
+    height: 26px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.bad-teeth-pills .pill-btn:active {
+    transform: scale(0.9);
+}
+
+.bad-teeth-pills .pill-btn.active {
+    background: linear-gradient(135deg, #ff0055 0%, #ff5500 100%);
+    border-color: #ff3366;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(255, 0, 85, 0.6);
+    transform: scale(1.08);
+}
+
+.bad-teeth-pills .pill-btn-more {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #ffcc00;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 0 7px;
+    height: 26px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.bad-teeth-pills .pill-btn-more:active {
+    transform: scale(0.9);
+}
+
+.croc-status-banner {
+    background: var(--color-surface-control);
+    border: 1px solid var(--color-border-default);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-pill);
+    font-size: var(--font-size-supporting);
+    font-weight: var(--font-weight-supporting);
+    text-align: center;
+    color: var(--color-text-primary);
+    margin-bottom: 8px;
+    transition: all 0.3s;
+    max-width: 92%;
+}
+
+.croc-status-banner.safe-flash {
+    background: rgba(57, 255, 20, 0.2);
+    border-color: var(--neon-green);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
+}
+
+.croc-status-banner.danger-flash {
+    background: rgba(255, 0, 127, 0.35);
+    border-color: var(--neon-pink);
+    color: #ff3366;
+    animation: pulseGlow 0.4s infinite;
+}
+
+/* 5.18C1: front-facing DOM rig. No game state lives in these layers. */
+.croc-box.croc-rig {
+    position: relative;
+    width: min(100%, 520px);
+    aspect-ratio: 1.12;
+    flex: 0 0 auto;
+    margin: 0 auto;
+    isolation: isolate;
+    user-select: none;
+}
+.croc-rig__shadow {
+    position: absolute;
+    inset: 87% 8% 2%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, #05030d 5%, #7f2dcc55 50%, transparent 72%);
+    filter: blur(6px);
+}
+.croc-rig__body {
+    position: absolute;
+    inset: 46% 14% 7%;
+    border-radius: 42% 42% 38% 38%;
+    background: radial-gradient(ellipse at 40% 30%, #ecffc0 0%, #bbdf65 34%, #5caa38 62%, #1e7841 100%);
+    box-shadow: inset -8px -8px 14px #0b563c, inset 8px 0 12px #71eece88;
+}
+.croc-rig__spines {
+    position: absolute;
+    inset: 31% 7% 17%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+}
+.croc-rig__spines i {
+    width: 20%;
+    height: 65%;
+    background: linear-gradient(135deg, #91d949, #17774d);
+    border-radius: 70% 70% 20% 20%;
+    box-shadow: inset 4px 2px 6px #9dfcc4aa;
+}
+.croc-rig__upper-head,
+.croc-rig__lower-jaw {
+    position: absolute;
+    left: 2%;
+    width: 96%;
+    border: 0;
+    display: block;
+    z-index: 3;
+    transform: none;
+    transition: transform 240ms ease-out;
+}
+.croc-rig__upper-head {
+    top: 17%;
+    height: 27%;
+    border-radius: 48% 48% 28% 28% / 65% 65% 40% 40%;
+    background: radial-gradient(ellipse at 40% 12%, #d5ff8f, #94dc3a 40%, #51ab25 76%, #267533);
+    box-shadow: inset 0 6px 8px #f1ffb9aa, inset -5px -9px 10px #164c3588, inset 5px 0 8px #75efd8aa, 0 6px 9px #0d1b1677;
+}
+.croc-rig__eyes {
+    position: absolute;
+    top: -48%;
+    left: 20%;
+    width: 60%;
+    height: 88%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.croc-rig .croc-eye {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36%;
+    height: 100%;
+    border: 5px solid #6eaf2d;
+    border-radius: 48% 48% 43% 43%;
+    background: radial-gradient(ellipse at 32% 22%, #fffef2, #faf0ce 70%, #ccb997);
+    box-shadow: 0 6px 7px #234b2888, inset 1px 3px 6px #ffffff;
+}
+.croc-rig .croc-eye::before {
+    content: '';
+    position: absolute;
+    inset: -9% -4% 67%;
+    border-top: 6px solid #23512f;
+    border-radius: 50%;
+}
+.croc-rig .pupil {
+    width: 59%;
+    height: 65%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, #17130f 40%, #83502d 43%, #bf8c4a 68%, #372718 71%);
+    box-shadow: inset 0 1px 5px #170f0a;
+    animation: crocBlink 7s ease-in-out infinite;
+}
+.croc-rig .eye-shine {
+    top: 25%;
+    left: 36%;
+    width: 16%;
+    height: 17%;
+    box-shadow: 7px 15px 0 -2px #fff8;
+}
+.croc-rig .croc-snout {
+    position: absolute;
+    display: flex;
+    left: 27%;
+    top: 28%;
+    width: 46%;
+    height: 30%;
+    margin: 0;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0;
+}
+.croc-rig .nostril {
+    width: 13%;
+    height: 38%;
+    background: #244e23;
+    border-radius: 50%;
+    box-shadow: inset 1px 3px 4px #102a18, 0 2px 2px #ceff8466;
+}
+.croc-rig__mouth-cavity {
+    position: absolute;
+    inset: 37% 3% 23%;
+    border-radius: 35% 35% 42% 42%;
+    z-index: 2;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 70%, #c84965, #742238 60%, #361421);
+    box-shadow: inset 0 10px 22px #280d20, 0 0 0 6px #509b2f;
+}
+.croc-rig .croc-throat-depth {
+    position: absolute;
+    inset: 14% 22% 40%;
+    width: auto;
+    height: auto;
+    transform: none;
+    border-radius: 50%;
+    background: #321220;
+    filter: blur(5px);
+}
+.croc-rig__tongue {
+    position: absolute;
+    left: 22%;
+    bottom: 7%;
+    width: 56%;
+    height: 53%;
+    transform: none;
+    border-radius: 48% 48% 40% 40%;
+    background: radial-gradient(ellipse at 35% 18%, #ffb3ba, #f27693 45%, #cc416b 85%);
+    box-shadow: inset 0 5px 7px #ffccd5aa, inset -4px -6px 7px #9e274f, 0 5px 8px #35111d88;
+}
+.croc-rig__tongue::after {
+    content: '';
+    position: absolute;
+    inset: 16% 49% 33%;
+    border-radius: 50%;
+    background: #ad35634d;
+}
+.croc-rig__lower-jaw {
+    top: 72%;
+    height: 16%;
+    border-radius: 22% 22% 50% 50% / 32% 32% 72% 72%;
+    background: radial-gradient(ellipse at 50% 28%, #ffefb4, #ebdaa1 55%, #85b149 75%, #28773e);
+    box-shadow: inset 0 -5px 8px #31734d99, inset 4px 0 8px #a0ffdc99, 0 8px 9px #0b1c1e77;
+}
+.croc-rig .croc-chin {
+    position: absolute;
+    inset: 61% 36% auto;
+    width: 28%;
+    height: 4%;
+    background: #b39b6577;
+    border-radius: 50%;
+}
+.croc-rig__upper-gum,
+.croc-rig__lower-gum {
+    position: absolute;
+    left: 1%;
+    right: 1%;
+    height: 24px;
+    padding: 0;
+    z-index: 4;
+    display: block;
+    border-radius: 50%;
+    background: linear-gradient(#ffa4b6, #e75f89 45%, #a52c53);
+    box-shadow: inset 0 3px 4px #ffcfcc99;
+}
+.croc-rig__upper-gum { bottom: -4px; }
+.croc-rig__lower-gum { top: -6px; }
+.croc-rig .croc-teeth-row {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 56px;
+    padding: 0;
+    display: flex;
+    gap: 2px;
+    align-items: stretch;
+}
+.croc-rig__upper-teeth { top: 6px; }
+.croc-rig__lower-teeth { bottom: 6px; }
+.croc-rig .croc-tooth-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    height: 56px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 4;
+    cursor: pointer;
+    touch-action: none;
+}
+.croc-rig .tooth-upper { transform: translateY(calc(-1 * var(--tooth-arc))); }
+.croc-rig .tooth-lower { transform: translateY(var(--tooth-arc)); }
+.croc-rig .croc-tooth-btn:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: -2px;
+    background: #7debff33;
+}
+.croc-rig .croc-tooth-btn:disabled { cursor: default; }
+.croc-rig .tooth-touch-target {
+    width: 78%;
+    max-width: 39px;
+    height: 46px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(var(--tooth-angle)) scale(var(--tooth-scale));
+    transform-origin: center;
+    transition: transform 140ms ease-out, opacity 140ms ease-out;
+    pointer-events: none;
+}
+.croc-rig .tooth-root {
+    width: 70%;
+    height: 6px;
+    flex: 0 0 6px;
+    background: #ed7897;
+    border-radius: 50%;
+}
+.croc-rig .tooth-cap {
+    width: 100%;
+    height: 39px;
+    border: 1px solid #e5cea2;
+    background: radial-gradient(ellipse at 32% 25%, #fffef0, #fff0cb 65%, #ceb785);
+    box-shadow: inset 2px 2px 3px #ffffff, 0 3px 4px #3e132944;
+}
+.croc-rig .cap-upper { border-radius: 35% 35% 48% 48% / 25% 25% 76% 76%; }
+.croc-rig .cap-lower { border-radius: 48% 48% 35% 35% / 76% 76% 25% 25%; }
+.croc-rig .tooth-upper.pressed .tooth-touch-target {
+    transform: translateY(-7px) rotate(var(--tooth-angle)) scale(calc(var(--tooth-scale) * .87));
+    opacity: .68;
+}
+.croc-rig .tooth-lower.pressed .tooth-touch-target {
+    transform: translateY(7px) rotate(var(--tooth-angle)) scale(calc(var(--tooth-scale) * .87));
+    opacity: .68;
+}
+.croc-rig .pressed:not(.bad-tooth) .tooth-cap { box-shadow: inset 2px 2px 3px #ffffff, 0 0 8px #a7f48299; }
+.croc-rig .bad-tooth .tooth-cap {
+    background: radial-gradient(ellipse at 30% 25%, #fff4d9, #ffb1be 70%, #d76386);
+    border-color: #ff5e93;
+    box-shadow: 0 0 9px #ff74a9;
+}
+.croc-rig__front-paws {
+    position: absolute;
+    left: 7%;
+    bottom: 5%;
+    width: 86%;
+    display: flex;
+    justify-content: space-between;
+    z-index: 4;
+    pointer-events: none;
+}
+.croc-rig__front-paws > span {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 3px;
+    width: 22%;
+    height: 43px;
+    border-radius: 65% 65% 40% 40%;
+    background: radial-gradient(ellipse at 38% 20%, #cdff78, #72b835 65%, #277947);
+    box-shadow: inset 0 3px 4px #ecffb488, 0 4px 5px #15241688;
+}
+.croc-rig__front-paws i {
+    width: 16%;
+    height: 14px;
+    border-radius: 50% 50% 35% 35%;
+    background: linear-gradient(#fffbd8, #ceb980);
+}
+.croc-rig__fx {
+    position: absolute;
+    inset: 5% 0 0;
+    border-radius: 50%;
+    box-shadow: 0 0 40px #ac5df21a;
+    pointer-events: none;
+}
+/* Bite moves both jaw owners on Y only. 80ms anticipation + 160ms close.
+   The existing JS result callback remains 750ms and owns cancellation. */
+.croc-rig.snapped .croc-rig__upper-head {
+    transform: translateY(48%);
+    animation: crocUpperBite 240ms ease-out both;
+}
+.croc-rig.snapped .croc-rig__lower-jaw {
+    transform: translateY(-70%);
+    animation: crocLowerBite 240ms ease-out both;
+}
+.croc-rig.snapped .croc-eye { background: radial-gradient(ellipse at 32% 22%, #fffef2, #faf0ce 70%, #ccb997); }
+.croc-rig.snapped .pupil { width: 59%; height: 65%; background: radial-gradient(ellipse, #17130f 40%, #83502d 43%, #bf8c4a 68%, #372718 71%); animation: none; }
+@keyframes crocUpperBite {
+    0%, 33% { transform: translateY(0); }
+    100% { transform: translateY(48%); }
+}
+@keyframes crocLowerBite {
+    0%, 33% { transform: translateY(0); }
+    100% { transform: translateY(-70%); }
+}
+@keyframes crocBlink {
+    0%, 91%, 97%, 100% { transform: scaleY(1); }
+    94% { transform: scaleY(.12); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .croc-rig *, .croc-rig *::before, .croc-rig *::after {
+        animation: none !important;
+        transition-duration: .001ms !important;
+    }
+}
+
+/* C2C: anchor-registered production surfaces, not replacement jaw/target boxes.
+   Full source width maps uniformly to each existing owner's width. */
+.croc-production-art {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    transform: translate(calc(-1 * var(--art-anchor-x)), calc(-1 * var(--art-anchor-y)));
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+}
+.croc-art-paws { top: 100%; }
+.croc-rig--production .croc-rig__upper-head,
+.croc-rig--production .croc-rig__lower-jaw,
+.croc-rig--production .croc-rig__upper-gum,
+.croc-rig--production .croc-rig__lower-gum,
+.croc-rig--production .croc-rig__mouth-cavity,
+.croc-rig--production .croc-rig__tongue {
+    background: transparent;
+    box-shadow: none;
+}
+/* Keep prototype landmark boxes (including the paws' intrinsic 43px height),
+   but retire duplicate painted anatomy. No hitbox or owner dimensions change. */
+.croc-rig--production .croc-rig__body,
+.croc-rig--production .croc-rig__spines,
+.croc-rig--production .croc-rig__eyes,
+.croc-rig--production .croc-snout,
+.croc-rig--production .croc-chin,
+.croc-rig--production .croc-throat-depth,
+.croc-rig--production .croc-rig__front-paws > span,
+.croc-rig--production .croc-rig__tongue::after { visibility: hidden; }
+.croc-rig--production .croc-rig__tongue { z-index: 1; }
+.croc-rig--production .croc-teeth-row { z-index: 1; }
+.croc-rig--production .tooth-cap {
+    background: radial-gradient(ellipse at 30% 20%, #fffef4 5%, #fff0cf 56%, #ddc69a 87%, #b89a70);
+    box-shadow: inset 2px 3px 4px #ffffff, inset -2px -2px 3px #b9936540, 0 2px 3px #3e13294d;
+}
+.croc-rig--production .tooth-root {
+    background: linear-gradient(#b54765, #f197a8 60%, #ffe0c9);
+    box-shadow: 0 1px 3px #51182955;
+}
+.croc-rig--production .bad-tooth .tooth-cap {
+    background: radial-gradient(ellipse at 30% 20%, #fffef4 5%, #fff0cf 65%, #e5b4aa);
+    box-shadow: inset 2px 3px 4px #ffffff, 0 0 9px #ff74a9;
+}
+
+.croc-controls {
+    margin-top: auto;
+    width: 100%;
+    text-align: center;
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+}
+
+
+.turn-counter {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-text-secondary);
+}
+
+.counter-highlight {
+    color: var(--neon-gold);
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.counter-bad-highlight {
+    color: #ff0055;
+    font-size: 15px;
+    font-weight: 900;
+    text-shadow: 0 0 8px rgba(255, 0, 85, 0.6);
+}
+
+/* Các nút tùy chọn trong Modal Cài đặt Cá Sấu */
+.option-pill {
+    min-height: var(--control-height-default);
+    background: var(--color-surface-control);
+    border: 1px solid var(--color-border-default);
+    color: var(--color-text-secondary);
+    border-radius: var(--radius-control);
+    padding: var(--space-2) var(--space-1);
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.option-pill:active {
+    transform: scale(0.95);
+}
+
+.option-pill.active {
+    background: var(--color-accent-secondary);
+    border-color: var(--color-accent-secondary);
+    color: var(--color-text-on-accent);
+    box-shadow: var(--shadow-neon);
+    font-weight: var(--font-weight-control);
+}
+
+.option-pill:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
+}
+
+.modal-actions-box {
+    margin-top: var(--space-3);
+    width: 100%;
+}
+
+/* ===================================================
+   GAME 2: LUCKY WHEEL (VÒNG QUAY SÁT PHẠT)
+   =================================================== */
+.wheel-stage {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    height: 100%;
+    min-height: 0;
+    padding: 6px 0;
+    box-sizing: border-box;
+}
+
+
+.canvas-wrapper {
+    position: relative;
+    width: min(94vw, 385px);
+    height: min(94vw, 385px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto 0;
+}
+
+#wheel-canvas {
+    border-radius: 50%;
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.75));
+}
+
+.wheel-pointer-container {
+    position: absolute;
+    top: 0px;
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wheel-needle-pin {
+    width: 22px;
+    height: 22px;
+    background: radial-gradient(circle at 35% 35%, #ff3377 0%, #cc0055 60%, #770022 100%);
+    border: 2.5px solid #ffd700;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(255, 0, 127, 0.8), 0 3px 6px rgba(0, 0, 0, 0.6);
+    z-index: 32;
+    margin-bottom: -6px;
+}
+
+.wheel-needle {
+    width: 0;
+    height: 0;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-top: 42px solid #ffd700;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.75));
+    transform-origin: 50% 0%;
+    transition: transform 0.05s ease-out;
+}
+
+.wheel-needle.flap {
+    transform: rotate(18deg);
+}
+
+.wheel-center-btn {
+    position: absolute;
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #ff3377 0%, #cc0055 50%, #880033 100%);
+    border: 4px solid #ffd700;
+    box-shadow: 0 0 20px rgba(255, 0, 127, 0.7), 0 6px 16px rgba(0, 0, 0, 0.7), inset 0 2px 4px rgba(255, 255, 255, 0.5);
+    color: #fff;
+    cursor: pointer;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.wheel-center-btn:active {
+    transform: scale(0.92);
+}
+
+.center-btn-icon {
+    font-size: 24px;
+    line-height: 1;
+    margin-bottom: 2px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.center-btn-text {
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.wheel-controls {
+    width: 100%;
+    max-width: 360px;
+    margin-top: auto;
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+
+/* ===================================================
+   GAME 3: FINGER SHOCK ROULETTE (CHẠM NGÓN TAY)
+   =================================================== */
+.finger-stage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    touch-action: none;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 50%, #150930 0%, #080314 100%);
+}
+
+.finger-stage.lightning-flash {
+    animation: lightningBlast 0.6s ease-out;
+}
+
+@keyframes lightningBlast {
+    0%, 100% { background: radial-gradient(circle at 50% 50%, #150930 0%, #080314 100%); }
+    20% { background: #ffffff; }
+    40% { background: #ff0055; }
+    60% { background: #ffffff; }
+}
+
+.finger-hint {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 360px;
+    text-align: center;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    z-index: 10;
+}
+
+
+.finger-hint.hidden {
+    opacity: 0;
+}
+
+.pulse-icon {
+    font-size: 50px;
+    margin-bottom: 12px;
+    animation: floatBounce 1.5s infinite;
+}
+
+@keyframes floatBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+.hint-text {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+}
+
+/* Countdown Overlay in Center */
+.countdown-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(10, 4, 25, 0.8);
+    border: 3px solid var(--neon-cyan);
+    box-shadow: 0 0 30px var(--neon-cyan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 44px;
+    font-weight: 900;
+    color: #fff;
+    pointer-events: none;
+    z-index: 100;
+    transition: opacity 0.2s;
+}
+
+.countdown-overlay.hidden {
+    display: none;
+}
+
+/* Dynamic Touch Rings */
+.touch-halo {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 3px solid #00f0ff;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: haloPulse 1.2s infinite ease-in-out;
+}
+
+@keyframes haloPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.15); }
+}
+
+.inner-core {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #fff;
+}
+
+.touch-halo.shocked-target {
+    border-color: #ff0033 !important;
+    box-shadow: 0 0 50px #ff0033, inset 0 0 30px #ff0033 !important;
+    animation: shockedVibrate 0.1s infinite !important;
+}
+
+.touch-halo.shocked-target .inner-core {
+    background: #ff0033 !important;
+    box-shadow: 0 0 30px #ff0033, 0 0 10px #fff;
+}
+
+.touch-halo.faded-target {
+    opacity: 0.2;
+    transform: translate(-50%, -50%) scale(0.8);
+}
+
+@keyframes shockedVibrate {
+    0% { transform: translate(-52%, -48%) scale(1.3); }
+    50% { transform: translate(-48%, -52%) scale(1.4); }
+    100% { transform: translate(-50%, -50%) scale(1.3); }
+}
+
+/* ===================================================
+   GAME 4: TICKING BOMB RUSH (QUẢ BOM HẸN GIỜ)
+   =================================================== */
+.bomb-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    height: 100%;
+    min-height: 0;
+    padding: 8px 0;
+}
+
+.bomb-stage.shake-screen {
+    animation: screenShake 0.6s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes screenShake {
+    10%, 90% { transform: translate3d(-4px, 0, 0); }
+    20%, 80% { transform: translate3d(6px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-8px, 0, 0); }
+    40%, 60% { transform: translate3d(8px, 0, 0); }
+}
+
+.bomb-topic-card {
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border-warm);
+    box-shadow: var(--shadow-surface);
+    border-radius: var(--radius-card);
+    padding: var(--space-4);
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.topic-header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 174, 0, 0.15);
+    border: 1px solid rgba(255, 174, 0, 0.4);
+    padding: 3px 12px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+}
+
+.topic-badge-icon {
+    font-size: 14px;
+}
+
+.topic-label {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--neon-gold);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.topic-content {
+    font-size: 20px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.45;
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* Bomb Graphic (Enlarged & Balanced) */
+.bomb-box {
+    margin: auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bomb-visual {
+    position: relative;
+    width: min(76vw, 270px);
+    height: min(76vw, 270px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease-out;
+}
+
+.bomb-body {
+    width: min(68vw, 240px);
+    height: min(68vw, 240px);
+    background: radial-gradient(circle at 35% 35%, #4f4f60 0%, #1e1e2c 55%, #0a0a12 100%);
+    border-radius: 50%;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.85), inset -8px -8px 20px rgba(0, 0, 0, 0.7), inset 4px 4px 10px rgba(255, 255, 255, 0.15);
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.bomb-highlight {
+    position: absolute;
+    top: 26px;
+    left: 36px;
+    width: 44px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 50%;
+    transform: rotate(-35deg);
+    filter: blur(1px);
+}
+
+.bomb-neck {
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 46px;
+    height: 16px;
+    background: linear-gradient(90deg, #8a6d1c 0%, #ffd700 50%, #8a6d1c 100%);
+    border-radius: 4px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
+    z-index: 10;
+}
+
+.bomb-skull-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.bomb-skull {
+    font-size: 72px;
+    opacity: 0.85;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.9));
+    transition: all 0.25s ease;
+}
+
+.bomb-fuse-wrapper {
+    position: absolute;
+    top: -34px;
+    right: calc(50% - 36px);
+    z-index: 5;
+}
+
+.fuse-line {
+    width: 38px;
+    height: 44px;
+    border-top: 6px solid #a67c52;
+    border-right: 6px solid #a67c52;
+    border-radius: 0 24px 0 0;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.fuse-spark {
+    position: absolute;
+    top: -22px;
+    right: -24px;
+    animation: fuseBurn 0.18s infinite alternate;
+}
+
+.spark-emoji {
+    font-size: 42px;
+    display: block;
+    filter: drop-shadow(0 0 15px #ffaa00);
+}
+
+.fuse-spark.hidden {
+    display: none;
+}
+
+@keyframes fuseBurn {
+    0% { transform: scale(1) rotate(-8deg); filter: drop-shadow(0 0 10px #ff3300); }
+    100% { transform: scale(1.35) rotate(15deg); filter: drop-shadow(0 0 25px #ffcc00) drop-shadow(0 0 12px #ff0055); }
+}
+
+.bomb-visual.danger-throb {
+    animation: dangerThrob 0.25s infinite alternate ease-in-out;
+}
+
+.bomb-visual.danger-throb .bomb-body {
+    box-shadow: 0 0 45px #ff0033, 0 18px 40px rgba(0, 0, 0, 0.9);
+    border-color: #ff0033;
+}
+
+.bomb-visual.danger-throb .bomb-skull {
+    opacity: 1;
+    filter: drop-shadow(0 0 20px #ff0033);
+    animation: skullPulse 0.25s infinite alternate;
+}
+
+@keyframes skullPulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.15); }
+}
+
+@keyframes dangerThrob {
+    0% { filter: drop-shadow(0 0 12px #ff0033); }
+    100% { filter: drop-shadow(0 0 40px #ff0033) drop-shadow(0 0 20px #ffcc00); }
+}
+
+.bomb-visual.exploded {
+    transform: scale(2.2) !important;
+    opacity: 0;
+    filter: brightness(3);
+    transition: all 0.25s ease-out;
+}
+
+.bomb-controls {
+    width: 100%;
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+
+.pass-btn {
+    min-height: var(--control-height-large);
+    background: linear-gradient(135deg, var(--color-success), var(--color-info));
+    color: var(--color-text-on-accent);
+    box-shadow: 0 8px 25px rgba(40, 199, 111, 0.36);
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-display);
+    letter-spacing: 0.5px;
+    border: 2px solid var(--color-text-primary);
+}
+
+.pass-btn:active {
+    transform: scale(0.96);
+}
+
+.pass-info {
+    font-size: 14px;
+    font-weight: 700;
+    color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.pass-num-badge {
+    background: rgba(0, 240, 255, 0.2);
+    border: 1px solid #00f0ff;
+    color: #00f0ff;
+    font-size: 16px;
+    font-weight: 900;
+    padding: 2px 10px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+}
+
+.pass-info.hidden {
+    display: none;
+}
+
+/* ===================================================
+   EPIC FX SYSTEM (HIỆU ỨNG HOÀNH TRÁNG BÙM & CẮN)
+   =================================================== */
+.epic-fx-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 99999;
+    overflow: hidden;
+}
+
+#epic-fx-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.epic-flash-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.epic-flash-layer.flash-active {
+    animation: epicNuclearFlash 0.85s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+}
+
+@keyframes epicNuclearFlash {
+    0% { background: #ffffff; opacity: 1; }
+    22% { background: #ff5500; opacity: 0.95; }
+    45% { background: #ff0033; opacity: 0.7; }
+    75% { background: #220011; opacity: 0.4; }
+    100% { background: transparent; opacity: 0; }
+}
+
+.epic-hazard-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.epic-hazard-layer.hazard-active {
+    animation: epicBloodHazard 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes epicBloodHazard {
+    0% {
+        opacity: 1;
+        box-shadow: inset 0 0 90px #ff0033, inset 0 0 180px rgba(255, 0, 0, 0.85);
+        background: radial-gradient(circle at 50% 50%, rgba(255, 0, 0, 0.2) 0%, rgba(180, 0, 0, 0.6) 100%);
+    }
+    30% {
+        opacity: 0.9;
+        box-shadow: inset 0 0 130px #ff0000, inset 0 0 220px rgba(255, 0, 60, 0.95);
+    }
+    60% {
+        opacity: 0.6;
+        box-shadow: inset 0 0 80px #ff0033;
+    }
+    100% {
+        opacity: 0;
+        box-shadow: none;
+        background: transparent;
+    }
+}
+
+/* Violent screen shake for the whole app */
+.heavy-screen-shake {
+    animation: heavyEarthquake 0.75s cubic-bezier(0.36, 0.07, 0.19, 0.97) both !important;
+}
+
+@keyframes heavyEarthquake {
+    0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+    10% { transform: translate3d(-14px, 8px, 0) rotate(-2deg); }
+    20% { transform: translate3d(16px, -10px, 0) rotate(2deg); }
+    30% { transform: translate3d(-12px, -6px, 0) rotate(-1.5deg); }
+    40% { transform: translate3d(12px, 8px, 0) rotate(1.5deg); }
+    50% { transform: translate3d(-8px, 4px, 0) rotate(-1deg); }
+    60% { transform: translate3d(8px, -4px, 0) rotate(0.8deg); }
+    70% { transform: translate3d(-4px, 2px, 0) rotate(-0.5deg); }
+    80% { transform: translate3d(3px, -2px, 0) rotate(0.2deg); }
+    90% { transform: translate3d(-1px, 1px, 0) rotate(0deg); }
+}
+
+/* Epic Impact Comic Banner */
+.epic-banner-container {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    max-width: 420px;
+    z-index: 100000;
+}
+
+.comic-epic-badge {
+    padding: 20px 24px;
+    border-radius: 28px;
+    text-align: center;
+    color: #ffffff;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.85);
+    user-select: none;
+    -webkit-user-select: none;
+    width: 100%;
+}
+
+.comic-epic-badge.badge-bomb {
+    background: linear-gradient(135deg, #ff0055 0%, #ff5500 50%, #ffd700 100%);
+    border: 4px solid #ffffff;
+    box-shadow: 0 0 50px rgba(255, 0, 85, 0.9), 0 20px 40px rgba(0, 0, 0, 0.8);
+    animation: comicSlamIn 0.85s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.comic-epic-badge.badge-chomp {
+    background: linear-gradient(135deg, #0e5a22 0%, #ff0033 55%, #880015 100%);
+    border: 4px solid #ffd700;
+    box-shadow: 0 0 50px rgba(255, 0, 51, 0.9), 0 20px 40px rgba(0, 0, 0, 0.8);
+    animation: comicChompSlam 0.85s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.comic-epic-badge .badge-main-text {
+    font-size: 40px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.9), 0 0 25px #ffffff;
+    line-height: 1.1;
+    margin-bottom: 8px;
+}
+
+.comic-epic-badge .badge-sub-text {
+    font-size: 16px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.4);
+    padding: 6px 14px;
+    border-radius: 20px;
+    display: inline-block;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+@keyframes comicSlamIn {
+    0% {
+        transform: scale(0.1) rotate(-18deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.22) rotate(4deg);
+        opacity: 1;
+    }
+    75% {
+        transform: scale(0.95) rotate(-2deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes comicChompSlam {
+    0% {
+        transform: scale(2.4) rotate(10deg);
+        opacity: 0;
+    }
+    35% {
+        transform: scale(0.85) rotate(-4deg);
+        opacity: 1;
+    }
+    60% {
+        transform: scale(1.12) rotate(2deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+/* ===================================================
+   GLOBAL PENALTY MEDIUM SWITCHER & MODAL
+   =================================================== */
+.medium-pill-btn {
+    background: linear-gradient(135deg, rgba(255, 174, 0, 0.2), rgba(255, 71, 87, 0.2));
+    border: 1px solid var(--color-accent-warm);
+    color: var(--color-text-primary);
+    padding: 6px var(--space-3);
+    border-radius: var(--radius-pill);
+    font-size: var(--font-size-supporting);
+    font-weight: var(--font-weight-control);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(255, 174, 0, 0.25);
+    transition: border-color var(--motion-standard) ease, box-shadow var(--motion-standard) ease, transform var(--motion-fast) ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.medium-pill-btn:active {
+    transform: scale(0.94);
+    border-color: #00f0ff;
+    box-shadow: 0 0 16px rgba(0, 240, 255, 0.4);
+}
+
+.medium-pill-btn .caret {
+    font-size: 9px;
+    opacity: 0.8;
+}
+
+.medium-presets-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+}
+
+.medium-preset-btn {
+    min-height: var(--control-height-default);
+    background: var(--color-surface-control);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-control);
+    padding: var(--space-3) 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    color: var(--color-text-primary);
+    transition: background var(--motion-standard) ease, border-color var(--motion-standard) ease, box-shadow var(--motion-standard) ease, transform var(--motion-fast) ease;
+}
+
+.medium-preset-btn .m-icon {
+    font-size: 28px;
+    margin-bottom: 4px;
+}
+
+.medium-preset-btn .m-name {
+    font-size: var(--font-size-supporting);
+    font-weight: var(--font-weight-control);
+    color: var(--color-text-primary);
+}
+
+.medium-preset-btn .m-unit {
+    font-size: var(--font-size-meta);
+    color: var(--color-text-muted);
+    margin-top: 2px;
+}
+
+.medium-preset-btn.active {
+    background: linear-gradient(135deg, rgba(255, 194, 71, 0.2), rgba(255, 45, 141, 0.18));
+    border-color: var(--color-accent-primary);
+    box-shadow: var(--shadow-neon);
+    transform: scale(1.03);
+}
+
+.medium-preset-btn:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
+    box-shadow: var(--focus-ring);
+}
+
+.custom-medium-box input {
+    background: rgba(0, 0, 0, 0.4);
+    min-height: var(--control-height-default);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-compact);
+    padding: var(--space-2) var(--space-3);
+    color: var(--color-text-primary);
+    font-size: var(--font-size-supporting);
+    outline: none;
+}
+
+.custom-medium-box input:focus {
+    border-color: var(--color-focus);
+    box-shadow: var(--focus-ring);
+}
+
+/* ===================================================
+   GAME 5: PIRATE BARREL POP (THÙNG HẢI TẶC ĐÂM KIẾM)
+   =================================================== */
+.pirate-stage {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 8px 12px max(12px, env(safe-area-inset-bottom)) 12px;
+}
+
+.pirate-arena-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    min-height: 380px;
+    max-height: 56vh;
+    margin: 4px 0;
+    perspective: 1000px;
+}
+
+/* 3D Pirate Character */
+.pirate-character {
+    width: 130px;
+    height: 120px;
+    position: absolute;
+    top: 15px;
+    z-index: 6;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    pointer-events: none;
+}
+
+.pirate-bicorn {
+    position: relative;
+    width: 100px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+}
+
+.hat-body {
+    width: 90px;
+    height: 34px;
+    background: linear-gradient(180deg, #1e272e 0%, #000000 100%);
+    border-radius: 45px 45px 8px 8px;
+    border: 2px solid #ffd700;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8), inset 0 2px 4px rgba(255, 215, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hat-feather {
+    position: absolute;
+    left: -4px;
+    top: -12px;
+    font-size: 26px;
+    transform: rotate(-30deg);
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.7));
+}
+
+.hat-skull {
+    font-size: 20px;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.9));
+}
+
+.pirate-head {
+    margin-top: -8px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pirate-face-emoji {
+    font-size: 58px;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.85));
+    user-select: none;
+}
+
+.pirate-hands {
+    position: absolute;
+    bottom: 6px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    z-index: 15;
+}
+
+.pirate-hand {
+    font-size: 24px;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.8));
+}
+
+.pirate-wobble {
+    animation: piratePeekWobble 0.35s ease;
+}
+
+@keyframes piratePeekWobble {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    30% { transform: translateY(-20px) rotate(-8deg); }
+    70% { transform: translateY(-10px) rotate(8deg); }
+}
+
+.pirate-launched {
+    animation: pirateSpringPop 0.85s cubic-bezier(0.15, 1.25, 0.35, 1) forwards !important;
+}
+
+@keyframes pirateSpringPop {
+    0% {
+        transform: translateY(0) scale(1) rotate(0deg);
+    }
+    40% {
+        transform: translateY(-240px) scale(1.45) rotate(380deg);
+    }
+    70% {
+        transform: translateY(-170px) scale(1.2) rotate(700deg);
+    }
+    100% {
+        transform: translateY(-190px) scale(1.3) rotate(720deg);
+    }
+}
+
+/* Realistic 3D Pirate Oak Barrel */
+.pirate-barrel {
+    width: min(88vw, 340px);
+    height: 290px;
+    background: radial-gradient(ellipse at 50% 30%, #854316 0%, #542709 50%, #301302 90%, #170701 100%);
+    border-radius: 56px 56px 46px 46px / 36px 36px 28px 28px;
+    position: relative;
+    box-shadow: 
+        0 24px 50px rgba(0, 0, 0, 0.9), 
+        inset 0 4px 14px rgba(255, 255, 255, 0.25),
+        inset 0 -12px 24px rgba(0, 0, 0, 0.85),
+        inset 20px 0 26px rgba(0, 0, 0, 0.55),
+        inset -20px 0 26px rgba(0, 0, 0, 0.55);
+    border: 4px solid #1a0800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: transform 0.1s ease;
+}
+
+/* Barrel vertical wood staves overlay */
+.barrel-wood-overlay {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-image: repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 40px,
+        rgba(0, 0, 0, 0.4) 41px,
+        rgba(255, 215, 0, 0.08) 42px
+    );
+    pointer-events: none;
+}
+
+/* Inner dark mouth for pirate */
+.barrel-top-rim {
+    position: absolute;
+    top: -8px;
+    left: 30px;
+    right: 30px;
+    height: 18px;
+    background: radial-gradient(ellipse at 50% 50%, #000 0%, #1c0901 80%, #3d1702 100%);
+    border-radius: 50%;
+    border: 3px solid #140500;
+    box-shadow: inset 0 4px 10px #000, 0 3px 6px rgba(0, 0, 0, 0.8);
+    z-index: 8;
+    pointer-events: none;
+}
+
+.barrel-shaking {
+    animation: violentBarrelShake 0.6s ease-in-out;
+}
+
+@keyframes violentBarrelShake {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    15% { transform: translateX(-14px) rotate(-5deg); }
+    30% { transform: translateX(16px) rotate(5deg); }
+    45% { transform: translateX(-12px) rotate(-3deg); }
+    60% { transform: translateX(12px) rotate(3deg); }
+    75% { transform: translateX(-8px) rotate(-2deg); }
+    90% { transform: translateX(8px) rotate(2deg); }
+}
+
+/* 3D Metallic Golden Hoops with Rivets */
+.barrel-ring {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 18px;
+    background: linear-gradient(180deg, #ffeaa7 0%, #fdcb6e 35%, #e17055 75%, #632d00 100%);
+    border-top: 1.5px solid #fff;
+    border-bottom: 2px solid #2d1600;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+    pointer-events: none;
+    background-image: radial-gradient(circle, #ffffff 1.5px, #3d1c02 3px, transparent 3.5px);
+    background-size: 34px 100%;
+}
+
+.top-ring { top: 32px; }
+.bottom-ring { bottom: 32px; }
+
+/* Slot Grid on Barrel */
+.pirate-slots-grid {
+    width: 86%;
+    height: 62%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 12px 10px;
+    padding: 8px;
+    z-index: 12;
+}
+
+.pirate-slot-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.slot-hole {
+    width: 32px;
+    height: 10px;
+    background: #090301;
+    border-radius: 5px;
+    border: 2px solid #ffd700;
+    box-shadow: inset 0 3px 6px #000, 0 2px 4px rgba(0, 0, 0, 0.7);
+    transition: all 0.2s ease;
+}
+
+.pirate-slot-btn:active .slot-hole {
+    transform: scale(0.9);
+}
+
+.pirate-slot-btn.slot-used .slot-hole {
+    background: #141414;
+    border-color: rgba(255, 215, 0, 0.25);
+    box-shadow: inset 0 2px 4px #000;
+}
+
+/* 3D Pirate Cutlass Dagger Sword */
+.inserted-sword {
+    position: absolute;
+    width: 60px;
+    height: 15px;
+    background: linear-gradient(180deg, #ffffff 0%, var(--sword-color, #ff4757) 40%, #700010 100%);
+    border-radius: 4px 10px 10px 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.75), inset 0 2px 3px rgba(255, 255, 255, 0.6);
+    border: 1.5px solid rgba(0, 0, 0, 0.6);
+    display: none;
+    z-index: 20;
+    transform-origin: left center;
+}
+
+/* Golden Crossguard and Pommel */
+.inserted-sword::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: -6px;
+    width: 12px;
+    height: 27px;
+    background: linear-gradient(180deg, #ffeaa7 0%, #fdcb6e 40%, #e17055 80%, #632d00 100%);
+    border-radius: 4px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.7), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    border: 1px solid #4a2800;
+}
+
+/* Gem on sword hilt */
+.inserted-sword::before {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 3px;
+    width: 5px;
+    height: 9px;
+    background: #00f0ff;
+    border-radius: 2px;
+    box-shadow: 0 0 6px #00f0ff;
+    z-index: 2;
+}
+
+.sword-inserted {
+    display: block !important;
+    animation: swordThrust 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes swordThrust {
+    0% { transform: scale(1.6) translateX(-20px) rotate(var(--sword-angle, 0deg)); opacity: 0; }
+    100% { transform: scale(1) translateX(0) rotate(var(--sword-angle, 0deg)); opacity: 1; }
+}
+
+.pirate-epic-badge {
+    position: absolute;
+    top: 15%;
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, #ff0055, #ff5500);
+    border: 3px solid #fff;
+    padding: 12px 24px;
+    border-radius: 24px;
+    box-shadow: 0 12px 36px rgba(255, 0, 85, 0.7);
+    transform: scale(0.2);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+}
+
+.pirate-epic-badge.badge-active {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.pirate-epic-badge .badge-title {
+    font-size: 19px;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.pirate-epic-badge .badge-sub {
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    opacity: 0.95;
+}
+
+.pirate-penalty-banner {
+    width: 100%;
+    margin-top: 4px;
+}
+
+.penalty-pill-epic {
+    background: linear-gradient(135deg, rgba(255, 0, 85, 0.25), rgba(255, 174, 0, 0.25));
+    border: 1px solid #ff0055;
+    padding: 10px 14px;
+    border-radius: var(--radius-card);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    box-shadow: 0 0 20px rgba(255, 0, 85, 0.3);
+}
+
+.penalty-pill-epic.win {
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.25), rgba(40, 167, 69, 0.25));
+    border-color: #00f0ff;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+}
+
+.mini-retry {
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+    border-radius: 12px !important;
+    white-space: nowrap;
+}
+
+/* ===================================================
+   GAME 6: PARTY DICE 3D (LẮC XÍ NGẦU SAY XỈN)
+   =================================================== */
+.dice-stage {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 8px 12px max(12px, env(safe-area-inset-bottom)) 12px;
+}
+
+/* Phase 3B1: the Dice screen owns vertical overflow when its content is
+   allowed to grow. Keeping the stage visible prevents result/help content
+   from being clipped by a nested overflow box. */
+.game-screen.guide-open .dice-stage {
+    flex: 0 0 auto;
+    height: auto;
+    overflow: visible;
+}
+
+.dice-pot-display {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 6px;
+}
+
+.pot-pill {
+    background: rgba(255, 174, 0, 0.18);
+    border: 1.5px solid rgba(255, 215, 0, 0.6);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffd700;
+    box-shadow: 0 4px 12px rgba(255, 174, 0, 0.25);
+}
+
+/* Casino Felt Velvet Arena with Polished Wood Border */
+.dice-arena-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    background: radial-gradient(ellipse at 50% 50%, #0f5132 0%, #0a3622 65%, #051b11 100%);
+    border: 8px solid #3c1e08;
+    outline: 2px solid #d4af37;
+    border-radius: 28px;
+    box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.9), 0 16px 36px rgba(0, 0, 0, 0.75);
+    margin: 4px 0;
+    min-height: 280px;
+    max-height: 48vh;
+}
+
+.dice-shaker-cup {
+    position: absolute;
+    top: 10px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.04));
+    border: 1.5px solid rgba(255, 215, 0, 0.5);
+    border-radius: 22px;
+    padding: 6px 18px;
+    font-size: 12px;
+    font-weight: 800;
+    color: #ffd700;
+    letter-spacing: 1.5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.shaking-cup {
+    animation: cupRattle 0.8s ease infinite;
+}
+
+@keyframes cupRattle {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    20% { transform: translateY(-10px) rotate(-8deg); }
+    40% { transform: translateY(8px) rotate(8deg); }
+    60% { transform: translateY(-8px) rotate(-5deg); }
+    80% { transform: translateY(6px) rotate(5deg); }
+}
+
+.dice-table {
+    display: flex;
+    gap: 36px;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+    padding: 24px;
+    width: 100%;
+}
+
+/* Large 3D Die Cube (92px) */
+.die-cube {
+    width: 92px;
+    height: 92px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.65s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.65));
+}
+
+.rolling-dice {
+    animation: diceTumble 0.85s linear infinite !important;
+}
+
+@keyframes diceTumble {
+    0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateY(-20px) scale(1.05); }
+    50% { transform: rotateX(540deg) rotateY(360deg) rotateZ(180deg) translateY(12px) scale(0.95); }
+    100% { transform: rotateX(1080deg) rotateY(720deg) rotateZ(360deg) translateY(-20px) scale(1.05); }
+}
+
+/* Die Faces (92px with Ivory Finish & Beveled Edges) */
+.die-face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 92px;
+    height: 92px;
+    background: linear-gradient(145deg, #ffffff 0%, #f7f8fa 55%, #dfe3e8 100%);
+    border-radius: 18px;
+    border: 1px solid rgba(190, 195, 205, 0.9);
+    box-shadow: 
+        inset 0 0 10px rgba(0, 0, 0, 0.12), 
+        inset 2px 2px 4px rgba(255, 255, 255, 0.95), 
+        inset -2px -2px 4px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* 3D Indented Pip Dots */
+.die-face .pip {
+    display: block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin: auto;
+    background: radial-gradient(circle at 35% 35%, #4b5563, #1f2937 70%, #000 100%);
+    box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.8), 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+
+/* Red center pip for 1 */
+.face-1 .pip {
+    background: radial-gradient(circle at 35% 35%, #ff4757, #dc2626 65%, #7f1d1d 100%);
+    width: 28px;
+    height: 28px;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.7), 0 1px 2px rgba(255, 255, 255, 0.9);
+}
+
+/* 3D Cube Coordinate Transforms (half-width = 46px) */
+.face-1 { 
+    transform: rotateY(0deg) translateZ(46px); 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+.face-2 { 
+    transform: rotateX(90deg) translateZ(46px); 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr; 
+    padding: 18px; 
+    align-items: center; 
+    justify-items: center; 
+}
+.face-2 .pip:nth-child(1) { grid-column: 1; grid-row: 1; }
+.face-2 .pip:nth-child(2) { grid-column: 2; grid-row: 2; }
+
+.face-3 { 
+    transform: rotateY(90deg) translateZ(46px); 
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    padding: 14px; 
+    align-items: center; 
+    justify-items: center; 
+}
+.face-3 .pip:nth-child(1) { grid-column: 1; grid-row: 1; }
+.face-3 .pip:nth-child(2) { grid-column: 2; grid-row: 2; }
+.face-3 .pip:nth-child(3) { grid-column: 3; grid-row: 3; }
+
+.face-4 { 
+    transform: rotateY(-90deg) translateZ(46px); 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr; 
+    padding: 18px; 
+    align-items: center; 
+    justify-items: center; 
+}
+
+.face-5 { 
+    transform: rotateX(-90deg) translateZ(46px); 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr; 
+    padding: 18px; 
+    align-items: center; 
+    justify-items: center; 
+    position: relative; 
+}
+.face-5 .pip:nth-child(5) { 
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+}
+
+.face-6 { 
+    /* Back plane: keep it opposite the front in Android WebView. Using
+       rotateY here can promote the back face to the camera-facing plane
+       after an inline parent rotation, making every settled die read as 6. */
+    transform: rotateX(180deg) translateZ(46px); 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    padding: 14px 20px; 
+    align-items: center; 
+    justify-items: center; 
+}
+
+.dice-result-container {
+    width: 100%;
+    margin: 4px 0;
+    min-height: 52px;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dice-hint {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-supporting);
+    font-style: italic;
+}
+
+.dice-result-card {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: var(--radius-card);
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border-default);
+    text-align: center;
+}
+
+.dice-result-card .d-title {
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-control);
+    color: var(--color-text-primary);
+    margin-bottom: 2px;
+}
+
+.dice-result-card .d-action {
+    font-size: var(--font-size-supporting);
+    color: var(--color-text-secondary);
+}
+
+.dice-result-card.boom {
+    background: linear-gradient(135deg, rgba(255, 0, 85, 0.35), rgba(255, 174, 0, 0.35));
+    border-color: #ff0055;
+    box-shadow: 0 0 18px rgba(255, 0, 85, 0.45);
+}
+
+.dice-result-card.double {
+    background: linear-gradient(135deg, rgba(113, 88, 226, 0.35), rgba(0, 240, 255, 0.35));
+    border-color: #7158e2;
+    box-shadow: 0 0 18px rgba(113, 88, 226, 0.45);
+}
+
+.dice-result-card.warn {
+    background: rgba(255, 174, 0, 0.22);
+    border-color: #ffae00;
+}
+
+.dice-result-card.danger {
+    background: rgba(255, 56, 56, 0.22);
+    border-color: #ff3838;
+}
+
+.dice-result-card.safe {
+    background: rgba(0, 240, 255, 0.18);
+    border-color: #00f0ff;
+}
+
+.dice-legend {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 4px;
+}
+
+/* ===================================================
+   GAME 7: DRINKING CARDS (RÚT THẺ BÀI THÁCH ĐẤU)
+   =================================================== */
+.cards-stage {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 8px 12px max(12px, env(safe-area-inset-bottom)) 12px;
+}
+
+.cards-filter-bar {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 4px 2px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.cards-filter-bar::-webkit-scrollbar { display: none; }
+
+.card-filter-pill {
+    background: var(--color-surface-control);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-pill);
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-size-meta);
+    font-weight: var(--font-weight-control);
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background var(--motion-standard) ease, border-color var(--motion-standard) ease, box-shadow var(--motion-standard) ease;
+}
+
+.card-filter-pill.active {
+    background: linear-gradient(135deg, #7158e2, #9b59b6);
+    border-color: var(--color-accent-warm);
+    box-shadow: 0 0 12px rgba(113, 88, 226, 0.6);
+}
+
+.card-arena-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1200px;
+    margin: 4px 0;
+    min-height: 480px;
+    max-height: 62vh;
+}
+
+/* Large 3D Luxury Card Deck */
+.card-3d-box {
+    width: min(86vw, 320px);
+    height: 460px;
+    cursor: pointer;
+    perspective: 1200px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.65s cubic-bezier(0.2, 0.85, 0.35, 1.2);
+    border-radius: 26px;
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.85), 0 0 30px rgba(113, 88, 226, 0.35);
+}
+
+.card-3d-box.is-flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 26px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Luxury 3D Card Back */
+.card-back {
+    background: radial-gradient(circle at 50% 30%, #2e1065 0%, #17072e 60%, #090214 100%);
+    border: 3px solid #ffd700;
+    box-shadow: inset 0 0 30px rgba(113, 88, 226, 0.5), 0 12px 30px rgba(0, 0, 0, 0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-back-pattern {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border: 2px dashed rgba(255, 215, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    position: relative;
+    padding: 16px;
+    box-sizing: border-box;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 80%);
+}
+
+.card-corner {
+    position: absolute;
+    font-size: 16px;
+    color: #ffd700;
+    text-shadow: 0 0 6px rgba(255, 215, 0, 0.6);
+    pointer-events: none;
+}
+.card-corner.tl { top: 10px; left: 12px; }
+.card-corner.tr { top: 10px; right: 12px; }
+.card-corner.bl { bottom: 10px; left: 12px; }
+.card-corner.br { bottom: 10px; right: 12px; }
+
+/* Metallic 3D Royal Crest */
+.card-back-crest {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffeaa7, #fdcb6e 40%, #e17055 80%, #d63031 100%);
+    border: 3px solid #ffffff;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 215, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.card-back-crown {
+    font-size: 24px;
+    position: absolute;
+    top: -12px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+}
+
+.card-back-icon { 
+    font-size: 52px; 
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6));
+}
+
+.card-back-title {
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    background: linear-gradient(180deg, #ffffff 0%, #ffeaa7 40%, #f59e0b 80%, #b45309 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.8);
+}
+
+.card-back-sub {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #ffd700;
+    font-weight: 800;
+    opacity: 0.9;
+}
+
+.card-back-tap {
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffffff;
+    animation: cardGlowPulse 1.5s infinite;
+    letter-spacing: 1px;
+}
+
+@keyframes cardGlowPulse {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* Luxury 3D Card Front */
+.card-front {
+    background: radial-gradient(circle at 50% 25%, #1e1b4b 0%, #0f172a 70%, #020617 100%);
+    border: 3px solid #00f0ff;
+    box-shadow: inset 0 0 35px rgba(0, 240, 255, 0.3), 0 16px 40px rgba(0, 0, 0, 0.9);
+    transform: rotateY(180deg);
+}
+
+.card-front-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.card-badge {
+    padding: 6px 18px;
+    border-radius: 16px;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.badge-drink { background: rgba(255, 71, 87, 0.35); border: 1.5px solid #ff4757; color: #ff6b81; box-shadow: 0 0 12px rgba(255,71,87,0.4); }
+.badge-truth { background: rgba(0, 240, 255, 0.35); border: 1.5px solid #00f0ff; color: #00f0ff; box-shadow: 0 0 12px rgba(0,240,255,0.4); }
+.badge-dare { background: rgba(255, 174, 0, 0.35); border: 1.5px solid #ffae00; color: #ffd700; box-shadow: 0 0 12px rgba(255,174,0,0.4); }
+.badge-king { background: rgba(162, 155, 254, 0.35); border: 1.5px solid #a29bfe; color: #a29bfe; box-shadow: 0 0 12px rgba(162,155,254,0.4); }
+
+.card-big-icon {
+    font-size: 72px;
+    filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.7));
+    margin: 4px 0;
+}
+
+.card-title {
+    font-size: 23px;
+    font-weight: 900;
+    color: #ffffff;
+    margin: 4px 0;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.card-desc-box {
+    background: rgba(0, 0, 0, 0.45);
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 16px 18px;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6);
+    width: 100%;
+}
+
+.card-desc {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #f1f5f9;
+    font-weight: 700;
+    margin: 0;
+}
+
+.card-front-footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.card-watermark {
+    font-size: 11px;
+    font-weight: 800;
+    color: rgba(255, 215, 0, 0.7);
+    letter-spacing: 2px;
+}
+
+/* ===================================================
+   GAME 8: SPIN THE BOTTLE 3D (XOAY CHAI BẬT NẮP)
+   =================================================== */
+.bottle-stage {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 8px 12px max(12px, env(safe-area-inset-bottom)) 12px;
+}
+
+.bottle-options-bar {
+    display: flex;
+    gap: 8px;
+}
+
+.bottle-arena-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    min-height: 380px;
+    max-height: 52vh;
+    background: radial-gradient(circle at 50% 50%, #2e1a0d 0%, #150a04 70%, #070301 100%);
+    border-radius: 28px;
+    border: 5px solid #4a240d;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.9), 0 14px 32px rgba(0, 0, 0, 0.8);
+    margin: 4px 0;
+    overflow: hidden;
+}
+
+.bottle-compass-ring {
+    position: absolute;
+    width: 270px;
+    height: 270px;
+    border-radius: 50%;
+    border: 2px dashed rgba(255, 215, 0, 0.35);
+    background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.04) 0%, transparent 75%);
+    pointer-events: none;
+}
+
+.bottle-touch-zone {
+    width: 260px;
+    height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: grab;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.bottle-touch-zone:active {
+    cursor: grabbing;
+}
+
+.bottle-seat-ring {
+    position: absolute;
+    width: 290px;
+    height: 290px;
+    pointer-events: none;
+}
+
+.bottle-sector-map {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    fill: transparent;
+    stroke: var(--color-border-default);
+    stroke-width: .4;
+}
+
+.bottle-sector-map .is-selected {
+    fill: rgba(46, 204, 113, .16);
+    stroke: var(--color-accent-warm);
+    stroke-width: .8;
+    stroke-dasharray: 2 1;
+}
+
+.bottle-seat {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--color-border-default);
+    border-radius: 50%;
+    background: var(--color-surface-raised);
+    color: var(--color-text-primary);
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.bottle-seat.is-selected {
+    border-radius: 6px;
+    border: 3px double var(--color-accent-warm);
+    background: var(--color-surface-base);
+    outline: 2px solid var(--color-text-primary);
+    outline-offset: 2px;
+}
+
+.bottle-seat-setup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--color-text-primary);
+    font-size: var(--font-size-supporting);
+}
+
+.bottle-seat-setup select {
+    min-width: 112px;
+    min-height: 44px;
+}
+
+/* Approved rigid raster; gameplay JS remains the sole rotation writer. */
+#screen-bottle .bottle-3d {
+    width: 193px;
+    height: 193px;
+    flex: 0 0 auto;
+    position: relative;
+    transform-origin: 50% 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    pointer-events: none;
+    transition: transform 0.05s linear;
+}
+
+#screen-bottle .bottle-beer { background-image: url('../assets/art/bottle-game/01-green.webp'); }
+#screen-bottle .bottle-whisky { background-image: url('../assets/art/bottle-game/02-amber.webp'); }
+#screen-bottle .bottle-soju { background-image: url('../assets/art/bottle-game/03-clear.webp'); }
+#screen-bottle .bottle-wine { background-image: url('../assets/art/bottle-game/04-wine.webp'); }
+
+.bottle-result-box {
+    width: 100%;
+    margin-top: 4px;
+}
+
+.bottle-epic-pill {
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.25), rgba(0, 240, 255, 0.25));
+    border: 1.5px solid #2ecc71;
+    border-radius: var(--radius-card);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 0 20px rgba(46, 204, 113, 0.35);
+}
+
+.bottle-epic-pill.duel {
+    background: linear-gradient(135deg, rgba(255, 0, 85, 0.3), rgba(255, 174, 0, 0.3));
+    border-color: #ff0055;
+    box-shadow: 0 0 20px rgba(255, 0, 85, 0.4);
+}
+
+.bottle-epic-pill .pill-icon {
+    font-size: 32px;
+}
+
+.bottle-epic-pill .pill-content strong {
+    font-size: var(--font-size-supporting);
+    color: var(--color-text-primary);
+    display: block;
+    margin-bottom: 2px;
+}
+
+.bottle-epic-pill .pill-content p {
+    font-size: var(--font-size-meta);
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
+/* ===================================================
+   GAME 9: NUMBER BOMB (BOM SỐ BÍ MẬT 1 - 100)
+   =================================================== */
+.nbomb-stage {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 8px 12px max(12px, env(safe-area-inset-bottom)) 12px;
+}
+
+.nbomb-arena-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 190px;
+    max-height: 32vh;
+    background: radial-gradient(circle at 50% 50%, #25060a 0%, #140305 70%, #080102 100%);
+    border-radius: 24px;
+    border: 2px solid #ff3838;
+    box-shadow: inset 0 0 35px rgba(255, 0, 85, 0.3), 0 8px 24px rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    position: relative;
+    margin: 4px 0;
+}
+
+.nbomb-bomb-icon {
+    font-size: 48px;
+    filter: drop-shadow(0 6px 14px rgba(255, 56, 56, 0.6));
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.bomb-heartbeat-fast {
+    animation: bombThumpFast 0.6s infinite ease-in-out;
+}
+
+.bomb-heartbeat-extreme {
+    animation: bombThumpExtreme 0.35s infinite ease-in-out;
+    filter: drop-shadow(0 0 20px #ff0055) !important;
+}
+
+.bomb-exploding {
+    animation: bombDetonate 0.85s cubic-bezier(0.15, 1.25, 0.35, 1) forwards;
+}
+
+@keyframes bombThumpFast {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.18); }
+}
+
+@keyframes bombThumpExtreme {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.28) rotate(-6deg); }
+    75% { transform: scale(1.28) rotate(6deg); }
+}
+
+@keyframes bombDetonate {
+    0% { transform: scale(1); }
+    30% { transform: scale(2.2); filter: drop-shadow(0 0 40px #ff0055); }
+    60% { transform: scale(1.8) rotate(20deg); }
+    100% { transform: scale(1.9); }
+}
+
+.nbomb-range-display {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 6px 0;
+}
+
+.nbomb-bound {
+    font-size: 28px;
+    font-weight: 900;
+    color: #00f0ff;
+    text-shadow: 0 0 14px rgba(0, 240, 255, 0.8);
+}
+
+.nbomb-divider {
+    font-size: 14px;
+    font-weight: 800;
+    color: #ffd700;
+    letter-spacing: 2px;
+}
+
+.nbomb-progress-wrap {
+    width: 82%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 4px 0;
+}
+
+.nbomb-danger-bar {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, #00f0ff, #7158e2);
+    border-radius: 4px;
+    transition: width 0.35s ease, background 0.35s ease;
+}
+
+.nbomb-input-box {
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 4px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.nbomb-input-label {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.nbomb-input-value {
+    font-size: 22px;
+    font-weight: 900;
+    color: #fff;
+    min-width: 44px;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+.input-shake {
+    animation: inputShakeAnim 0.3s ease;
+    color: #ff0055 !important;
+}
+
+@keyframes inputShakeAnim {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+}
+
+.nbomb-numpad-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    width: 100%;
+    padding: 2px 0;
+}
+
+.numpad-btn {
+    background: rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 14px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 800;
+    padding: 10px 0;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: all 0.15s ease;
+}
+
+.numpad-btn:active {
+    transform: scale(0.92);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.key-action {
+    background: rgba(255, 174, 0, 0.22);
+    border-color: #ffae00;
+    color: #ffd700;
+}
+
+.key-submit {
+    grid-column: span 3;
+    background: linear-gradient(135deg, #ff0055, #ff5500);
+    border: none;
+    font-size: 16px;
+    letter-spacing: 1px;
+    padding: 12px 0;
+    box-shadow: 0 4px 16px rgba(255, 0, 85, 0.45);
+}
+
+.nbomb-result-container {
+    width: 100%;
+    margin-top: 4px;
+}
+
+.nbomb-epic-pill {
+    background: linear-gradient(135deg, rgba(255, 0, 85, 0.3), rgba(255, 85, 0, 0.3));
+    border: 1.5px solid #ff0055;
+    border-radius: var(--radius-card);
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    box-shadow: 0 0 20px rgba(255, 0, 85, 0.4);
+}
+
+/* ===================================================
+   GAME 10: NEVER HAVE I EVER (TÔI CHƯA TỪNG...)
+   =================================================== */
+.never-stage {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 8px 12px max(12px, env(safe-area-inset-bottom)) 12px;
+}
+
+.never-filter-bar {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 4px 2px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.never-filter-bar::-webkit-scrollbar { display: none; }
+
+.never-filter-pill {
+    background: var(--color-surface-control);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-pill);
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-size-meta);
+    font-weight: var(--font-weight-control);
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background var(--motion-standard) ease, border-color var(--motion-standard) ease, box-shadow var(--motion-standard) ease;
+}
+
+.never-filter-pill.active {
+    background: linear-gradient(135deg, #e056fd, #686de0);
+    border-color: var(--color-accent-warm);
+    box-shadow: 0 0 12px rgba(224, 86, 253, 0.6);
+}
+
+.never-arena-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 240px;
+    max-height: 44vh;
+    margin: 6px 0;
+}
+
+.never-card {
+    width: min(92vw, 360px);
+    min-height: 220px;
+    background: radial-gradient(circle at 50% 20%, #2b1055 0%, #15072c 70%, #0a0316 100%);
+    border: 2.5px solid #e056fd;
+    border-radius: 26px;
+    box-shadow: inset 0 0 25px rgba(224, 86, 253, 0.35), 0 16px 40px rgba(0, 0, 0, 0.85);
+    padding: 22px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.card-swipe-anim {
+    animation: cardSwipeIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes cardSwipeIn {
+    0% { transform: scale(0.85) translateY(30px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.card-glow-red {
+    border-color: #ff0055 !important;
+    box-shadow: 0 0 35px rgba(255, 0, 85, 0.8) !important;
+}
+
+.never-badge {
+    font-size: 11px;
+    font-weight: 800;
+    padding: 5px 14px;
+    border-radius: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.badge-funny { background: rgba(255, 174, 0, 0.3); border: 1px solid #ffae00; color: #ffd700; }
+.badge-party { background: rgba(46, 204, 113, 0.3); border: 1px solid #2ecc71; color: #58d68d; }
+.badge-spicy { background: rgba(255, 0, 85, 0.3); border: 1px solid #ff0055; color: #ff6b81; }
+.badge-life  { background: rgba(0, 240, 255, 0.3); border: 1px solid #00f0ff; color: #00f0ff; }
+
+.never-quote-icon {
+    font-size: 38px;
+    color: rgba(255, 215, 0, 0.5);
+    font-family: serif;
+    line-height: 1;
+    margin-top: -4px;
+}
+
+.never-prompt-text {
+    font-size: 19px;
+    line-height: 1.5;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 8px 0;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.never-rule-tag {
+    background: rgba(255, 0, 85, 0.2);
+    border: 1px solid rgba(255, 0, 85, 0.4);
+    border-radius: 12px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #ff6b81;
+}
+
+.never-actions-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 6px;
+}
+
+.never-choice-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 10px;
+    border-radius: 16px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-weight: 800;
+    font-size: 13px;
+    -webkit-tap-highlight-color: transparent;
+    transition: all 0.2s ease;
+}
+
+.never-choice-btn:active {
+    transform: scale(0.95);
+}
+
+.never-choice-btn small {
+    font-size: 10px;
+    font-weight: 600;
+    opacity: 0.85;
+    margin-top: 2px;
+}
+
+.btn-drank {
+    background: linear-gradient(135deg, #ff0055, #c0392b);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(255, 0, 85, 0.4);
+}
+
+.btn-safe {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+}
+
+.never-pass-btn {
+    width: auto;
+    min-height: 44px;
+    justify-self: center;
+    padding: 8px 20px;
+    font-size: 12px;
+}
+
+/* 5.19 Wheel C: explicit mode selector; one scroll owner for full-text legend. */
+.wheel-mode-selector {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .4rem;
+    margin: .65rem auto;
+    max-width: 32rem;
+}
+.wheel-mode-selector button {
+    border: 1px solid rgba(255,255,255,.28);
+    border-radius: 1.25rem;
+    padding: .5rem .7rem;
+    background: rgba(28,16,55,.88);
+    color: #fff;
+    font: inherit;
+    font-size: .8rem;
+    cursor: pointer;
+}
+.wheel-mode-selector button.active, .wheel-mode-selector button[aria-pressed="true"] {
+    border-color: #fff;
+    background: #692686;
+}
+.wheel-mode-selector button:focus-visible {
+    outline: 3px solid #ffe38a;
+    outline-offset: 2px;
+}
+.wheel-mode-selector button:disabled { opacity: .55; cursor: default; }
+.wheel-mode-legend {
+    box-sizing: border-box;
+    width: min(100%, 32rem);
+    max-height: min(26vh, 11rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    margin: .65rem auto;
+    padding: .6rem .6rem .6rem 2.7rem;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: .75rem;
+    background: rgba(19,11,43,.92);
+    color: #fff;
+    font-size: .84rem;
+    line-height: 1.5;
+    touch-action: pan-y;
+}
+.wheel-mode-legend[hidden] { display: none; }
+.wheel-mode-legend li { padding: .2rem 0; overflow-wrap: anywhere; }
