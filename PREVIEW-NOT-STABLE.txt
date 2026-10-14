@@ -1,0 +1,1 @@
+Vua Ban Nhau G3 isolated-candidate HTTPS preview. For QA only. Not a stable release. No compatibility or data durability guarantee.

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Vua Bàn Nhậu maskable icon</title>
+  <desc id="desc">Crowned party mug centered inside the maskable safe zone</desc>
+  <defs>
+    <radialGradient id="bg" cx="28%" cy="18%" r="95%">
+      <stop offset="0" stop-color="#3a1b72"/>
+      <stop offset=".58" stop-color="#160d32"/>
+      <stop offset="1" stop-color="#090617"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#fff1a3"/><stop offset=".32" stop-color="#ffc247"/><stop offset="1" stop-color="#a75a11"/>
+    </linearGradient>
+    <linearGradient id="mug" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#fff0ad"/><stop offset=".34" stop-color="#ffb72d"/><stop offset="1" stop-color="#d45c0b"/>
+    </linearGradient>
+    <linearGradient id="neon" x1="0" x2="1">
+      <stop stop-color="#20e7ff"/><stop offset="1" stop-color="#ff2d8d"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" fill="url(#bg)"/>
+  <g transform="translate(76.8 76.8) scale(.7)">
+    <circle cx="256" cy="256" r="198" fill="none" stroke="url(#neon)" stroke-width="12" opacity=".78"/>
+    <path d="M134 184 160 94l56 47 40-73 40 73 56-47 26 90z" fill="url(#gold)" stroke="#fff0a4" stroke-width="7" stroke-linejoin="round"/>
+    <circle cx="160" cy="177" r="10" fill="#fff3af"/><circle cx="352" cy="177" r="10" fill="#fff3af"/>
+    <path d="M128 204h218c45 0 75 34 75 82v89c0 35-28 63-63 63H159c-35 0-63-28-63-63v-89c0-48 30-82 75-82z" fill="url(#mug)" stroke="#ffec9a" stroke-width="9"/>
+    <path d="M118 212c27-28 74-29 112-21 57 12 99 9 158-10 30-10 58 8 58 43 0 33-28 46-61 42-61-7-100-1-158 8-49 8-87-15-109-62z" fill="#fff8db" stroke="#fff" stroke-width="8"/>
+    <path d="M348 256h47c46 0 63 28 63 61s-20 59-63 59h-38" fill="none" stroke="#ffc247" stroke-width="24" stroke-linecap="round"/>
+    <ellipse cx="233" cy="326" rx="18" ry="25" fill="#35122b"/><ellipse cx="311" cy="326" rx="18" ry="25" fill="#35122b"/>
+    <circle cx="228" cy="318" r="6" fill="#fff"/><circle cx="306" cy="318" r="6" fill="#fff"/>
+    <path d="M238 374c21 22 51 22 72 0" fill="none" stroke="#35122b" stroke-width="10" stroke-linecap="round"/>
+  </g>
+</svg>

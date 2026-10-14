@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Vua Bàn Nhậu - Trò Vui Bàn Tiệc</title>
+    
+    <!-- PWA & Mobile Meta -->
+    <meta name="theme-color" content="#0a0618">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Vua Bàn Nhậu">
+    <link rel="manifest" href="manifest.json?v=5.18.5">
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+DQogIDx0aXRsZSBpZD0idGl0bGUiPlZ1YSBCw6BuIE5o4bqtdTwvdGl0bGU+DQogIDxkZXNjIGlkPSJkZXNjIj5BIGNyb3duZWQgcGFydHkgYmVlciBtdWcgbWFzY290PC9kZXNjPg0KICA8ZGVmcz4NCiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9ImJnIiBjeD0iMjglIiBjeT0iMTglIiByPSI5NSUiPg0KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjM2ExYjcyIi8+DQogICAgICA8c3RvcCBvZmZzZXQ9Ii41OCIgc3RvcC1jb2xvcj0iIzE2MGQzMiIvPg0KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDkwNjE3Ii8+DQogICAgPC9yYWRpYWxHcmFkaWVudD4NCiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImdvbGQiIHgxPSIwIiB4Mj0iMSIgeTE9IjAiIHkyPSIxIj4NCiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiNmZmYxYTMiLz48c3RvcCBvZmZzZXQ9Ii4zMiIgc3RvcC1jb2xvcj0iI2ZmYzI0NyIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2E3NWExMSIvPg0KICAgIDwvbGluZWFyR3JhZGllbnQ+DQogICAgPGxpbmVhckdyYWRpZW50IGlkPSJtdWciIHgxPSIwIiB4Mj0iMSIgeTE9IjAiIHkyPSIxIj4NCiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiNmZmYwYWQiLz48c3RvcCBvZmZzZXQ9Ii4zNCIgc3RvcC1jb2xvcj0iI2ZmYjcyZCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Q0NWMwYiIvPg0KICAgIDwvbGluZWFyR3JhZGllbnQ+DQogICAgPGxpbmVhckdyYWRpZW50IGlkPSJuZW9uIiB4MT0iMCIgeDI9IjEiPg0KICAgICAgPHN0b3Agc3RvcC1jb2xvcj0iIzIwZTdmZiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmMmQ4ZCIvPg0KICAgIDwvbGluZWFyR3JhZGllbnQ+DQogICAgPGZpbHRlciBpZD0iZ2xvdyI+PGZlR2F1c3NpYW5CbHVyIHN0ZERldmlhdGlvbj0iMTAiIHJlc3VsdD0iYiIvPjxmZU1lcmdlPjxmZU1lcmdlTm9kZSBpbj0iYiIvPjxmZU1lcmdlTm9kZSBpbj0iU291cmNlR3JhcGhpYyIvPjwvZmVNZXJnZT48L2ZpbHRlcj4NCiAgICA8ZmlsdGVyIGlkPSJzaGFkb3ciIHg9Ii0zMCUiIHk9Ii0zMCUiIHdpZHRoPSIxNjAlIiBoZWlnaHQ9IjE3MCUiPjxmZURyb3BTaGFkb3cgZHg9IjAiIGR5PSIxNiIgc3RkRGV2aWF0aW9uPSIxMyIgZmxvb2QtY29sb3I9IiMwMDAiIGZsb29kLW9wYWNpdHk9Ii42NSIvPjwvZmlsdGVyPg0KICA8L2RlZnM+DQogIDxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iMTEyIiBmaWxsPSJ1cmwoI2JnKSIvPg0KICA8Y2lyY2xlIGN4PSIyNTYiIGN5PSIyNTYiIHI9IjE5OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ1cmwoI25lb24pIiBzdHJva2Utd2lkdGg9IjEwIiBvcGFjaXR5PSIuNzUiIGZpbHRlcj0idXJsKCNnbG93KSIvPg0KICA8cGF0aCBkPSJNMTM0IDE4NCAxNjAgOTRsNTYgNDcgNDAtNzMgNDAgNzMgNTYtNDcgMjYgOTB6IiBmaWxsPSJ1cmwoI2dvbGQpIiBzdHJva2U9IiNmZmYwYTQiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZmlsdGVyPSJ1cmwoI3NoYWRvdykiLz4NCiAgPGNpcmNsZSBjeD0iMTYwIiBjeT0iMTc3IiByPSIxMCIgZmlsbD0iI2ZmZjNhZiIvPjxjaXJjbGUgY3g9IjM1MiIgY3k9IjE3NyIgcj0iMTAiIGZpbGw9IiNmZmYzYWYiLz4NCiAgPHBhdGggZD0iTTEyOCAyMDRoMjE4YzQ1IDAgNzUgMzQgNzUgODJ2ODljMCAzNS0yOCA2My02MyA2M0gxNTljLTM1IDAtNjMtMjgtNjMtNjN2LTg5YzAtNDggMzAtODIgNzUtODJ6IiBmaWxsPSJ1cmwoI211ZykiIHN0cm9rZT0iI2ZmZWM5YSIgc3Ryb2tlLXdpZHRoPSI4IiBmaWx0ZXI9InVybCgjc2hhZG93KSIvPg0KICA8cGF0aCBkPSJNMTE4IDIxMmMyNy0yOCA3NC0yOSAxMTItMjEgNTcgMTIgOTkgOSAxNTgtMTAgMzAtMTAgNTggOCA1OCA0MyAwIDMzLTI4IDQ2LTYxIDQyLTYxLTctMTAwLTEtMTU4IDgtNDkgOC04Ny0xNS0xMDktNjJ6IiBmaWxsPSIjZmZmOGRiIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iNyIvPg0KICA8cGF0aCBkPSJNMzQ4IDI1Nmg0N2M0NiAwIDYzIDI4IDYzIDYxcy0yMCA1OS02MyA1OWgtMzgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmYzI0NyIgc3Ryb2tlLXdpZHRoPSIyMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+DQogIDxlbGxpcHNlIGN4PSIyMzMiIGN5PSIzMjYiIHJ4PSIxOCIgcnk9IjI1IiBmaWxsPSIjMzUxMjJiIi8+PGVsbGlwc2UgY3g9IjMxMSIgY3k9IjMyNiIgcng9IjE4IiByeT0iMjUiIGZpbGw9IiMzNTEyMmIiLz4NCiAgPGNpcmNsZSBjeD0iMjI4IiBjeT0iMzE4IiByPSI2IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMzA2IiBjeT0iMzE4IiByPSI2IiBmaWxsPSIjZmZmIi8+DQogIDxwYXRoIGQ9Ik0yMzggMzc0YzIxIDIyIDUxIDIyIDcyIDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzM1MTIyYiIgc3Ryb2tlLXdpZHRoPSIxMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+DQogIDxwYXRoIGQ9Ik0xMTEgMTY3IDc4IDEzOU00MDEgMTY3bDMzLTI4IiBzdHJva2U9IiMyMGU3ZmYiIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTczIDIwNGgtMjVNNDM5IDIwNGgyNSIgc3Ryb2tlPSIjZmYyZDhkIiBzdHJva2Utd2lkdGg9IjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPg0KPC9zdmc+DQo=" type="image/svg+xml">
+
+    <!-- Stylesheets -->
+    <link data-g17-style="css/style.css?v=5.18.5">
+    <link data-g17-style="css/components.css?v=5.18.5">
+    <link data-g17-style="css/phase2.css?v=5.18.5">
+<link rel="apple-touch-icon" data-g17-href="assets/icons/app-icon-192.png">
+<style id="g17-boot-lock">html:not([data-g17-app-ready]) body > :not(#g17-app-status):not(script){visibility:hidden!important;pointer-events:none!important}#g17-app-status{position:fixed;inset:1rem auto auto 1rem;z-index:2147483647;max-width:calc(100vw - 2rem);padding:.75rem 1rem;background:#101326;color:#fff;border:1px solid #38e8dc;border-radius:.75rem;font:600 16px/1.45 system-ui,sans-serif;box-shadow:0 0 20px #38e8dc55}</style>
+</head>
+<body>
+
+    <!-- Background Neon Ambient Lights -->
+    <div class="bg-glow-top"></div>
+    <div class="bg-glow-bottom"></div>
+
+    <!-- Celebration & Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- EPIC FX OVERLAY (Hiệu Ứng Hoành Tráng: Bom Nổ & Cá Sấu Cắn) -->
+    <div id="epic-fx-overlay" class="epic-fx-overlay">
+        <canvas id="epic-fx-canvas"></canvas>
+        <div id="epic-flash-layer" class="epic-flash-layer"></div>
+        <div id="epic-hazard-layer" class="epic-hazard-layer"></div>
+        <div id="epic-banner-container" class="epic-banner-container" role="status" aria-live="assertive"></div>
+    </div>
+
+    <div id="app-root">
+        <!-- Persistent App Bar -->
+        <header class="app-header">
+            <button class="brand-logo" onclick="window.app.navigate('home')" aria-label="Về trang chính">
+                <img class="logo-badge" data-g17-src="assets/icons/app-icon.svg" alt="">
+                <div>
+                    <span class="brand-title">VUA BÀN NHẬU</span>
+                    <span class="brand-subtitle">Party King Edition</span>
+                </div>
+            </button>
+            <div class="header-actions">
+                <span id="network-status" class="network-status" role="status" aria-live="polite" aria-hidden="true"></span>
+                <button id="medium-switcher-btn" class="medium-pill-btn" onclick="window.app.openModal('medium-modal')" aria-label="Đổi vật phạt" title="Vật phạt"><svg class="ui-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#beer"></use></svg><span class="medium-label">Bia / Không cồn</span><span class="caret" aria-hidden="true">▼</span></button>
+                <button id="toggle-sound-btn" class="icon-btn" aria-label="Tắt âm thanh" aria-pressed="true" title="Âm thanh"><svg class="ui-symbol" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#speaker-on"></use></svg></button>
+                <button id="toggle-fullscreen-btn" class="icon-btn header-fullscreen" aria-label="Toàn màn hình" aria-pressed="false" title="Toàn màn hình"><svg class="ui-symbol" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#fullscreen-enter"></use></svg></button>
+                <button class="icon-btn header-menu-btn" onclick="window.app.openModal('settings-modal')" aria-label="Mở menu cài đặt" title="Cài đặt"><svg class="ui-symbol" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#menu"></use></svg></button>
+            </div>
+        </header>
+
+        <!-- MAIN CONTAINER / SCREENS -->
+        <main class="main-content">
+            <!-- 1. HOME SCREEN: GAME SELECTOR -->
+            <section id="screen-home" class="game-screen active">
+                <div class="hero-banner">
+                    <div class="hero-copy">
+                        <span class="eyebrow">PARTY KING EDITION</span>
+                        <h1>TRÒ VUI BÀN TIỆC</h1>
+                        <p>Chọn một trò. Cả bàn cùng vui.</p>
+                    </div>
+                    <button class="hero-play-btn" onclick="window.app.playRandomGame()" aria-label="Chơi game ngẫu nhiên">
+                        <span class="hero-play-icon" aria-hidden="true">▶</span>
+                        <span>CHƠI NGAY</span>
+                    </button>
+                </div>
+
+                <!-- Party Session Presets: kiểu bàn nhậu (5.13.0) -->
+                <div class="party-presets-box">
+                    <div class="section-title"><span>KIỂU BÀN NHẬU</span></div>
+                    <div id="party-preset-group" class="party-preset-group" role="radiogroup" aria-label="Kiểu bàn nhậu">
+                        <button class="preset-chip" type="button" role="radio" aria-checked="false" data-preset="default"><span class="preset-chip-icon" aria-hidden="true">🎯</span>Mặc Định</button>
+                        <button class="preset-chip" type="button" role="radio" aria-checked="false" data-preset="quick"><span class="preset-chip-icon" aria-hidden="true">⚡</span>Chơi Nhanh</button>
+                        <button class="preset-chip" type="button" role="radio" aria-checked="false" data-preset="classic"><span class="preset-chip-icon" aria-hidden="true">🎲</span>Kinh Điển</button>
+                        <button class="preset-chip" type="button" role="radio" aria-checked="false" data-preset="lively"><span class="preset-chip-icon" aria-hidden="true">🔥</span>Náo Nhiệt</button>
+                        <button class="preset-chip" type="button" role="radio" aria-checked="false" data-preset="light"><span class="preset-chip-icon" aria-hidden="true">🌿</span>Nhẹ Nhàng</button>
+                        <button class="preset-chip preset-chip-custom" type="button" role="radio" aria-checked="false" data-preset="" hidden>Tùy Chỉnh</button>
+                    </div>
+                    <span id="party-preset-live" class="sr-only" role="status" aria-live="polite"></span>
+                </div>
+
+                <div class="home-toolbar">
+                    <div class="section-title"><span>CHỌN TRÒ CHƠI</span><span class="section-count" id="game-count">10 trò</span></div>
+                    <div class="game-filters" role="tablist" aria-label="Lọc trò chơi">
+                        <button class="filter-chip active" data-filter="all" role="tab" aria-selected="true">Tất cả</button>
+                        <button class="filter-chip" data-filter="quick" role="tab" aria-selected="false">Chơi nhanh</button>
+                        <button class="filter-chip" data-filter="party" role="tab" aria-selected="false">Cả bàn</button>
+                        <button class="filter-chip" data-filter="3d" role="tab" aria-selected="false">3D</button>
+                    </div>
+                </div>
+
+                <div class="games-grid">
+                    <!-- Game 1: Crocodile Dentist -->
+                    <button class="game-card" data-game="crocodile" data-tags="quick party" style="--card-accent: #28a745; --card-glow: rgba(40, 167, 69, 0.4);" onclick="window.app.navigate('crocodile')">
+                        <span class="card-tag tag-hot">Kinh Điển</span>
+                        <img class="card-icon card-art-3d" data-g17-src="assets/art/crocodile-roulette-3d.webp" alt="" loading="lazy" decoding="async">
+                        <h3>Khám Răng Cá Sấu</h3>
+                        <span class="card-meta">2–8 người · 1 phút</span>
+                    </button>
+
+                    <!-- Game 2: Lucky Wheel -->
+                    <button class="game-card" data-game="wheel" data-tags="quick party" style="--card-accent: #ff007f; --card-glow: rgba(255, 0, 127, 0.4);" onclick="window.app.navigate('wheel')">
+                        <span class="card-tag tag-party">May Mắn</span>
+                        <img class="card-icon card-art-3d" data-g17-src="assets/art/lucky-wheel-3d.webp" alt="" loading="lazy" decoding="async">
+                        <h3>Vòng Quay May Mắn</h3>
+                        <span class="card-meta">2–12 người · 30 giây</span>
+                    </button>
+
+                    <!-- Game 3: Finger Shock -->
+                    <button class="game-card" data-game="finger" data-tags="quick party" style="--card-accent: #00f0ff; --card-glow: rgba(0, 240, 255, 0.4);" onclick="window.app.navigate('finger')">
+                        <span class="card-tag tag-new">Đa Điểm</span>
+                        <img class="card-icon card-art-3d" data-g17-src="assets/art/finger-touch-3d.webp" alt="" loading="lazy" decoding="async">
+                        <h3>Chạm Ngón Tay</h3>
+                        <span class="card-meta">2–4 người khuyến nghị · 1 lượt chạm</span>
+                    </button>
+
+                    <!-- Game 4: Bomb Rush -->
+                    <button class="game-card" data-game="bomb" data-tags="quick party" style="--card-accent: #ffae00; --card-glow: rgba(255, 174, 0, 0.4);" onclick="window.app.navigate('bomb')">
+                        <span class="card-tag tag-pro">Áp Lực</span>
+                        <img class="card-icon card-art-3d" data-g17-src="assets/art/time-bomb-3d.webp" alt="" loading="lazy" decoding="async">
+                        <h3>Quả Bom Hẹn Giờ</h3>
+                        <span class="card-meta">3–10 người · 1–3 phút</span>
+                    </button>
+
+                    <!-- Game 5: Pirate Barrel Pop -->
+                    <button class="game-card" data-game="pirate" data-tags="3d party" style="--card-accent: #ff3838; --card-glow: rgba(255, 56, 56, 0.4);" onclick="window.app.navigate('pirate')">
+                        <span class="card-tag tag-hot">Hồi Hộp</span>
+                        <img class="card-icon card-art-3d" data-g17-src="assets/art/pirate-barrel-3d.webp" alt="" loading="lazy" decoding="async">
+                        <h3>Thùng Hải Tặc</h3>
+                        <span class="card-meta">2–8 người · 2 phút</span>
+                    </button>
+
+                    <!-- Game 6: Party Dice 7-8-9 -->
+                    <button class="game-card" data-game="dice" data-tags="3d party" style="--card-accent: #17c0eb; --card-glow: rgba(23, 192, 235, 0.4);" onclick="window.app.navigate('dice')">
+                        <span class="card-tag tag-party">Kinh Điển</span>
+                        <img class="card-icon card-art-3d dice-card-visual" data-g17-src="assets/art/dice-3d.webp" alt="" loading="lazy" decoding="async">
+                        <h3>Xí Ngầu Bàn Tiệc</h3>
+                        <span class="card-meta">2–10 người · 1–3 phút</span>
+                    </button>
+
+                    <!-- Game 7: Drinking Cards / King's Cup -->
+                    <button class="game-card" data-game="cards" data-tags="party" style="--card-accent: #7158e2; --card-glow: rgba(113, 88, 226, 0.4);" onclick="window.app.navigate('cards')">
+                        <span class="card-tag tag-new">Thách Thức</span>
+                        <img class="card-icon card-art-3d" data-g17-src="assets/art/drinking-cards-3d.webp" alt="" loading="lazy" decoding="async">
+                        <h3>Rút Thẻ Thách Đấu</h3>
+                        <span class="card-meta">3–10 người · 5 phút</span>
+                    </button>
+
+                    <!-- Game 8: Spin the Bottle 3D -->
+                    <button class="game-card" data-game="bottle" data-tags="3d quick party" style="--card-accent: #2ecc71; --card-glow: rgba(46, 204, 113, 0.4);" onclick="window.app.navigate('bottle')">
+                        <span class="card-tag tag-hot">Chọn Người</span>
+                        <img class="card-icon card-art-3d" data-g17-src="assets/art/spin-bottle-3d.webp" alt="" loading="lazy" decoding="async">
+                        <h3>Xoay Chai Chọn Người</h3>
+                        <span class="card-meta">2–12 người · 30 giây</span>
+                    </button>
+
+                    <!-- Game 9: Number Bomb 1-100 -->
+                    <button class="game-card" data-game="numberbomb" data-tags="quick party" style="--card-accent: #e74c3c; --card-glow: rgba(231, 76, 60, 0.4);" onclick="window.app.navigate('numberbomb')">
+                        <span class="card-tag tag-pro">Cân Não</span>
+                        <img class="card-icon card-art-3d" data-g17-src="assets/art/number-bomb-3d.webp" alt="" loading="lazy" decoding="async">
+                        <h3>Bom Số Bí Mật</h3>
+                        <span class="card-meta">2–8 người · 2 phút</span>
+                    </button>
+
+                    <!-- Game 10: Never Have I Ever -->
+                    <button class="game-card" data-game="neverhave" data-tags="party" style="--card-accent: #e056fd; --card-glow: rgba(224, 86, 253, 0.4);" onclick="window.app.navigate('neverhave')">
+                        <span class="card-tag tag-party">Chia Sẻ</span>
+                        <img class="card-icon card-art-3d" data-g17-src="assets/art/never-have-i-ever-3d.webp" alt="" loading="lazy" decoding="async">
+                        <h3>Tôi Chưa Từng...</h3>
+                        <span class="card-meta">3–12 người · 5 phút</span>
+                    </button>
+                </div>
+
+                <div id="games-empty-state" class="games-empty-state" hidden>
+                    <p>Không còn trò chơi nào khớp bộ lọc trong kiểu bàn nhậu hiện tại.</p>
+                </div>
+
+                <!-- Quick Random Penalty Dock -->
+                <div class="quick-penalty-box">
+                    <div class="quick-penalty-actions">
+                        <button class="neon-button primary-btn" type="button" id="quick-penalty-btn" onclick="window.app.showRandomPenalty()">
+                            <svg class="cta-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#bolt"></use></svg>
+                            <span>BỐC ÁN PHẠT TỨC THÌ</span>
+                            <span class="cta-hint">1 chạm</span>
+                        </button>
+                        <button class="neon-button history-open-btn" type="button" id="history-open-btn" aria-label="Mở lịch sử buổi nhậu">
+                            <span aria-hidden="true">▤</span>
+                            <span>LỊCH SỬ</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. GAME SCREEN: CROCODILE DENTIST -->
+            <section id="screen-crocodile" class="game-screen">
+                <div id="crocodile-game-container"></div>
+            </section>
+
+            <!-- 3. GAME SCREEN: LUCKY WHEEL -->
+            <section id="screen-wheel" class="game-screen">
+                <div id="wheel-game-container"></div>
+            </section>
+
+            <!-- 4. GAME SCREEN: FINGER SHOCK ROULETTE -->
+            <section id="screen-finger" class="game-screen">
+                <div id="finger-game-container"></div>
+            </section>
+
+            <!-- 5. GAME SCREEN: TICKING BOMB RUSH -->
+            <section id="screen-bomb" class="game-screen">
+                <div id="bomb-game-container"></div>
+            </section>
+
+            <!-- 6. GAME SCREEN: PIRATE BARREL POP -->
+            <section id="screen-pirate" class="game-screen">
+                <div class="game-layout pirate-stage">
+                    <div class="game-top-bar">
+                        <button class="back-btn" onclick="window.app.navigate('home')"><svg class="ui-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#back"></use></svg> Trang chính</button>
+                        <div class="croc-counter-badge" id="pirate-turn-indicator">Lượt đâm: 1</div>
+                        <div class="pirate-select-group">
+                            <div class="pirate-hole-select-box">
+                                <label for="pirate-slot-count-select">Khe:</label>
+                                <select id="pirate-slot-count-select" class="mini-select" aria-label="Số khe trên thùng">
+                                    <option value="8">8 khe</option>
+                                    <option value="12" selected>12 khe</option>
+                                    <option value="16">16 khe</option>
+                                </select>
+                            </div>
+                            <div class="trap-select-box">
+                                <label for="pirate-trap-select">Bẫy:</label>
+                                <select id="pirate-trap-select" class="mini-select">
+                                    <option value="1">1 bẫy</option>
+                                    <option value="2">2 bẫy</option>
+                                    <option value="3">3 bẫy</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pirate-arena-wrapper">
+                        <div class="pirate-barrel-backdrop" aria-hidden="true"></div>
+                        <div id="pirate-character" class="pirate-character">
+                            <div class="pirate-bicorn">
+                                <svg class="hat-feather" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#bolt"></use></svg>
+                                <div class="hat-body">
+                                    <svg class="hat-skull" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#skull"></use></svg>
+                                </div>
+                            </div>
+                            <div class="pirate-head">
+                                <svg class="pirate-face-emoji" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#pirate-face"></use></svg>
+                            </div>
+                            <div class="pirate-hands">
+                                <svg class="pirate-hand hand-left" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#bolt"></use></svg>
+                                <svg class="pirate-hand hand-right" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#bolt"></use></svg>
+                            </div>
+                        </div>
+                        <div id="pirate-barrel" class="pirate-barrel">
+                            <div class="barrel-top-rim"></div>
+                            <div class="barrel-ring top-ring"></div>
+                            <div class="barrel-wood-overlay"></div>
+                            <div class="barrel-ring bottom-ring"></div>
+                            <div id="pirate-slots-grid" class="pirate-slots-grid"></div>
+                        </div>
+                        <div class="pirate-action-legend" aria-hidden="true">
+                            <svg class="legend-icon" viewBox="0 0 64 64"><use data-g17-href="assets/icons/game-icons.svg#bolt"></use></svg><span>Chọn một khe · đâm kiếm · né lò xo</span>
+                        </div>
+                        <div id="pirate-epic-badge" class="pirate-epic-badge" style="display:none;" role="status" aria-live="assertive"></div>
+                    </div>
+
+                    <div id="pirate-penalty-banner" class="pirate-penalty-banner" style="display:none;" role="status" aria-live="polite"></div>
+
+                    <div class="game-bottom-bar">
+                        <div id="pirate-status" class="game-status-text" role="status" aria-live="polite">Cẩn thận! Chọn một khe để đâm kiếm vào thùng...</div>
+                        <button id="pirate-reset-btn" class="neon-button primary-btn"><svg class="cta-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#refresh"></use></svg> LƯỢT MỚI</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. GAME SCREEN: PARTY DICE 7-8-9 -->
+            <section id="screen-dice" class="game-screen">
+                <div class="game-layout dice-stage">
+                    <div class="game-top-bar">
+                        <button class="back-btn" onclick="window.app.navigate('home')"><svg class="ui-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#back"></use></svg> Trang chính</button>
+                        <div class="dice-mode-switch">
+                            <select id="dice-mode-select" class="mini-select" aria-label="Chế độ chơi xúc xắc">
+                                <option value="789">Luật 7 - 8 - 9 (Kinh điển)</option>
+                                <option value="battle">Tài Xỉu / Đua Điểm (3 Xúc Xắc)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="dice-pot-display" class="dice-pot-display"></div>
+
+                    <div class="dice-arena-wrapper">
+                        <div class="dice-hero-mark" aria-hidden="true">
+                            <img class="dice-hero-art" data-g17-src="assets/art/dice-game-3d.webp" alt="">
+                            <span>LẮC ĐỂ MỞ</span>
+                        </div>
+                        <div id="dice-shaker-cup" class="dice-shaker-cup" aria-hidden="true">
+                            <div class="cup-lid"><svg class="stage-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#cup"></use></svg><span>BÁT LẮC</span><svg class="stage-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#cup"></use></svg></div>
+                        </div>
+                        <div class="dice-viewport" aria-label="Khu vực lắc xúc xắc">
+                            <canvas id="dice-webgl-canvas" aria-hidden="true"></canvas>
+                            <div id="dice-table" class="dice-table dice-css-fallback" hidden></div>
+                        </div>
+                    </div>
+
+                    <div id="dice-result-banner" class="dice-result-container" role="status" aria-live="polite">
+                        <span class="dice-hint">Bấm nút "LẮC XÍ NGẦU" để mở bát!</span>
+                    </div>
+
+                    <div id="dice-live-result" class="sr-only" role="status" aria-live="polite"></div>
+
+                    <div id="dice-rule-info" class="dice-rule-info"></div>
+
+                    <div class="game-bottom-bar">
+                        <button id="dice-roll-btn" class="neon-button primary-btn pulse-glow" type="button" aria-label="Lắc xí ngầu"><svg class="cta-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#dice"></use></svg><span class="dice-cta-label">LẮC XÍ NGẦU</span></button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. GAME SCREEN: DRINKING CARDS -->
+            <section id="screen-cards" class="game-screen">
+                <div class="game-layout cards-stage">
+                    <div class="game-top-bar">
+                        <button class="back-btn" onclick="window.app.navigate('home')"><svg class="ui-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#back"></use></svg> Trang chính</button>
+                        <div id="cards-left-counter" class="croc-counter-badge">Còn lại: 57 thẻ</div>
+                        <button id="card-shuffle-btn" class="action-btn-small"><svg class="ui-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#shuffle"></use></svg> Xáo Lại</button>
+                    </div>
+
+                    <div class="cards-filter-bar">
+                        <button class="card-filter-pill active" data-category="all">Tất Cả</button>
+                        <button class="card-filter-pill" data-category="drink">Án phạt</button>
+                        <button class="card-filter-pill" data-category="truth">Nói Thật</button>
+                        <button class="card-filter-pill" data-category="dare">Thách Đấu</button>
+                        <button class="card-filter-pill" data-category="king">Luật Vua</button>
+                    </div>
+
+                    <div class="phase-b-stage-badge cards-hero-mark" aria-hidden="true">
+                        <svg class="phase-b-stage-icon"><use data-g17-href="assets/icons/game-icons.svg#cards"></use></svg>
+                        <span>RÚT · LẬT · CÙNG VUI</span>
+                    </div>
+
+                    <div class="card-arena-wrapper">
+                        <div id="card-3d-box" class="card-3d-box">
+                            <div class="card-inner">
+                                <div class="card-face card-back">
+                                    <div class="card-back-pattern">
+                                        <div class="card-corner tl">♠</div>
+                                        <div class="card-corner tr">♥</div>
+                                        <div class="card-corner bl">♣</div>
+                                        <div class="card-corner br">♦</div>
+                                        <div class="card-back-crest">
+                                            <svg class="card-back-crown" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#crown"></use></svg>
+                                            <svg class="card-back-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#cup"></use></svg>
+                                        </div>
+                                        <span class="card-back-title">VUA BÀN NHẬU</span>
+                                        <span class="card-back-sub">PARTY KING EDITION</span>
+                                        <span class="card-back-tap">Chạm để rút thẻ</span>
+                                    </div>
+                                </div>
+                                <div class="card-face card-front">
+                                    <div class="card-front-header">
+                                        <div id="card-type-badge" class="card-badge badge-drink">ÁN PHẠT NHẸ</div>
+                                    </div>
+                                    <svg id="card-front-icon" class="card-big-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#penalty-drink"></use></svg>
+                                    <h3 id="card-front-title" class="card-title">Mức Nhẹ</h3>
+                                    <div class="card-desc-box">
+                                        <p id="card-front-desc" class="card-desc">Người bốc thẻ chọn thực hiện án phạt nhẹ hoặc bỏ qua.</p>
+                                    </div>
+                                    <div class="card-front-footer">
+                                        <span class="card-watermark">VUA BÀN NHẬU</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="game-bottom-bar">
+                        <button id="card-draw-btn" class="neon-button primary-btn pulse-glow"><svg class="cta-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#cards"></use></svg> RÚT THẺ KẾ TIẾP</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. GAME SCREEN: SPIN THE BOTTLE 3D -->
+            <section id="screen-bottle" class="game-screen">
+                <div class="game-layout bottle-stage">
+                    <div class="game-top-bar">
+                        <button class="back-btn" onclick="window.app.navigate('home')"><svg class="ui-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#back"></use></svg> Trang chính</button>
+                        <div class="bottle-options-bar">
+                            <select id="bottle-type-select" class="mini-select" aria-label="Loại chai">
+                                <option value="beer">Chai xanh</option>
+                                <option value="whisky">Chai hổ phách</option>
+                                <option value="soju">Chai trong</option>
+                                <option value="wine">Chai vang</option>
+                            </select>
+                            <select id="bottle-mode-select" class="mini-select" aria-label="Chế độ xoay">
+                                <option value="single">Chỉ 1 người</option>
+                                <option value="duel">Đối đầu (2 người)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="bottle-arena-wrapper">
+                        <div class="phase-b-stage-badge bottle-hero-mark" aria-hidden="true">
+                            <svg class="phase-b-stage-icon"><use data-g17-href="assets/icons/game-icons.svg#bottle"></use></svg>
+                            <span>GHẾ 1 · 12 GIỜ</span>
+                        </div>
+                        <div class="bottle-compass-ring"></div>
+                        <div id="bottle-seats" class="bottle-seat-ring" role="group" aria-label="Vòng số người chơi"></div>
+                        <div id="bottle-wrapper" class="bottle-touch-zone">
+                            <div id="bottle-3d" class="bottle-3d bottle-beer" aria-hidden="true"></div>
+                        </div>
+                    </div>
+
+                    <div id="bottle-result-banner" class="bottle-result-box" style="display: none;" role="status" aria-live="polite"></div>
+
+                    <div class="game-bottom-bar">
+                        <label class="bottle-seat-setup" for="bottle-seat-count">Số người
+                            <select id="bottle-seat-count" class="mini-select">
+                                <option value="2">2 người</option>
+                                <option value="3">3 người</option>
+                                <option value="4" selected>4 người</option>
+                                <option value="5">5 người</option>
+                                <option value="6">6 người</option>
+                                <option value="7">7 người</option>
+                                <option value="8">8 người</option>
+                                <option value="9">9 người</option>
+                                <option value="10">10 người</option>
+                                <option value="11">11 người</option>
+                                <option value="12">12 người</option>
+                            </select>
+                        </label>
+                        <div id="bottle-status" class="game-status-text" role="status" aria-live="polite">Vuốt mạnh hoặc bấm “XOAY CHAI” để chọn người.</div>
+                        <button id="bottle-spin-btn" class="neon-button primary-btn pulse-glow"><svg class="cta-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#refresh"></use></svg> XOAY CHAI NGAY</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 9. GAME SCREEN: NUMBER BOMB (BOM SỐ BÍ MẬT 1 - 100) -->
+            <section id="screen-numberbomb" class="game-screen">
+                <div class="game-layout nbomb-stage">
+                    <div class="game-top-bar">
+                        <button class="back-btn" onclick="window.app.navigate('home')"><svg class="ui-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#back"></use></svg> Trang chính</button>
+                        <div id="nbomb-turn-badge" class="croc-counter-badge">Lượt: 1</div>
+                        <div class="nbomb-range-box">
+                            <select id="nbomb-range-select" class="mini-select" aria-label="Phạm vi số">
+                                <option value="100">1 - 100</option>
+                                <option value="50">1 - 50</option>
+                                <option value="200">1 - 200</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="nbomb-arena-wrapper">
+                        <div class="phase-b-stage-badge nbomb-hero-mark" aria-hidden="true">
+                            <svg class="phase-b-stage-icon"><use data-g17-href="assets/icons/game-icons.svg#bomb"></use></svg>
+                            <span>ĐOÁN HẸP DẦN · TRÁNH SỐ BÍ MẬT</span>
+                        </div>
+                        <svg id="nbomb-icon" class="nbomb-bomb-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#bomb"></use></svg>
+                        
+                        <div class="nbomb-range-display">
+                            <span class="nbomb-bound" id="nbomb-min">1</span>
+                            <span class="nbomb-divider">?</span>
+                            <span class="nbomb-bound" id="nbomb-max">100</span>
+                        </div>
+
+                        <div class="nbomb-progress-wrap">
+                            <div id="nbomb-danger-bar" class="nbomb-danger-bar"></div>
+                        </div>
+
+                        <div class="nbomb-input-box">
+                            <span class="nbomb-input-label">Số đoán:</span>
+                            <span id="nbomb-input" class="nbomb-input-value">—</span>
+                        </div>
+                    </div>
+
+                    <div id="nbomb-result-banner" class="nbomb-result-container" style="display: none;" role="status" aria-live="polite"></div>
+
+                    <!-- Virtual Numpad -->
+                    <div id="nbomb-numpad" class="nbomb-numpad-grid">
+                        <button class="numpad-btn" data-key="1">1</button>
+                        <button class="numpad-btn" data-key="2">2</button>
+                        <button class="numpad-btn" data-key="3">3</button>
+                        <button class="numpad-btn" data-key="4">4</button>
+                        <button class="numpad-btn" data-key="5">5</button>
+                        <button class="numpad-btn" data-key="6">6</button>
+                        <button class="numpad-btn" data-key="7">7</button>
+                        <button class="numpad-btn" data-key="8">8</button>
+                        <button class="numpad-btn" data-key="9">9</button>
+                        <button class="numpad-btn key-action" data-key="clear">C</button>
+                        <button class="numpad-btn" data-key="0">0</button>
+                        <button class="numpad-btn key-action" data-key="back">⌫</button>
+                        <button class="numpad-btn key-submit" data-key="enter">↵ GỬI SỐ ĐOÁN</button>
+                    </div>
+
+                    <div class="game-bottom-bar" style="margin-top: 4px;">
+                        <div id="nbomb-status" class="game-status-text" role="status" aria-live="polite">Nhập số và bấm "GỬI SỐ ĐOÁN" để thăm dò bom!</div>
+                        <button id="nbomb-reset-btn" class="neon-button primary-btn" style="display: none;"><svg class="cta-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#refresh"></use></svg> VÁN MỚI</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 10. GAME SCREEN: NEVER HAVE I EVER (TÔI CHƯA TỪNG...) -->
+            <section id="screen-neverhave" class="game-screen">
+                <div class="game-layout never-stage">
+                    <div class="game-top-bar">
+                        <button class="back-btn" onclick="window.app.navigate('home')"><svg class="ui-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#back"></use></svg> Trang chính</button>
+                        <div id="never-counter-badge" class="croc-counter-badge">Câu: 1 / 44</div>
+                        <button id="never-shuffle-btn" class="action-btn-small"><svg class="ui-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#shuffle"></use></svg> Trộn Câu</button>
+                    </div>
+
+                    <div class="never-filter-bar">
+                        <button class="never-filter-pill active" data-category="all">Tất Cả</button>
+                        <button class="never-filter-pill" data-category="funny">Chuyện vui</button>
+                        <button class="never-filter-pill" data-category="party">Bàn tiệc</button>
+                        <button class="never-filter-pill" data-category="spicy">Hẹn hò</button>
+                        <button class="never-filter-pill" data-category="life">Đi Làm / Học</button>
+                    </div>
+
+                    <div class="never-arena-wrapper">
+                        <div class="phase-b-stage-badge never-hero-mark" aria-hidden="true">
+                            <svg class="phase-b-stage-icon"><use data-g17-href="assets/icons/game-icons.svg#question"></use></svg>
+                            <span>AI ĐÃ TỪNG · CÓ THỂ CHIA SẺ</span>
+                        </div>
+                        <div id="never-card-box" class="never-card">
+                            <div id="never-cat-badge" class="never-badge badge-funny">CHUYỆN VUI</div>
+                            <div class="never-quote-icon">“</div>
+                            <p id="never-prompt-text" class="never-prompt-text">Tôi chưa từng... mang hai chiếc tất khác màu mà không nhận ra.</p>
+                            <div class="never-rule-tag">
+                                <span>Ai muốn chia sẻ có thể chọn “Đã từng”; luôn có thể bỏ qua.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="never-actions-row">
+                        <button id="never-done-btn" class="never-choice-btn btn-drank">
+                            <span>ĐÃ TỪNG</span>
+                            <small>(Chọn nếu muốn chia sẻ)</small>
+                        </button>
+                        <button id="never-no-btn" class="never-choice-btn btn-safe">
+                            <span>CHƯA TỪNG</span>
+                            <small>(Chưa trải qua điều này)</small>
+                        </button>
+                    </div>
+
+                    <div class="game-bottom-bar">
+                        <button id="never-pass-btn" class="neon-button ghost-btn never-pass-btn"><svg class="cta-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#shuffle"></use></svg> BỎ QUA</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="tutorial-toast" class="tutorial-toast" role="status" aria-live="polite" aria-hidden="true">
+        <svg class="tutorial-toast-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#question"></use></svg>
+        <span id="tutorial-toast-text"></span>
+        <button id="tutorial-toast-close" class="tutorial-toast-close" type="button" aria-label="Đóng hướng dẫn">×</button>
+    </div>
+
+    <!-- ================= MODALS ================= -->
+
+    <!-- 1. PENALTY RESULT MODAL -->
+    <div id="penalty-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="penalty-title" aria-hidden="true">
+        <div class="modal-content" tabindex="-1">
+            <div class="modal-header">
+                <h3 id="penalty-title">Kết quả</h3>
+                <button class="close-modal-btn" type="button" aria-label="Đóng án phạt" onclick="window.app.closePenaltyModal()">✕</button>
+            </div>
+            <div class="penalty-modal-body">
+                <svg id="penalty-icon" class="penalty-icon-bounce" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#penalty-drink"></use></svg>
+                <div id="penalty-sub" class="game-subtitle">Kết quả lượt này:</div>
+                <div id="penalty-badge" class="penalty-badge badge-drink">Án phạt nhẹ</div>
+                <div id="penalty-text" class="penalty-text-highlight">Bạn có thể thực hiện hoặc bỏ qua.</div>
+            </div>
+            <div id="penalty-actions" class="modal-actions-box">
+                <button class="neon-button primary-btn" onclick="window.app.closePenaltyModal()">
+                    TIẾP TỤC
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. PENALTY SETTINGS & MANAGER MODAL -->
+    <div id="settings-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="settings-modal-title" aria-hidden="true">
+        <div class="modal-content" tabindex="-1">
+            <div class="modal-header">
+                <h3 id="settings-modal-title"><svg class="ui-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#bolt"></use></svg> Quản lý án phạt</h3>
+                <button class="close-modal-btn" type="button" aria-label="Đóng quản lý án phạt" onclick="window.app.closeModal('settings-modal')">✕</button>
+            </div>
+            
+            <p class="game-subtitle modal-intro">Thêm án phạt riêng hoặc chọn thể loại phù hợp với bàn tiệc.</p>
+
+            <div class="phase-d-preference" role="group" aria-label="Tùy chọn trải nghiệm">
+                <div class="phase-d-preference-copy">
+                    <svg class="ui-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#bolt"></use></svg>
+                    <span>
+                        <strong>Rung phản hồi</strong>
+                        <small id="haptics-toggle-description">Rung nhẹ khi chạm, rung mạnh khi có biến.</small>
+                    </span>
+                </div>
+                <button id="toggle-haptics-btn" class="phase-d-toggle" type="button" aria-pressed="true" aria-label="Tắt rung phản hồi">
+                    <span class="phase-d-toggle-track" aria-hidden="true"><span class="phase-d-toggle-thumb"></span></span>
+                    <span id="haptics-toggle-label">Bật</span>
+                </button>
+            </div>
+            
+            <!-- Category Filters -->
+            <div class="settings-category-group">
+                <label class="touch-target-label touch-target-label-inline settings-filter-chip">
+                    <input type="checkbox" data-penalty-category="drink" checked onchange="if (!window.penaltyManager.toggleCategory('drink')) window.app.syncPenaltyFilterInputs()"> <svg class="ui-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#beer"></use></svg> Mức Nhẹ
+                </label>
+                <label class="touch-target-label touch-target-label-inline settings-filter-chip">
+                    <input type="checkbox" data-penalty-category="perform" checked onchange="if (!window.penaltyManager.toggleCategory('perform')) window.app.syncPenaltyFilterInputs()"> <svg class="ui-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#penalty-perform"></use></svg> Văn Nghệ
+                </label>
+                <label class="touch-target-label touch-target-label-inline settings-filter-chip">
+                    <input type="checkbox" data-penalty-category="dare" checked onchange="if (!window.penaltyManager.toggleCategory('dare')) window.app.syncPenaltyFilterInputs()"> <svg class="ui-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#penalty-dare"></use></svg> Thách Đố
+                </label>
+            </div>
+
+            <!-- Scrollable Penalty List -->
+            <div id="penalties-editor-list" class="modal-scroll-list"></div>
+
+            <!-- Add New Penalty Form -->
+            <div class="add-slice-box">
+                <select id="new-penalty-type" aria-label="Loại án phạt mới">
+                    <option value="drink">Mức nhẹ</option>
+                    <option value="perform">Hát / Nhảy</option>
+                    <option value="dare">Thách</option>
+                    <option value="safe">Thoát</option>
+                </select>
+                <input type="text" id="new-penalty-text" class="settings-grow" aria-label="Nội dung án phạt mới" aria-describedby="new-penalty-error" aria-invalid="false" placeholder="Nhập án phạt mới...">
+                <button class="add-btn" type="button" onclick="window.app.addNewCustomPenalty()">Thêm</button>
+            </div>
+            <p id="new-penalty-error" class="field-validation-message" role="status" hidden></p>
+
+            <div class="settings-reset-row">
+                <button class="action-btn-small" onclick="window.app.resetPenaltiesToDefault()"><svg class="ui-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#refresh"></use></svg> Khôi Phục Mặc Định</button>
+                <button id="penalties-opt-in-btn" class="action-btn-small" type="button" onclick="window.app.addApprovedPenaltiesAfterOptIn()" hidden>Thêm 6 án phạt mới</button>
+                <button class="action-btn-small" type="button" onclick="window.app.resetPenaltyFiltersOnly()">Khôi phục bộ lọc</button>
+            </div>
+
+            <p id="penalties-storage-status" class="field-validation-message" role="alert" hidden></p>
+
+            <div class="settings-privacy-row">
+                <div>
+                    <strong>Quyền riêng tư</strong>
+                    <p>Dữ liệu phiên chơi và tên người chơi chỉ được lưu trên thiết bị.</p>
+                </div>
+                <a class="action-btn-small settings-privacy-link" href="privacy.html">Xem chính sách</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. WHEEL SLICES EDITOR MODAL -->
+    <div id="wheel-editor-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="wheel-editor-modal-title" aria-hidden="true">
+        <div class="modal-content" tabindex="-1">
+            <div class="modal-header">
+                <h3 id="wheel-editor-modal-title"><svg class="ui-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#target"></use></svg> Tùy Chỉnh Ô Vòng Quay</h3>
+                <button class="close-modal-btn" type="button" aria-label="Đóng tùy chỉnh vòng quay" onclick="window.app.closeModal('wheel-editor-modal')">✕</button>
+            </div>
+            
+            <p class="game-subtitle modal-intro">Chỉnh sửa nội dung từng nan quạt trên vòng quay:</p>
+            
+            <div id="wheel-items-list" class="modal-scroll-list"></div>
+
+            <div class="add-slice-box">
+                <input type="text" id="new-slice-input" class="settings-grow" aria-label="Nội dung ô vòng quay mới" aria-describedby="wheel-slice-error" aria-invalid="false" placeholder="Thêm ô mới, ví dụ: Hát một câu">
+                <button class="add-btn" type="button" onclick="window.wheelGame.addNewSlice()">Thêm Ô</button>
+            </div>
+            <p id="wheel-slice-error" class="field-validation-message" role="status" hidden></p>
+            <div class="settings-reset-row">
+                <button class="action-btn-small" type="button" onclick="window.wheelGame.resetWheelToBase()">Khôi phục Wheel về Gốc 12</button>
+                <button class="action-btn-small" type="button" onclick="window.wheelGame.deleteSavedCustomWheel()">Xóa Wheel tùy chỉnh</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 4. CROCODILE SETTINGS MODAL -->
+    <div id="croc-settings-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="croc-settings-modal-title" aria-hidden="true">
+        <div class="modal-content" tabindex="-1">
+            <div class="modal-header">
+                <h3 id="croc-settings-modal-title"><svg class="ui-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#crocodile"></use></svg> Thiết Lập Khám Răng</h3>
+                <button class="close-modal-btn" type="button" aria-label="Đóng thiết lập khám răng" onclick="window.app.closeModal('croc-settings-modal')">✕</button>
+            </div>
+            
+            <div class="modal-body">
+                <!-- 1. Số lượng răng sâu -->
+                <div class="croc-setting-card">
+                    <div class="settings-row">
+                        <span class="settings-label"><svg class="ui-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#crocodile"></use></svg> Số Lượng Răng Sâu:</span>
+                        <span id="modal-bad-count-badge" class="settings-badge">1 răng</span>
+                    </div>
+                    <p class="settings-help">Càng nhiều răng sâu, lượt chơi càng bất ngờ.</p>
+                    <div id="modal-bad-teeth-selector" class="settings-selector-row"></div>
+                </div>
+
+                <!-- 2. Tổng số răng -->
+                <div class="croc-setting-card">
+                    <div class="settings-row">
+                        <span class="settings-label"><svg class="ui-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#crocodile"></use></svg> Tổng Số Răng Cá Sấu:</span>
+                        <span id="modal-total-teeth-badge" class="settings-badge">16 răng</span>
+                    </div>
+                    <p class="settings-help">Số răng chia đều cho 2 hàm (trên và dưới):</p>
+                    <div id="modal-total-teeth-selector" class="settings-selector-grid"></div>
+                </div>
+
+                <!-- 3. Luật chơi khi bị cắn -->
+                <div class="croc-setting-card">
+                    <span class="settings-label"><svg class="ui-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#bolt"></use></svg> Khi Có Người Bị Cắn:</span>
+                    <label class="touch-target-label settings-option">
+                        <input type="radio" name="croc-continue-mode" value="continue" checked onchange="window.crocodileGame.setContinueMode('continue')">
+                        <span><strong>Mở hàm chơi tiếp:</strong> Cắn xong mở lại miệng để người sau tiếp tục đến khi hết răng sâu.</span>
+                    </label>
+                    <label class="touch-target-label settings-option">
+                        <input type="radio" name="croc-continue-mode" value="end" onchange="window.crocodileGame.setContinueMode('end')">
+                        <span><strong>Cắn một lần hết ván:</strong> Người đầu tiên bị cắn sẽ kết thúc ván.</span>
+                    </label>
+                </div>
+            </div>
+
+            <button class="neon-button primary-btn" onclick="window.app.closeModal('croc-settings-modal'); window.crocodileGame.resetGame();">
+                ÁP DỤNG & CHƠI VÁN MỚI
+            </button>
+        </div>
+    </div>
+
+    <!-- 5. PENALTY MEDIUM MODAL (Chọn Vật Phạt Toàn App) -->
+    <div id="medium-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="medium-modal-title" aria-hidden="true">
+        <div class="modal-content" tabindex="-1">
+            <div class="modal-header">
+                <h3 id="medium-modal-title"><svg class="ui-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#refresh"></use></svg> Chọn vật phạt</h3>
+                <button class="close-modal-btn" type="button" aria-label="Đóng tùy chọn vật phạt" onclick="window.app.closeModal('medium-modal')">✕</button>
+            </div>
+
+            <p class="game-subtitle modal-intro">Vật phạt áp dụng cho các trò hỗ trợ và luôn có thể được bỏ qua.</p>
+
+            <!-- Preset Medium Buttons Grid -->
+            <div id="medium-presets-grid" class="medium-presets-grid"></div>
+
+            <hr class="modal-divider">
+
+            <!-- Custom Medium Form -->
+            <div class="custom-medium-box">
+                <span class="custom-medium-label"><svg class="ui-icon" aria-hidden="true"><use data-g17-href="assets/icons/game-icons.svg#pencil"></use></svg> Hoặc tự nhập hoạt động khác:</span>
+                <div class="custom-medium-fields">
+                    <input type="text" id="custom-medium-name" aria-label="Tên hoạt động tùy chọn" aria-describedby="custom-medium-error" aria-invalid="false" placeholder="Tên hoạt động, ví dụ: Đố nhanh">
+                    <input type="text" id="custom-medium-unit" aria-label="Đơn vị hoạt động tùy chọn" aria-describedby="custom-medium-error" aria-invalid="false" placeholder="Đơn vị, ví dụ: câu">
+                </div>
+                <p id="custom-medium-error" class="field-validation-message" role="status" hidden></p>
+                <button class="neon-button primary-btn" type="button" onclick="window.app.applyCustomMedium()">
+                    ÁP DỤNG HOẠT ĐỘNG NÀY
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. PARTY SESSION MODAL -->
+    <div id="session-history-modal" class="modal-overlay session-history-modal" role="dialog" aria-modal="true" aria-labelledby="session-history-title" aria-hidden="true">
+        <div class="modal-content session-history-modal-content" tabindex="-1">
+            <div class="modal-header">
+                <h3 id="session-history-title">BUỔI NHẬU</h3>
+                <button id="session-history-close" class="close-modal-btn" type="button" aria-label="Đóng buổi nhậu">✕</button>
+            </div>
+
+            <div class="session-view-tabs" role="tablist" aria-label="Nội dung buổi nhậu">
+                <button id="session-history-tab" class="session-view-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="session-history-panel" tabindex="0">LỊCH SỬ</button>
+                <button id="session-players-tab" class="session-view-tab" type="button" role="tab" aria-selected="false" aria-controls="session-players-panel" tabindex="-1">NGƯỜI CHƠI</button>
+            </div>
+            <div id="session-dialog-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+
+            <div class="session-dialog-body">
+                <section id="session-history-panel" class="session-view-panel" role="tabpanel" aria-labelledby="session-history-tab" aria-hidden="false">
+                    <div class="session-history-summary" aria-label="Tóm tắt lịch sử buổi nhậu">
+                        <div class="session-history-stat">
+                            <strong id="session-history-total">0</strong>
+                            <span>TỔNG LƯỢT</span>
+                        </div>
+                        <div class="session-history-stat">
+                            <strong id="session-history-penalties">0</strong>
+                            <span>ÁN PHẠT</span>
+                        </div>
+                        <div class="session-history-stat">
+                            <strong id="session-history-results">0</strong>
+                            <span>KẾT QUẢ</span>
+                        </div>
+                    </div>
+
+                    <p id="session-history-start" class="session-history-start" hidden></p>
+
+                    <div id="session-history-empty" class="session-history-empty" hidden>
+                        <strong>CHƯA CÓ LỊCH SỬ</strong>
+                        <span>Chơi một trò để bắt đầu ghi lại buổi nhậu.</span>
+                    </div>
+
+                    <div id="session-history-list" class="session-history-list" aria-label="Danh sách lịch sử buổi nhậu"></div>
+
+                    <div class="modal-actions-box session-history-actions">
+                        <button id="session-history-new" class="neon-button session-history-new-btn" type="button">PHIÊN MỚI</button>
+                    </div>
+                </section>
+
+                <section id="session-players-panel" class="session-view-panel" role="tabpanel" aria-labelledby="session-players-tab" aria-hidden="true" hidden>
+                    <p class="session-players-intro">Danh sách người chơi là tùy chọn và được giữ khi bắt đầu Phiên mới.</p>
+
+                    <form id="session-player-add-form" class="session-player-add-form" novalidate>
+                        <label for="session-player-name">Tên người chơi</label>
+                        <div class="session-player-add-row">
+                            <input id="session-player-name" class="session-player-input" type="text" autocomplete="off" aria-describedby="session-player-name-error" placeholder="Nhập tên người chơi">
+                            <button id="session-player-add" class="neon-button session-player-action-btn" type="submit">THÊM</button>
+                        </div>
+                        <p id="session-player-name-error" class="session-player-error" hidden></p>
+                        <p id="session-player-limit" class="session-player-limit" hidden>Đã đạt giới hạn 24 người chơi đang hoạt động.</p>
+                    </form>
+
+                    <div id="session-players-empty" class="session-players-empty" hidden>
+                        Danh sách người chơi đang trống.
+                    </div>
+
+                    <div id="session-player-list" class="session-player-list" aria-label="Danh sách người chơi đang hoạt động"></div>
+
+                    <section id="session-player-stats" class="session-player-stats" aria-labelledby="session-player-stats-title">
+                        <h4 id="session-player-stats-title">THỐNG KÊ NGƯỜI CHƠI</h4>
+                        <p id="session-player-stats-disclosure" class="session-player-stats-disclosure">Dựa trên lịch sử hiện tại (tối đa 200 lượt).</p>
+                        <p id="session-player-stats-coverage" class="session-player-stats-coverage" hidden></p>
+                        <div id="session-player-stats-empty" class="session-player-stats-empty" hidden>
+                            <p>Không bắt buộc. Thêm tên nếu bạn muốn xem thống kê theo người.</p>
+                            <button id="session-player-stats-add" class="neon-button session-player-stats-add" type="button">THÊM NGƯỜI CHƠI</button>
+                        </div>
+                        <p id="session-player-stats-unavailable" class="session-player-stats-unavailable" hidden>Chưa thể hiển thị thống kê lúc này.</p>
+                        <ul id="session-player-stats-list" class="session-player-stats-list" aria-label="Thống kê theo người chơi" hidden></ul>
+                    </section>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script data-g17-script="js/ui-assets.js?v=5.18.5"></script>
+    <script data-g17-script="js/haptics.js?v=5.18.5"></script>
+    <script data-g17-script="js/pwa.js?v=5.18.5"></script>
+    <script data-g17-script="js/audio.js?v=5.18.5"></script>
+    <script data-g17-script="js/penalty_medium.js?v=5.18.5"></script>
+    <script data-g17-script="js/penalties.js?v=5.18.5"></script>
+    <script data-g17-script="js/party-session.js?v=5.18.5"></script>
+    <script data-g17-script="js/player-roster.js?v=5.18.5"></script>
+    <script data-g17-script="js/session-history.js?v=5.18.5"></script>
+    <script data-g17-script="js/session-attribution.js?v=5.18.5"></script>
+    <script data-g17-script="js/session-history-ui.js?v=5.18.5"></script>
+    <script data-g17-script="js/games/crocodile.js?v=5.18.5"></script>
+    <script data-g17-script="js/games/wheel.js?v=5.18.5"></script>
+    <script data-g17-script="js/games/finger.js?v=5.18.5"></script>
+    <script data-g17-script="js/games/bomb.js?v=5.18.5"></script>
+    <script data-g17-script="js/games/pirate.js?v=5.18.5"></script>
+    <script data-g17-script="js/vendor/three.min.js?v=5.18.5"></script>
+    <script data-g17-script="js/visuals/dice-model.js?v=5.18.5"></script>
+    <script data-g17-script="js/games/dice-3d-renderer.js?v=5.18.5"></script>
+    <script data-g17-script="js/games/dice.js?v=5.18.5"></script>
+    <script data-g17-script="js/games/cards.js?v=5.18.5"></script>
+    <script data-g17-script="js/games/bottle.js?v=5.18.5"></script>
+    <script data-g17-script="js/games/numberbomb.js?v=5.18.5"></script>
+    <script data-g17-script="js/games/neverhave.js?v=5.18.5"></script>
+    <script data-g17-script="js/how-to-play.js?v=5.18.5"></script>
+    <script data-g17-script="js/app.js?v=5.18.5"></script>
+<script>/* Generated TEMP app guard: fail closed until identity and ordered boot are complete. */
+(async function () {
+  const match = location.pathname.match(/^\/r\/([0-9a-f]{64})\/index\.html$/);
+  const revision = match && match[1];
+  const status = document.createElement('div');
+  status.id = 'g17-app-status';
+  status.setAttribute('role', 'status');
+  status.setAttribute('aria-live', 'polite');
+  status.textContent = 'Đang xác minh bản ứng dụng…';
+  document.body.prepend(status);
+  function challenge(worker, data) {
+    return new Promise((resolve, reject) => {
+      const channel = new MessageChannel();
+      const timer = setTimeout(() => { channel.port1.close(); reject(new Error('identity timeout')); }, 2500);
+      channel.port1.onmessage = event => { clearTimeout(timer); channel.port1.close(); resolve(event.data); };
+      try { worker.postMessage(data, [channel.port2]); }
+      catch (error) { clearTimeout(timer); channel.port1.close(); reject(error); }
+    });
+  }
+  try {
+    if (!revision || !navigator.serviceWorker.controller) throw new Error('uncontrolled app document');
+    const expected = sessionStorage.getItem('g17-verified:' + revision);
+    const expectedMode = sessionStorage.getItem('g17-build-mode:' + revision);
+    const expectedIdentity = sessionStorage.getItem('g17-build-identity:' + revision);
+    if (!/^[0-9a-f]{64}$/.test(expected || '') || !/^[0-9a-f]{64}$/.test(expectedIdentity || '') ||
+        !['DEVELOPMENT_FIXTURE', 'ISOLATED_CANDIDATE'].includes(expectedMode)) throw new Error('root verification token absent or malformed');
+    const worker = navigator.serviceWorker.controller;
+    const active = await challenge(worker, { g17: 'identity' });
+    const matchesActive = active?.schema === 1 && active.revision === revision &&
+      active.manifestSha256 === expected && active.buildMode === expectedMode &&
+      active.buildIdentitySha256 === expectedIdentity && active.status === 'ACTIVE';
+    let authorized = matchesActive;
+    if (!authorized && sessionStorage.getItem('g17-recovery:' + revision) === expected) {
+      const recovery = await challenge(worker, { g17: 'verify-recovery', revision });
+      authorized = recovery?.revision === revision && recovery?.manifestSha256 === expected &&
+        recovery?.buildMode === expectedMode && recovery?.buildIdentitySha256 === expectedIdentity &&
+        recovery?.status === 'VERIFIED_RECOVERY';
+    }
+    if (!authorized) throw new Error('controller build identity mismatch');
+
+    for (const item of document.querySelectorAll('[data-g17-src]')) {
+      item.setAttribute('src', item.getAttribute('data-g17-src'));
+      item.removeAttribute('data-g17-src');
+    }
+    for (const item of document.querySelectorAll('[data-g17-href]')) {
+      item.setAttribute('href', item.getAttribute('data-g17-href'));
+      item.removeAttribute('data-g17-href');
+    }
+    for (const item of document.querySelectorAll('[data-g17-style]')) {
+      await new Promise((resolve, reject) => {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = item.getAttribute('data-g17-style');
+        link.onload = resolve;
+        link.onerror = () => reject(new Error('style load failure'));
+        document.head.append(link);
+      });
+    }
+    for (const item of document.querySelectorAll('[data-g17-script]')) {
+      await new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.async = false;
+        script.src = item.getAttribute('data-g17-script');
+        script.onload = resolve;
+        script.onerror = () => reject(new Error('script load failure'));
+        document.body.append(script);
+      });
+    }
+    if (typeof window.__g17StartApp !== 'function') throw new Error('explicit app initializer unavailable');
+    const app = window.__g17StartApp();
+    if (!app || window.app !== app || window.__g17AppStarted !== true) throw new Error('app initialization incomplete');
+    window.__g17VerifiedBoot = { revision, manifestSha256: expected, buildMode: expectedMode,
+      buildIdentitySha256: expectedIdentity, recovered: !matchesActive };
+    document.documentElement.dataset.g17AppReady = 'true';
+    status.remove();
+  } catch (error) {
+    status.textContent = 'G17_BLOCKED — không thể xác minh hoặc khởi tạo ứng dụng. Dữ liệu hiện có được giữ nguyên. ';
+    status.dataset.error = String(error.message || error);
+    const link = document.createElement('a');
+    link.href = '/index.html?g17=recover';
+    link.textContent = 'Kiểm tra bản dự phòng đã xác minh';
+    status.append(link);
+  }
+}());
+</script>
+</body>
+</html>

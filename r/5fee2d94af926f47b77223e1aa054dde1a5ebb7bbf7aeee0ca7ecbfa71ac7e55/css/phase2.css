@@ -1,0 +1,4122 @@
+/* ===================================================
+   PHASE 2/3 — SIGNATURE GAME POLISH + PRODUCTION QA
+   Shared vector icon sizing, motion rhythm and thumb-first controls.
+   =================================================== */
+.party-icon {
+    display: inline-block;
+    width: 1.35em;
+    height: 1.35em;
+    flex: 0 0 auto;
+    vertical-align: -0.28em;
+    overflow: visible;
+}
+
+.medium-preset-btn .m-icon {
+    display: block;
+    width: 34px;
+    height: 34px;
+    margin-bottom: 4px;
+}
+
+.penalty-item-row .p-icon {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 auto;
+}
+
+.inline-result-icon {
+    width: 24px;
+    height: 24px;
+    vertical-align: -7px;
+    margin-right: 3px;
+}
+
+.stage-icon {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 auto;
+    vertical-align: middle;
+}
+
+.center-btn-icon {
+    width: 28px;
+    height: 28px;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.pulse-icon {
+    display: block;
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 12px;
+}
+
+.topic-badge-icon {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+}
+
+.spark-emoji {
+    display: block;
+    width: 40px;
+    height: 40px;
+    filter: drop-shadow(0 0 15px #ffaa00);
+}
+
+.bomb-skull {
+    width: 76px;
+    height: 76px;
+    opacity: .88;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,.9));
+    transition: all .25s ease;
+}
+
+.hat-skull {
+    width: 22px;
+    height: 22px;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,.9));
+}
+
+.pirate-face-emoji {
+    display: block;
+    width: 68px;
+    height: 68px;
+    filter: drop-shadow(0 6px 12px rgba(0,0,0,.85));
+}
+
+.card-back-crown {
+    width: 38px;
+    height: 38px;
+    position: absolute;
+    top: -13px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,.8));
+}
+
+.card-back-icon {
+    width: 58px;
+    height: 58px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,.6));
+}
+
+.card-big-icon {
+    display: block;
+    width: 76px;
+    height: 76px;
+    margin: 4px 0;
+    filter: drop-shadow(0 8px 18px rgba(0,0,0,.7));
+}
+
+.bottle-epic-pill .pill-icon,
+.penalty-pill-epic .penalty-icon,
+.nbomb-epic-pill .pill-icon {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 auto;
+}
+
+.result-danger { color: var(--color-danger); }
+.result-safe { color: var(--color-success); }
+
+.tutorial-toast {
+    position: fixed;
+    left: 50%;
+    bottom: calc(132px + env(safe-area-inset-bottom));
+    z-index: 1200;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    width: min(92vw, 420px);
+    padding: var(--space-3) var(--space-3) var(--space-3) var(--space-4);
+    border: 1px solid var(--color-border-focus);
+    border-radius: var(--radius-card);
+    background: var(--color-surface-raised);
+    color: var(--color-text-primary);
+    box-shadow: var(--shadow-elevated), var(--shadow-neon);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 14px);
+    transition: opacity var(--motion-slow) ease, transform var(--motion-slow) ease;
+}
+
+.tutorial-toast.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+}
+
+.tutorial-toast-icon {
+    width: 28px;
+    height: 28px;
+    flex: 0 0 auto;
+}
+
+#tutorial-toast-text {
+    flex: 1;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.tutorial-toast-close {
+    width: 36px;
+    height: 36px;
+    flex: 0 0 auto;
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-control);
+    background: var(--color-surface-control);
+    color: var(--color-text-primary);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+/* Larger touch targets for controls created by older game templates. */
+.card-filter-pill,
+.never-filter-pill,
+.action-btn-small,
+.back-btn,
+.mini-select {
+    min-height: 44px;
+}
+
+.pirate-slot-btn {
+    min-width: 48px;
+    min-height: 44px;
+}
+
+.numpad-btn {
+    min-height: 52px;
+}
+
+.card-filter-pill,
+.never-filter-pill {
+    padding-inline: 14px;
+}
+
+.cup-lid {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+.card-back-tap {
+    position: relative;
+}
+
+.card-back-tap::after {
+    content: '';
+    display: block;
+    height: 2px;
+    width: 48px;
+    margin: 7px auto 0;
+    background: linear-gradient(90deg, transparent, #20e7ff, transparent);
+    animation: tapLinePulse 1.35s ease-in-out infinite;
+}
+
+@keyframes tapLinePulse {
+    0%, 100% { opacity: .35; transform: scaleX(.65); }
+    50% { opacity: 1; transform: scaleX(1); }
+}
+
+.dice-result-card,
+.bottle-epic-pill,
+.nbomb-epic-pill {
+    animation: resultReveal .34s cubic-bezier(.2,.85,.35,1.2);
+}
+
+@keyframes resultReveal {
+    from { opacity: 0; transform: translateY(9px) scale(.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Phase 2D: reveal the dice result only after the renderer Promise settles.
+   Scope the lighter motion to the dice banner so other game result cards keep
+   their existing presentation. */
+.dice-result-container .dice-result-card {
+    animation: none;
+}
+
+.dice-result-container.dice-result-reveal {
+    animation: diceResultReveal 210ms ease-out both;
+}
+
+@keyframes diceResultReveal {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dice-result-container.dice-result-reveal {
+        animation-duration: 90ms;
+    }
+}
+
+/* Phase 2E: remove the previous result while a new roll is in flight. */
+.dice-result-container.dice-result-clearing {
+    animation: diceResultClear 120ms ease-in both;
+    pointer-events: none;
+}
+
+.dice-result-container.dice-result-pending {
+    animation: diceResultPending 120ms ease-out both;
+}
+
+.dice-rolling-hint {
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .02em;
+}
+
+@keyframes diceResultClear {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-2px); }
+}
+
+@keyframes diceResultPending {
+    from { opacity: 0; transform: translateY(2px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dice-result-container.dice-result-clearing,
+    .dice-result-container.dice-result-pending {
+        animation-duration: 1ms;
+    }
+}
+
+.bomb-topic-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.bomb-topic-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,.08) 48%, transparent 60%);
+    transform: translateX(-120%);
+}
+
+.bomb-visual.ticking .bomb-body {
+    animation: bombSurfacePulse 1.1s ease-in-out infinite;
+}
+
+@keyframes bombSurfacePulse {
+    0%, 100% { border-color: rgba(255,255,255,.1); }
+    50% { border-color: rgba(255,75,62,.75); }
+}
+
+.nbomb-bomb-icon {
+    display: block;
+    width: 112px;
+    height: 96px;
+    overflow: visible;
+}
+
+.bottle-touch-zone {
+    touch-action: none;
+}
+
+.bottle-compass-ring::before,
+.bottle-compass-ring::after {
+    content: '';
+    position: absolute;
+    inset: 18px;
+    border: 1px solid rgba(32,231,255,.18);
+    border-radius: 50%;
+}
+
+.bottle-compass-ring::after {
+    inset: 48px;
+    border-color: rgba(255,45,141,.16);
+}
+
+.bottle-epic-pill .pill-icon {
+    vertical-align: middle;
+}
+
+/* Phase 3 production polish: keep motion on compositor-friendly properties. */
+.game-screen.active {
+    animation: phase3ScreenEnter .2s cubic-bezier(.2, .8, .2, 1);
+}
+
+@keyframes phase3ScreenEnter {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.game-screen button:not(:disabled),
+.game-screen select,
+.game-screen input {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.game-screen button:not(:disabled):focus-visible,
+.game-screen select:focus-visible,
+.game-screen input:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+    box-shadow: var(--focus-ring);
+}
+
+.bottle-3d,
+.card-3d-box,
+.die-cube,
+.bomb-body,
+.pirate-character {
+    will-change: transform;
+}
+
+.dice-result-card,
+.bottle-epic-pill,
+.nbomb-epic-pill,
+.pirate-penalty-banner {
+    contain: layout paint;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .game-screen.active { animation: none; }
+    .bottle-3d,
+    .card-3d-box,
+    .die-cube,
+    .bomb-body,
+    .pirate-character { will-change: auto; }
+}
+
+@media (max-width: 380px) {
+    .card-big-icon { width: 64px; height: 64px; }
+    .nbomb-bomb-icon { width: 92px; height: 78px; }
+    .pirate-face-emoji { width: 60px; height: 60px; }
+}
+
+/* Phase 5: mobile WebView gesture and premium home-card treatment. */
+#screen-home {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y;
+    scrollbar-width: none;
+}
+
+#screen-home::-webkit-scrollbar {
+    display: none;
+}
+
+.games-grid,
+.game-card {
+    touch-action: pan-y;
+}
+
+.game-filters {
+    touch-action: pan-x pan-y;
+}
+
+.game-card .card-icon {
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at 50% 38%, rgba(255,255,255,.13), transparent 52%),
+        linear-gradient(145deg, rgba(32,231,255,.07), rgba(255,45,141,.06));
+    border: 1px solid rgba(255,255,255,.06);
+    box-shadow: inset 0 1px rgba(255,255,255,.08);
+}
+
+.game-card .card-art-3d {
+    width: min(100%, 126px);
+    height: 96px;
+    margin: 3px auto 5px;
+    object-fit: contain;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    transform: scale(1.10) translateY(-1px);
+    filter: drop-shadow(0 10px 12px rgba(0,0,0,.55));
+}
+
+.game-card:active .card-art-3d {
+    transform: scale(1.08) translateY(1px) rotate(-2deg);
+}
+
+/* Upgrade Phase A: shared gameplay shell and touch-first hero staging. */
+.game-layout {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    gap: 8px;
+}
+
+.game-top-bar {
+    flex: 0 0 auto;
+    min-height: var(--control-height-large);
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 5px var(--space-2);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-card);
+    background: linear-gradient(135deg, var(--color-surface-elevated), var(--color-surface-base));
+    box-shadow: var(--shadow-surface), inset 0 1px rgba(255,255,255,.08);
+    z-index: 20;
+}
+
+.game-top-bar .back-btn,
+.game-top-bar .action-btn-small {
+    min-height: var(--control-height-default);
+    white-space: nowrap;
+}
+
+.mini-select {
+    appearance: none;
+    -webkit-appearance: none;
+    min-width: 0;
+    max-width: min(250px, 46vw);
+    padding: 9px 34px 9px 13px;
+    border: 1px solid rgba(255,194,71,.48);
+    border-radius: var(--radius-control);
+    color: var(--color-text-primary);
+    background:
+        linear-gradient(45deg, transparent 50%, #ffc247 50%) calc(100% - 17px) 50% / 6px 6px no-repeat,
+        linear-gradient(135deg, #ffc247 50%, transparent 50%) calc(100% - 12px) 50% / 6px 6px no-repeat,
+        linear-gradient(135deg, rgba(55,30,91,.96), rgba(20,12,47,.98));
+    box-shadow: inset 0 1px rgba(255,255,255,.1), 0 4px 12px rgba(0,0,0,.2);
+    font: var(--font-weight-control) var(--font-size-meta)/var(--line-height-control) var(--font-main);
+    color-scheme: dark;
+}
+
+.mini-select:focus-visible {
+    border-color: var(--color-focus);
+    box-shadow: var(--focus-ring), var(--shadow-neon);
+}
+
+.game-bottom-bar {
+    flex: 0 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0 max(4px, env(safe-area-inset-bottom));
+    z-index: 30;
+}
+
+/* First-time player guide: closed by default to keep the one-thumb game flow
+   compact, expandable without leaving the current mini-game. */
+.how-to-play {
+    flex: 0 0 auto;
+    width: min(100%, 620px);
+    margin: -1px auto 1px;
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border-focus);
+    border-radius: var(--radius-card);
+    background: linear-gradient(110deg, var(--color-surface-elevated), var(--color-surface-base));
+    box-shadow: var(--shadow-surface);
+    overflow: hidden;
+    z-index: 25;
+}
+
+.how-to-play summary {
+    min-height: 42px;
+    display: grid;
+    grid-template-columns: 27px auto 1fr 20px;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 11px;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.how-to-play summary::-webkit-details-marker { display: none; }
+.how-to-play summary:focus-visible { outline: 3px solid var(--color-focus); outline-offset: -3px; }
+
+.how-to-play-icon {
+    display: grid;
+    place-items: center;
+    width: 25px;
+    height: 25px;
+    border: 1px solid var(--color-border-warm);
+    border-radius: 50%;
+    color: var(--color-accent-warm);
+    font-size: 15px;
+    font-weight: 900;
+    box-shadow: 0 0 9px rgba(255,194,71,.2);
+}
+
+.how-to-play-label {
+    color: var(--color-accent-secondary);
+    font-size: var(--font-size-meta);
+    font-weight: var(--font-weight-display);
+    letter-spacing: .1em;
+}
+
+.how-to-play-game {
+    min-width: 0;
+    overflow: hidden;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-meta);
+    font-weight: var(--font-weight-supporting);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.how-to-play-chevron {
+    color: var(--color-accent-warm);
+    font-size: 20px;
+    line-height: 1;
+    text-align: center;
+    transition: transform .18s ease;
+}
+
+.how-to-play[open] .how-to-play-chevron { transform: rotate(180deg); }
+.how-to-play[open] summary { border-bottom: 1px solid var(--color-border-subtle); }
+
+.how-to-play-body {
+    padding: 7px 14px 10px 43px;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-supporting);
+    line-height: var(--line-height-body);
+}
+
+.how-to-play-body ol { margin: 0; padding-left: 18px; }
+.how-to-play-body li { padding: 2px 0; }
+.how-to-play-body li::marker { color: var(--color-accent-warm); font-weight: var(--font-weight-display); }
+
+/* Expanded help must remain readable on short phones. The active screen is
+   allowed to scroll only while its guide is open; normal play stays locked to
+   the distraction-free full-height layout. */
+.game-screen.guide-open { overflow-y: auto; }
+.game-screen.guide-open .game-layout { height: auto; min-height: 100%; }
+
+/* Phase 3B1: keep one scroll owner when the expanded guide makes the game
+   taller than the viewport. The stage itself must not become a nested scroller. */
+.game-screen.guide-open {
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 380px) {
+    .how-to-play summary { grid-template-columns: 25px auto 1fr 18px; gap: 6px; padding-inline: 8px; }
+    .how-to-play-label { font-size: 10px; }
+    .how-to-play-game { font-size: 10px; }
+    .how-to-play-body { padding-left: 36px; font-size: 11px; }
+}
+
+/* Phase 3B1: on very narrow phones the back control and mode selector cannot
+   share one row without the select escaping the top bar. Stack only this
+   narrow breakpoint; wider mobile keeps the compact one-row shell. */
+@media (max-width: 340px) {
+    #screen-dice .game-top-bar {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto auto;
+    }
+
+    #screen-dice .game-top-bar .back-btn,
+    #screen-dice .dice-mode-switch,
+    #screen-dice .mini-select {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+/* Phase 3B1: mobile Dice layouts use one screen-level scroll owner whenever
+   intrinsic result/help content exceeds the viewport. This also covers tall
+   phones whose result card becomes taller than the idle layout. */
+@media (max-width: 600px) {
+    #screen-dice {
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #screen-dice .dice-stage {
+        flex: 0 0 auto;
+        height: auto;
+        min-height: 100%;
+        overflow: visible;
+    }
+}
+
+.game-bottom-bar .primary-btn {
+    min-height: 58px;
+    min-width: 0;
+    width: 100%;
+    font-size: clamp(14px, 3.8vw, 17px);
+}
+
+.game-bottom-bar > .primary-btn:only-child {
+    display: block;
+}
+
+/* ===================================================
+   PHASE 3B2 — DICE UX STATE + VISUAL HIERARCHY
+   Scoped to the Dice screen; renderer, shared shell and header stay frozen.
+   =================================================== */
+#screen-dice #dice-roll-btn {
+    transition: opacity .18s ease, filter .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+#screen-dice #dice-roll-btn.dice-cta-rolling {
+    cursor: not-allowed;
+    opacity: .62;
+    filter: saturate(.55);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .24);
+    animation: none;
+}
+
+#screen-dice #dice-roll-btn.dice-cta-result {
+    box-shadow: 0 5px 16px rgba(255, 0, 127, .28);
+}
+
+#screen-dice #dice-roll-btn .dice-cta-label {
+    min-width: 0;
+}
+
+/* BÁT LẮC is a status/decorative label, not a competing action. */
+#screen-dice .dice-shaker-cup {
+    opacity: .62;
+    border-color: rgba(255, 215, 0, .28);
+    background: rgba(255, 255, 255, .045);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, .28);
+    transition: opacity .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+#screen-dice .dice-shaker-cup.shaking-cup {
+    opacity: 1;
+    border-color: rgba(255, 215, 0, .66);
+    background: linear-gradient(135deg, rgba(255, 255, 255, .14), rgba(255, 255, 255, .06));
+    box-shadow: 0 5px 15px rgba(255, 174, 0, .22);
+}
+
+/* Result order: status → total/breakdown → outcome → instruction. */
+#screen-dice .dice-result-card {
+    padding: 9px 12px;
+}
+
+#screen-dice .dice-result-status {
+    margin-bottom: 4px;
+    font-size: 8px;
+    opacity: .82;
+}
+
+#screen-dice .dice-result-card .d-title {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0 7px;
+    margin-bottom: 4px;
+    line-height: 1.15;
+}
+
+#screen-dice .dice-result-card .d-total {
+    font-size: clamp(18px, 4.4vw, 22px);
+    font-weight: 900;
+    letter-spacing: .01em;
+}
+
+#screen-dice .dice-result-card .d-breakdown {
+    color: rgba(255, 255, 255, .72);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+#screen-dice .dice-result-card .d-action {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 6px;
+    margin: 0 auto;
+    max-width: 100%;
+    text-align: left;
+    line-height: 1.25;
+}
+
+#screen-dice .d-action-icon {
+    flex: 0 0 auto;
+    line-height: 1;
+}
+
+#screen-dice .d-action-icon .inline-result-icon {
+    margin: 1px 0 0;
+}
+
+#screen-dice .d-action-copy {
+    min-width: 0;
+    display: grid;
+    gap: 2px;
+}
+
+#screen-dice .d-outcome {
+    display: block;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: .02em;
+}
+
+#screen-dice .d-instruction {
+    display: block;
+    color: rgba(255, 255, 255, .84);
+    font-size: 13px;
+}
+
+/* A rolling hint is deliberately quieter than a resolved result. */
+#screen-dice .dice-result-container.dice-result-pending {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+#screen-dice .dice-rolling-hint {
+    color: rgba(255, 255, 255, .58);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .04em;
+}
+
+/* Shared cup prominence follows its existing 0/1/2 state machine. */
+#screen-dice #dice-pot-display[data-pot-state="empty"] .pot-pill {
+    opacity: .58;
+    border-color: rgba(255, 215, 0, .32);
+    background: rgba(255, 174, 0, .09);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, .2);
+}
+
+#screen-dice #dice-pot-display[data-pot-state="half"] .pot-pill {
+    opacity: .82;
+    border-color: rgba(255, 215, 0, .52);
+    background: rgba(255, 174, 0, .15);
+    box-shadow: 0 4px 11px rgba(255, 174, 0, .18);
+}
+
+#screen-dice #dice-pot-display[data-pot-state="full"] .pot-pill {
+    opacity: 1;
+    border-color: rgba(255, 215, 0, .8);
+    background: rgba(255, 174, 0, .24);
+    box-shadow: 0 5px 15px rgba(255, 174, 0, .3);
+}
+
+#screen-dice .pot-label {
+    color: rgba(255, 255, 255, .72);
+    font-weight: 700;
+}
+
+/* Compact rule reference: scanable, secondary to the result card. */
+#screen-dice .dice-legend {
+    align-items: center;
+    column-gap: 10px;
+    row-gap: 3px;
+    line-height: 1.3;
+}
+
+#screen-dice .dice-legend span:not(:last-child)::after {
+    content: ' ·';
+    color: rgba(255, 255, 255, .42);
+    padding-left: 7px;
+}
+
+#screen-dice .dice-legend strong {
+    color: rgba(255, 255, 255, .86);
+}
+
+@media (max-width: 340px) {
+    #screen-dice .dice-legend span:not(:last-child)::after {
+        content: '';
+        padding-left: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #screen-dice #dice-roll-btn,
+    #screen-dice .dice-shaker-cup {
+        transition-duration: 1ms;
+    }
+}
+
+.game-status-text {
+    min-width: 0;
+    color: var(--color-text-secondary);
+    font-size: clamp(13px, 3.2vw, 15px);
+    line-height: 1.35;
+}
+
+.overlay-header {
+    top: max(10px, env(safe-area-inset-top));
+    left: 12px;
+    right: 12px;
+    padding: 7px 9px;
+    border: 1px solid var(--color-border-default);
+    background: var(--color-surface-elevated);
+    box-shadow: var(--shadow-elevated);
+}
+
+.overlay-header .back-btn,
+.overlay-header .action-btn-small {
+    min-height: 44px;
+}
+
+/* Finger Shock: replace the empty waiting state with a visible 3D-like touch beacon. */
+.finger-stage {
+    background:
+        radial-gradient(circle at 50% 43%, rgba(50,28,100,.9) 0 8%, transparent 32%),
+        radial-gradient(circle at 20% 78%, rgba(0,240,255,.13), transparent 28%),
+        radial-gradient(circle at 85% 18%, rgba(255,45,141,.16), transparent 25%),
+        #080314;
+}
+
+.finger-stage::before,
+.finger-stage::after {
+    content: '';
+    position: absolute;
+    inset: 18% 9% 12%;
+    border: 1px solid rgba(32,231,255,.09);
+    border-radius: 42px;
+    transform: perspective(500px) rotateX(8deg);
+    pointer-events: none;
+}
+
+.finger-stage::after {
+    inset: 23% 16% 19%;
+    border-color: rgba(255,45,141,.08);
+    transform: perspective(500px) rotateX(8deg) scale(.88);
+}
+
+.finger-hero-object {
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    width: min(54vw, 230px);
+    height: min(54vw, 230px);
+    transform: translate(-50%, -50%);
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+    z-index: 1;
+    opacity: .78;
+}
+
+.finger-hero-halo {
+    position: absolute;
+    inset: 7%;
+    border-radius: 50%;
+    border: 1px solid rgba(32,231,255,.55);
+    box-shadow: 0 0 26px rgba(32,231,255,.25), inset 0 0 26px rgba(255,45,141,.18);
+    animation: fingerHaloSpin 12s linear infinite;
+}
+
+.finger-hero-halo::before,
+.finger-hero-halo::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #20e7ff;
+    box-shadow: 0 0 14px #20e7ff;
+    top: -5px;
+    left: 50%;
+}
+
+.finger-hero-halo::after {
+    top: auto;
+    left: auto;
+    right: -5px;
+    bottom: 26%;
+    background: #ff2d8d;
+    box-shadow: 0 0 14px #ff2d8d;
+}
+
+@keyframes fingerHaloSpin { to { transform: rotate(360deg); } }
+
+.finger-hero-core {
+    width: 54%;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    border-radius: 34% 66% 58% 42% / 44% 40% 60% 56%;
+    background: linear-gradient(145deg, rgba(32,231,255,.23), rgba(255,45,141,.18));
+    border: 1px solid rgba(255,255,255,.24);
+    box-shadow: 0 18px 36px rgba(0,0,0,.35), inset 0 1px rgba(255,255,255,.3), 0 0 28px rgba(32,231,255,.24);
+    animation: fingerCoreFloat 2.2s ease-in-out infinite;
+}
+
+@keyframes fingerCoreFloat {
+    0%,100% { transform: translateY(0) rotate(-4deg); }
+    50% { transform: translateY(-8px) rotate(4deg); }
+}
+
+.finger-hero-icon {
+    width: 72%;
+    height: 72%;
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,.5));
+}
+
+.finger-hero-label {
+    position: absolute;
+    bottom: -4px;
+    color: rgba(255,255,255,.44);
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 800;
+}
+
+.finger-hint {
+    top: 67%;
+    z-index: 8;
+}
+
+.gesture-guide {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 5px;
+}
+
+.gesture-guide-dot {
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background: #20e7ff;
+    box-shadow: 0 0 16px #20e7ff;
+    animation: guideTap 1.4s ease-in-out infinite;
+}
+
+.gesture-guide-dot:nth-child(2) {
+    background: #ff2d8d;
+    box-shadow: 0 0 16px #ff2d8d;
+    animation-delay: .22s;
+}
+
+@keyframes guideTap {
+    0%,100% { transform: translateY(0) scale(1); opacity: .78; }
+    50% { transform: translateY(-8px) scale(1.18); opacity: 1; }
+}
+
+.finger-rule-chip {
+    display: inline-flex;
+    margin-top: 10px;
+    padding: 7px 12px;
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 999px;
+    background: rgba(13,8,34,.66);
+    color: rgba(255,255,255,.7);
+    font-size: 11px;
+}
+
+.touch-elements-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 12;
+    pointer-events: none;
+}
+
+/* Finger-only feedback: no new hit regions or scroll owner. */
+#screen-finger .finger-contact-status {
+    position: absolute;
+    bottom: 8px;
+    left: 12px;
+    right: 12px;
+    margin: 0;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--color-text-primary);
+    pointer-events: none;
+    z-index: 11;
+}
+
+#screen-finger .touch-halo.shocked-target {
+    border-style: double;
+    border-width: 7px;
+}
+
+#screen-finger .finger-winner-marker {
+    position: absolute;
+    top: -16px;
+    right: -8px;
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    border: 2px solid currentColor;
+    border-radius: 6px;
+    color: var(--color-text-primary);
+    background: var(--color-surface-raised);
+    font-size: 18px;
+    font-weight: 900;
+    pointer-events: none;
+}
+
+/* Dice Home art stays static so every device shows the approved composition. */
+.game-card .dice-card-visual {
+    display: block;
+    object-fit: contain;
+    object-position: center;
+    transform: scale(1.05) translate(-4px, 1px);
+    filter: saturate(1.06) drop-shadow(0 9px 12px rgba(0,0,0,.48));
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 58%, rgba(0,0,0,.95) 74%, transparent 100%);
+    mask-image: radial-gradient(ellipse at center, #000 58%, rgba(0,0,0,.95) 74%, transparent 100%);
+}
+
+.game-card[data-game="dice"] .card-tag {
+    z-index: 2;
+}
+
+.game-card:active .dice-card-visual {
+    transform: scale(1.03) translate(-4px, 2px) rotate(-2deg);
+}
+
+.dice-arena-wrapper {
+    background:
+        radial-gradient(circle at 17% 17%, rgba(35,234,255,.27), transparent 30%),
+        radial-gradient(circle at 83% 20%, rgba(255,58,207,.29), transparent 32%),
+        radial-gradient(ellipse at 50% 59%, #087c76 0%, #07564f 34%, #16214d 71%, #200d43 100%);
+    border-color: rgba(166,87,255,.72);
+    outline-color: rgba(255,215,98,.86);
+    box-shadow: inset 0 0 28px rgba(3,245,219,.18), inset 0 0 72px rgba(15,3,43,.65), 0 0 0 3px rgba(36,234,255,.19), 0 12px 38px rgba(0,0,0,.58);
+}
+
+.dice-arena-wrapper::before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    left: 10%;
+    right: 10%;
+    top: 59%;
+    height: 24%;
+    border: 3px solid rgba(255,216,104,.78);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255,223,116,.52), 0 0 24px rgba(255,62,209,.43), inset 0 0 13px rgba(32,241,229,.38), 0 0 0 8px rgba(21,238,238,.10);
+    transform: translateY(-50%) rotate(-3deg);
+    pointer-events: none;
+}
+
+.dice-arena-wrapper::after {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    inset: 13% 9% 12%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(31,239,231,.19), rgba(255,52,211,.08) 49%, transparent 73%);
+    pointer-events: none;
+}
+
+.dice-hero-mark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    justify-items: center;
+    gap: 5px;
+    color: rgba(255,255,255,.22);
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    font-weight: 900;
+    pointer-events: none;
+    z-index: 1;
+    width: 100%;
+}
+
+.dice-hero-mark {
+    opacity: .42;
+    transform: translate(-50%, -50%) translateY(-8px) scale(.82);
+}
+
+.dice-hero-mark svg {
+    width: 116px;
+    height: 86px;
+    opacity: .28;
+    filter: drop-shadow(0 10px 16px rgba(0,0,0,.5));
+}
+
+.dice-viewport {
+    position: relative;
+    z-index: 4;
+    width: 100%;
+    min-height: 230px;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+}
+
+#dice-webgl-canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: block;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    touch-action: none;
+    transition: opacity .22s ease;
+}
+
+.dice-webgl-ready #dice-table { display: none !important; }
+.dice-webgl-ready #dice-webgl-canvas { opacity: 1; }
+.dice-idle #dice-webgl-canvas { opacity: 0; }
+
+/* CSS fallback: six real planes, no fake top/right pseudo-panels. */
+.dice-css-fallback {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    display: flex;
+    gap: clamp(18px, 8vw, 42px);
+    align-items: center;
+    justify-content: center;
+    perspective: 860px;
+    padding: 24px;
+    width: 100%;
+    transition: opacity .22s ease, transform .22s ease;
+}
+
+.dice-css-fallback[hidden] { display: none !important; }
+.dice-css-fallback .die-cube {
+    --die-size: clamp(82px, 25vw, 112px);
+    width: var(--die-size);
+    height: var(--die-size);
+    position: relative;
+    flex: 0 0 var(--die-size);
+    transform-style: preserve-3d;
+    filter: none;
+    overflow: visible;
+    will-change: transform;
+    transition: transform .72s cubic-bezier(.16,.8,.2,1);
+}
+
+.dice-css-fallback .die-cube::before,
+.dice-css-fallback .die-cube::after { content: none !important; display: none !important; }
+
+.dice-css-fallback .die-face {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    align-items: center;
+    justify-items: center;
+    padding: 13%;
+    box-sizing: border-box;
+    border-radius: 18%;
+    border: 1px solid rgba(255,241,163,.78);
+    background: linear-gradient(145deg, #fffef5 0%, #f7e6c2 54%, #d39756 100%);
+    box-shadow: inset 0 0 12px rgba(111,50,12,.18), inset 2px 2px 4px rgba(255,255,255,.9), inset -3px -3px 5px rgba(91,39,11,.24);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.dice-css-fallback .die-cube:nth-child(2) .die-face {
+    background: linear-gradient(145deg, #fff4fc 0%, #f4b5df 55%, #b34e9d 100%);
+    border-color: rgba(255,190,233,.88);
+}
+
+.dice-css-fallback .die-face .pip {
+    width: clamp(12px, 4.2vw, 18px);
+    height: clamp(12px, 4.2vw, 18px);
+    border-radius: 50%;
+    opacity: 0;
+    background: radial-gradient(circle at 32% 28%, #546277 0%, #152033 60%, #040811 100%);
+    box-shadow: inset 0 2px 3px rgba(0,0,0,.82), 0 1px 1px rgba(255,255,255,.55);
+}
+
+.dice-css-fallback .die-cube:nth-child(2) .die-face .pip {
+    background: radial-gradient(circle at 32% 28%, #ff73b4 0%, #a31362 62%, #43103a 100%);
+}
+
+.dice-css-fallback .die-face .pip.is-on { opacity: 1; }
+.dice-css-fallback .pip-tl { grid-column: 1; grid-row: 1; }
+.dice-css-fallback .pip-tc { grid-column: 2; grid-row: 1; }
+.dice-css-fallback .pip-tr { grid-column: 3; grid-row: 1; }
+.dice-css-fallback .pip-ml { grid-column: 1; grid-row: 2; }
+.dice-css-fallback .pip-c  { grid-column: 2; grid-row: 2; }
+.dice-css-fallback .pip-mr { grid-column: 3; grid-row: 2; }
+.dice-css-fallback .pip-bl { grid-column: 1; grid-row: 3; }
+.dice-css-fallback .pip-bc { grid-column: 2; grid-row: 3; }
+.dice-css-fallback .pip-br { grid-column: 3; grid-row: 3; }
+.dice-css-fallback .face-1 .pip.is-on { width: clamp(18px, 7vw, 29px); height: clamp(18px, 7vw, 29px); }
+.dice-css-fallback .face-1 .pip.is-on { background: radial-gradient(circle at 32% 28%, #ff7180 0%, #d7264f 62%, #67152a 100%); }
+
+.dice-css-fallback .face-1 { transform: rotateY(0deg) translateZ(calc(var(--die-size) / 2)); }
+.dice-css-fallback .face-2 { transform: rotateX(90deg) translateZ(calc(var(--die-size) / 2)); }
+.dice-css-fallback .face-3 { transform: rotateY(90deg) translateZ(calc(var(--die-size) / 2)); }
+.dice-css-fallback .face-4 { transform: rotateY(-90deg) translateZ(calc(var(--die-size) / 2)); }
+.dice-css-fallback .face-5 { transform: rotateX(-90deg) translateZ(calc(var(--die-size) / 2)); }
+.dice-css-fallback .face-6 { transform: rotateY(180deg) translateZ(calc(var(--die-size) / 2)); }
+
+.dice-css-fallback .rolling-dice { animation: diceFallbackTumble .92s linear infinite; }
+.dice-css-fallback .dice-settled { animation: none; }
+@keyframes diceFallbackTumble {
+    0% { transform: rotateX(0) rotateY(0) rotateZ(0) translateY(-16px) scale(1.02); }
+    55% { transform: rotateX(520deg) rotateY(390deg) rotateZ(160deg) translateY(10px) scale(.94); }
+    100% { transform: rotateX(1080deg) rotateY(760deg) rotateZ(360deg) translateY(-4px) scale(1.02); }
+}
+.dice-hero-art {
+    display: block;
+    width: clamp(190px, 72%, 286px);
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 28px;
+    opacity: .94;
+    filter: saturate(1.04) drop-shadow(0 18px 20px rgba(0,0,0,.52));
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 52%, rgba(0,0,0,.94) 72%, transparent 100%);
+    mask-image: radial-gradient(ellipse at center, #000 52%, rgba(0,0,0,.94) 72%, transparent 100%);
+}
+
+.dice-idle .dice-table {
+    opacity: 0;
+    transform: scale(.82);
+    pointer-events: none;
+}
+
+.dice-idle .dice-hero-mark {
+    top: 52%;
+    opacity: .94;
+    z-index: 5;
+    transform: translate(-50%, -50%) translateY(-4px) scale(1);
+}
+
+/* WebGL remains the normal idle and gameplay owner so 2/3-dice mode previews
+   stay accurate. The approved game art is the no-WebGL idle fallback. */
+.dice-arena-wrapper.dice-idle.dice-webgl-ready .dice-hero-art {
+    display: none;
+}
+
+.dice-arena-wrapper.dice-idle.dice-webgl-ready .dice-hero-mark {
+    top: 88%;
+}
+
+.dice-arena-wrapper.dice-idle.dice-webgl-ready #dice-webgl-canvas {
+    opacity: .96;
+}
+
+.dice-arena-wrapper.dice-idle #dice-table {
+    opacity: 0;
+    transform: scale(.82);
+    pointer-events: none;
+}
+
+.dice-idle .dice-hero-mark span {
+    color: rgba(255,255,255,.86);
+    text-shadow: 0 2px 8px rgba(0,0,0,.8);
+}
+
+.dice-arena-wrapper:not(.dice-idle) .dice-hero-mark { opacity: 0; }
+
+.dice-result-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 3px;
+    color: rgba(255,255,255,.66);
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+
+.dice-result-status span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #73f06b;
+    box-shadow: 0 0 9px rgba(115,240,107,.85);
+}
+
+/* Pirate: brighter friendly wood and explicit interaction cue. */
+.pirate-arena-wrapper {
+    background: radial-gradient(ellipse at 50% 42%, rgba(255,194,71,.1), transparent 42%);
+    border-radius: 28px;
+}
+
+.pirate-barrel {
+    background: radial-gradient(ellipse at 50% 25%, #c77b2d 0%, #824216 53%, #421b0a 100%);
+    border-color: #281006;
+    box-shadow: 0 24px 50px rgba(0,0,0,.78), inset 0 5px 14px rgba(255,255,255,.25), inset 0 -12px 24px rgba(0,0,0,.66), 0 0 0 3px rgba(255,194,71,.14), 0 0 24px rgba(255,45,141,.1);
+}
+
+.barrel-ring {
+    background: linear-gradient(180deg, #fff2a7 0%, #ffc247 35%, #bc691f 78%, #632d00 100%);
+}
+
+.hat-feather,
+.pirate-hand { display: block; width: 25px; height: 25px; }
+.hat-feather { filter: drop-shadow(0 2px 4px rgba(0,0,0,.7)); }
+.pirate-hand { filter: drop-shadow(0 4px 6px rgba(0,0,0,.8)); }
+.pirate-action-legend {
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    white-space: nowrap;
+    padding: 7px 12px;
+    border: 1px solid rgba(255,194,71,.24);
+    border-radius: 999px;
+    background: rgba(13,8,34,.6);
+    color: rgba(255,255,255,.68);
+    font-size: 11px;
+    pointer-events: none;
+}
+
+.pirate-action-legend .legend-icon {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+    color: #ffc247;
+    fill: #ffc247;
+    text-shadow: 0 0 10px #ffc247;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .finger-hero-halo,
+    .finger-hero-core,
+    .gesture-guide-dot { animation: none; }
+}
+
+/* Phase 4 release readiness: unobtrusive venue connectivity cue. */
+.network-status {
+    display: none;
+    align-items: center;
+    min-height: 24px;
+    max-width: 142px;
+    padding: 0 8px;
+    border: 1px solid var(--color-border-warm);
+    border-radius: var(--radius-pill);
+    color: var(--color-warning);
+    background: rgba(255, 194, 71, .12);
+    font-size: var(--font-size-meta);
+    font-weight: var(--font-weight-control);
+    letter-spacing: .04em;
+    line-height: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.is-offline .network-status {
+    display: inline-flex;
+}
+
+@media (max-width: 380px) {
+    .is-offline .network-status {
+        max-width: 94px;
+        padding-inline: 6px;
+        font-size: 8px;
+    }
+}
+
+/* Upgrade Phase B: in-game identity, icon-first feedback and thumb-friendly hierarchy. */
+.game-header:not(.overlay-header) {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(82px, auto) 1fr minmax(82px, auto);
+    align-items: center;
+    gap: 8px;
+    min-height: 62px;
+    margin: -2px 0 8px;
+    padding: 7px 8px;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-card);
+    background: linear-gradient(110deg, var(--color-surface-elevated), var(--color-surface-base));
+    box-shadow: var(--shadow-surface);
+    backdrop-filter: blur(12px);
+    z-index: 30;
+}
+
+.game-header:not(.overlay-header) .back-btn,
+.game-header:not(.overlay-header) .action-btn-small {
+    min-height: 44px;
+    white-space: nowrap;
+}
+
+.game-header:not(.overlay-header) .back-btn {
+    justify-self: start;
+}
+
+.game-header:not(.overlay-header) .action-btn-small {
+    justify-self: end;
+}
+
+.game-title-kicker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 1px;
+    color: var(--color-accent-warm);
+    font-size: var(--font-size-meta);
+    font-weight: var(--font-weight-display);
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    opacity: .9;
+}
+
+.game-title-icon {
+    width: 18px;
+    height: 18px;
+    filter: drop-shadow(0 0 7px rgba(255,194,71,.48));
+}
+
+.game-title-wrap h2 {
+    line-height: 1.15;
+}
+
+.game-title-wrap .game-subtitle {
+    line-height: 1.2;
+}
+
+.phase-b-stage-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 34px;
+    width: min(92%, 360px);
+    padding: 6px 13px;
+    border: 1px solid rgba(32,231,255,.3);
+    border-radius: var(--radius-pill);
+    background: linear-gradient(100deg, rgba(32,231,255,.11), rgba(255,45,141,.1));
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-meta);
+    font-weight: var(--font-weight-display);
+    letter-spacing: .08em;
+    line-height: 1.1;
+    text-align: center;
+    text-transform: uppercase;
+    box-shadow: 0 6px 18px rgba(0,0,0,.2), inset 0 1px rgba(255,255,255,.12);
+    pointer-events: none;
+}
+
+.phase-b-stage-icon {
+    width: 28px;
+    height: 28px;
+    flex: 0 0 28px;
+    filter: drop-shadow(0 3px 7px rgba(0,0,0,.55));
+}
+
+.croc-hero-mark {
+    border-color: rgba(57,255,20,.35);
+    background: linear-gradient(100deg, rgba(57,255,20,.12), rgba(32,231,255,.1));
+}
+
+.croc-hero-mark .phase-b-stage-icon { width: 32px; height: 24px; flex-basis: 32px; }
+
+.wheel-hero-mark {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    border-color: rgba(255,194,71,.44);
+    background: linear-gradient(100deg, rgba(255,194,71,.16), rgba(255,45,141,.1));
+}
+
+.wheel-stage .wheel-pointer-container { top: 42px; }
+
+.bomb-hero-mark,
+.nbomb-hero-mark {
+    border-color: rgba(255,75,62,.42);
+    background: linear-gradient(100deg, rgba(255,75,62,.15), rgba(255,174,0,.1));
+}
+
+.cards-hero-mark,
+.never-hero-mark {
+    border-color: rgba(224,86,253,.4);
+    background: linear-gradient(100deg, rgba(113,88,226,.16), rgba(224,86,253,.12));
+}
+
+.bottle-hero-mark {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    z-index: 5;
+    width: auto;
+    max-width: calc(100% - 28px);
+    transform: translateX(-50%);
+    border-color: rgba(255,194,71,.38);
+    background: rgba(13,8,34,.64);
+}
+
+.bottle-hero-mark .phase-b-stage-icon,
+.nbomb-hero-mark .phase-b-stage-icon { width: 24px; height: 24px; flex-basis: 24px; }
+
+.nbomb-hero-mark {
+    position: absolute;
+    top: 11px;
+    z-index: 3;
+    width: auto;
+    max-width: calc(100% - 22px);
+}
+
+.never-arena-wrapper { position: relative; }
+
+.never-hero-mark {
+    position: absolute;
+    top: 2px;
+    z-index: 2;
+    width: auto;
+    max-width: calc(100% - 20px);
+}
+
+.never-card { margin-top: 32px; }
+
+.cards-hero-mark { margin: 2px auto 0; }
+
+.cta-icon {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    flex: 0 0 24px;
+    vertical-align: -6px;
+    color: var(--color-accent-warm);
+}
+
+.game-header .ui-icon {
+    width: 19px;
+    height: 19px;
+}
+
+.game-header.overlay-header .game-title-kicker {
+    display: none;
+}
+
+@media (max-width: 380px) {
+    .game-header:not(.overlay-header) {
+        grid-template-columns: minmax(72px, auto) 1fr minmax(72px, auto);
+        gap: 4px;
+        padding-inline: 5px;
+    }
+
+    .game-header:not(.overlay-header) .back-btn,
+    .game-header:not(.overlay-header) .action-btn-small {
+        padding-inline: 9px;
+        font-size: 11px;
+    }
+
+    .game-title-wrap h2 { font-size: 16px; }
+    .game-title-wrap .game-subtitle { font-size: 10px; }
+    .phase-b-stage-badge { font-size: 9px; letter-spacing: .045em; }
+}
+
+/* Phase D: settings affordance for haptic comfort and accessibility. */
+.phase-d-preference {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin: 0 0 var(--space-4);
+    padding: var(--space-3);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-card);
+    background: linear-gradient(110deg, rgba(32,231,255,.08), rgba(255,45,141,.08));
+    box-shadow: inset 0 1px rgba(255,255,255,.08);
+}
+
+.phase-d-preference-copy {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-width: 0;
+}
+
+.phase-d-preference-copy > .ui-icon {
+    width: 22px;
+    height: 22px;
+    flex: 0 0 22px;
+    color: var(--color-accent-warm);
+    filter: drop-shadow(0 0 7px rgba(255,194,71,.42));
+}
+
+.phase-d-preference-copy span {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.phase-d-preference-copy strong {
+    color: #fff;
+    font-size: 13px;
+    line-height: 1.2;
+}
+
+.phase-d-preference-copy small {
+    color: rgba(255,255,255,.62);
+    font-size: 10px;
+    line-height: 1.25;
+}
+
+.phase-d-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    flex: 0 0 auto;
+    min-height: var(--control-height-default);
+    padding: 5px 9px 5px 6px;
+    border: 1px solid var(--color-border-focus);
+    border-radius: var(--radius-pill);
+    background: rgba(32,231,255,.12);
+    color: var(--color-text-primary);
+    font: inherit;
+    font-size: 11px;
+    font-weight: 900;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background var(--motion-standard) ease, border-color var(--motion-standard) ease, transform var(--motion-standard) ease;
+}
+
+.phase-d-toggle:active { transform: scale(.96); }
+
+.phase-d-toggle:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+    box-shadow: var(--focus-ring);
+}
+
+.phase-d-toggle-track {
+    position: relative;
+    width: 34px;
+    height: 22px;
+    border-radius: 999px;
+    background: #20e7ff;
+    box-shadow: 0 0 12px rgba(32,231,255,.42);
+    transition: background .18s ease, box-shadow .18s ease;
+}
+
+.phase-d-toggle-thumb {
+    position: absolute;
+    top: 3px;
+    left: 15px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,.35);
+    transition: left .18s ease;
+}
+
+.phase-d-toggle.is-off {
+    border-color: rgba(255,255,255,.22);
+    background: rgba(255,255,255,.06);
+}
+
+.phase-d-toggle.is-off .phase-d-toggle-track {
+    background: rgba(255,255,255,.26);
+    box-shadow: none;
+}
+
+.phase-d-toggle.is-off .phase-d-toggle-thumb { left: 3px; }
+
+@media (max-width: 380px) {
+    .phase-d-preference { align-items: flex-start; }
+    .phase-d-preference-copy small { max-width: 155px; }
+    .phase-d-toggle { min-height: 40px; }
+}
+
+/* Phase 3B3: preserve the compact header across the narrow mobile band. */
+@media (min-width: 381px) and (max-width: 478px) {
+    .app-header {
+        padding-inline: 8px;
+    }
+
+    .brand-logo {
+        min-width: 0;
+        gap: 8px;
+    }
+
+    .brand-title {
+        font-size: 16px;
+        letter-spacing: 0;
+    }
+
+    .brand-subtitle {
+        display: none;
+    }
+
+    .header-actions {
+        flex: 0 0 auto;
+        gap: 4px;
+    }
+
+    .medium-pill-btn {
+        width: 48px;
+        min-width: 48px;
+        min-height: 48px;
+        padding: 6px;
+        justify-content: center;
+    }
+
+    .medium-label,
+    .medium-pill-btn .caret {
+        display: none;
+    }
+
+    .icon-btn {
+        width: 44px;
+        min-width: 44px;
+        height: 44px;
+        min-height: 44px;
+        flex: 0 0 44px;
+    }
+}
+
+/* Keep the semantic offline status available without stealing the action row. */
+@media (max-width: 539px) {
+    .is-offline .network-status {
+        display: inline-flex;
+        width: 10px;
+        max-width: 10px;
+        min-width: 10px;
+        height: 10px;
+        min-height: 10px;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        font-size: 0;
+        flex: 0 0 10px;
+    }
+}
+
+@media (min-width: 479px) and (max-width: 539px) {
+    .is-offline .header-actions {
+        gap: 4px;
+    }
+}
+
+.app-header button:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
+    box-shadow: var(--focus-ring);
+}
+
+/* ===================================================
+   PHASE 3C2 — GUIDE RESPONSIVE & REACHABILITY
+   Guides on the non-Dice screens use the active .game-screen as their one
+   vertical scroll owner. The game stage/container is allowed to grow
+   intrinsically while the guide is open; this avoids a fixed-height flex box
+   clipping the guide, close summary, or controls below it.
+   =================================================== */
+#screen-wheel.game-screen.guide-open,
+#screen-bomb.game-screen.guide-open,
+#screen-pirate.game-screen.guide-open,
+#screen-cards.game-screen.guide-open,
+#screen-bottle.game-screen.guide-open,
+#screen-numberbomb.game-screen.guide-open,
+#screen-neverhave.game-screen.guide-open {
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 0;
+    height: 100%;
+    flex: 1 1 auto;
+    contain: none;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Wheel and Bomb render into persistent containers that inherit the global
+   fixed-height/overflow lock. Let those containers contribute their natural
+   guide + stage height to the screen scrollport. */
+#screen-wheel.game-screen.guide-open > #wheel-game-container,
+#screen-bomb.game-screen.guide-open > #bomb-game-container,
+#screen-pirate.game-screen.guide-open > .pirate-stage,
+#screen-cards.game-screen.guide-open > .cards-stage,
+#screen-bottle.game-screen.guide-open > .bottle-stage,
+#screen-numberbomb.game-screen.guide-open > .nbomb-stage,
+#screen-neverhave.game-screen.guide-open > .never-stage {
+    flex: 0 0 auto;
+    height: auto;
+    min-height: 100%;
+    min-width: 0;
+    overflow: visible;
+}
+
+/* The dynamically-rendered Wheel/Bomb stages are children of the containers
+   above; reset their fixed flex sizing without touching normal play. */
+#screen-wheel.game-screen.guide-open .wheel-stage,
+#screen-bomb.game-screen.guide-open .bomb-stage {
+    flex: 0 0 auto;
+    height: auto;
+    min-height: 100%;
+    min-width: 0;
+    overflow: visible;
+}
+
+/* Keep guide text from introducing a second horizontal scroll surface. */
+#screen-wheel.game-screen.guide-open .how-to-play,
+#screen-bomb.game-screen.guide-open .how-to-play,
+#screen-pirate.game-screen.guide-open .how-to-play,
+#screen-cards.game-screen.guide-open .how-to-play,
+#screen-bottle.game-screen.guide-open .how-to-play,
+#screen-numberbomb.game-screen.guide-open .how-to-play,
+#screen-neverhave.game-screen.guide-open .how-to-play {
+    max-width: 100%;
+    width: 100%;
+    min-width: 0;
+}
+
+/* Flex/grid children otherwise use their min-content width (long Vietnamese
+   labels, guide steps, and action buttons) and can push the stage outside a
+   320px scrollport. Keep text and controls inside the screen without
+   changing their normal desktop sizing. */
+#screen-wheel.game-screen.guide-open .game-header,
+#screen-bomb.game-screen.guide-open .game-header,
+#screen-pirate.game-screen.guide-open .game-header,
+#screen-cards.game-screen.guide-open .game-header,
+#screen-bottle.game-screen.guide-open .game-header,
+#screen-numberbomb.game-screen.guide-open .game-header,
+#screen-neverhave.game-screen.guide-open .game-header {
+    width: 100%;
+    min-width: 0;
+}
+
+#screen-wheel.game-screen.guide-open .game-header:not(.overlay-header),
+#screen-bomb.game-screen.guide-open .game-header:not(.overlay-header),
+#screen-pirate.game-screen.guide-open .game-header:not(.overlay-header),
+#screen-cards.game-screen.guide-open .game-header:not(.overlay-header),
+#screen-bottle.game-screen.guide-open .game-header:not(.overlay-header),
+#screen-numberbomb.game-screen.guide-open .game-header:not(.overlay-header),
+#screen-neverhave.game-screen.guide-open .game-header:not(.overlay-header) {
+    grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
+}
+
+#screen-wheel.game-screen.guide-open .game-title-wrap,
+#screen-bomb.game-screen.guide-open .game-title-wrap,
+#screen-pirate.game-screen.guide-open .game-title-wrap,
+#screen-cards.game-screen.guide-open .game-title-wrap,
+#screen-bottle.game-screen.guide-open .game-title-wrap,
+#screen-numberbomb.game-screen.guide-open .game-title-wrap,
+#screen-neverhave.game-screen.guide-open .game-title-wrap {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+#screen-wheel.game-screen.guide-open .game-title-wrap h2,
+#screen-bomb.game-screen.guide-open .game-title-wrap h2,
+#screen-pirate.game-screen.guide-open .game-title-wrap h2,
+#screen-cards.game-screen.guide-open .game-title-wrap h2,
+#screen-bottle.game-screen.guide-open .game-title-wrap h2,
+#screen-numberbomb.game-screen.guide-open .game-title-wrap h2,
+#screen-neverhave.game-screen.guide-open .game-title-wrap h2 {
+    overflow-wrap: anywhere;
+}
+
+#screen-wheel.game-screen.guide-open .wheel-stage,
+#screen-bomb.game-screen.guide-open .bomb-stage,
+#screen-pirate.game-screen.guide-open .pirate-stage,
+#screen-cards.game-screen.guide-open .cards-stage,
+#screen-bottle.game-screen.guide-open .bottle-stage,
+#screen-numberbomb.game-screen.guide-open .nbomb-stage,
+#screen-neverhave.game-screen.guide-open .never-stage {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+/* The Wheel renderer keeps a 320px minimum canvas for the game itself. When
+   the guide is open on a 320px phone, constrain only its presentation box so
+   the arena remains fully reachable without a horizontal page overflow. */
+#screen-wheel.game-screen.guide-open .canvas-wrapper {
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+}
+
+#screen-wheel.game-screen.guide-open #wheel-canvas {
+    max-width: 100%;
+    height: auto !important;
+}
+
+#screen-pirate.game-screen.guide-open .pirate-action-legend {
+    max-width: calc(100% - 16px);
+    white-space: normal;
+    text-align: center;
+}
+
+/* The same guide contract also covers the two legacy screens whose guides
+   were not part of the original short-phone regression set. Crocodile uses a
+   persistent fixed-height container; Finger uses an absolute playfield, so
+   its guide is promoted above that playfield only while expanded. */
+#screen-crocodile.game-screen.guide-open,
+#screen-finger.game-screen.guide-open {
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 0;
+    height: 100%;
+    flex: 1 1 auto;
+    contain: none;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+#screen-crocodile.game-screen.guide-open > #crocodile-game-container,
+#screen-finger.game-screen.guide-open > #finger-game-container,
+#screen-crocodile.game-screen.guide-open > .crocodile-stage {
+    flex: 0 0 auto;
+    height: auto;
+    min-height: 100%;
+    min-width: 0;
+    overflow: visible;
+}
+
+#screen-crocodile.game-screen.guide-open .crocodile-stage {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: visible;
+}
+
+#screen-crocodile.game-screen.guide-open .game-header,
+#screen-finger.game-screen.guide-open .game-header {
+    width: 100%;
+    min-width: 0;
+}
+
+#screen-crocodile.game-screen.guide-open .game-header:not(.overlay-header) {
+    grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
+}
+
+#screen-crocodile.game-screen.guide-open .game-title-wrap,
+#screen-finger.game-screen.guide-open .game-title-wrap {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+#screen-crocodile.game-screen.guide-open .how-to-play,
+#screen-finger.game-screen.guide-open .how-to-play {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+#screen-finger.game-screen.guide-open .how-to-play {
+    position: relative;
+    z-index: 120;
+    margin-top: 70px;
+}
+
+/* Finger's playfield is absolute by design, so the guide summary must sit in
+   its own stacking layer even while collapsed; otherwise the playfield paints
+   over it and the user cannot open the guide at all. */
+#screen-finger .how-to-play {
+    position: relative;
+    z-index: 120;
+    margin-top: 70px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+/* The Finger game header is an absolute overlay: its left/right insets must
+   remain the sizing constraint. Do not combine them with width:100%, which
+   would add the insets twice and create a horizontal overflow at 320px. */
+#screen-finger .game-header.overlay-header {
+    width: auto;
+    max-width: calc(100% - 24px);
+}
+
+/* ===================================================
+   PHASE 3C5B — LANDSCAPE ADAPTIVE LAYOUT
+   Landscape gets a wider application shell. Wide + short viewports promote
+   each active screen to the sole vertical scroll owner and arrange the main
+   playfield beside its controls. Portrait rules remain untouched.
+   =================================================== */
+@media (orientation: landscape) and (min-width: 700px) {
+    #app-root {
+        max-width: 1180px;
+    }
+
+    #screen-home .games-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (orientation: landscape) and (min-width: 700px) and (max-height: 600px) {
+    .app-header {
+        flex: 0 0 52px;
+        min-height: 52px;
+        padding: 4px 10px;
+    }
+
+    .brand-logo {
+        min-width: 0;
+        gap: 8px;
+    }
+
+    .logo-badge {
+        width: 36px;
+        height: 36px;
+    }
+
+    .brand-title {
+        font-size: 16px;
+        letter-spacing: 0;
+    }
+
+    .brand-subtitle,
+    .medium-label,
+    .medium-pill-btn .caret {
+        display: none;
+    }
+
+    .header-actions {
+        flex: 0 0 auto;
+        gap: 4px;
+    }
+
+    .medium-pill-btn,
+    .icon-btn {
+        width: 44px;
+        min-width: 44px;
+        height: 44px;
+        min-height: 44px;
+        padding: 5px;
+        justify-content: center;
+    }
+
+    .main-content {
+        height: calc(100dvh - 52px);
+        min-height: 0;
+    }
+
+    .game-screen.active:not(#screen-finger) {
+        overflow-x: hidden;
+        overflow-y: auto;
+        min-height: 0;
+        padding: 6px 10px max(8px, env(safe-area-inset-bottom));
+        contain: none;
+        overscroll-behavior-y: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #screen-home {
+        padding: 8px 12px max(8px, env(safe-area-inset-bottom));
+    }
+
+    #screen-home .hero-banner {
+        min-height: 84px;
+        margin-bottom: 8px;
+        padding: 10px 14px;
+    }
+
+    #screen-home .hero-play-btn {
+        width: 62px;
+        height: 62px;
+        border-radius: 19px;
+    }
+
+    #screen-home .home-toolbar {
+        margin-bottom: 6px;
+    }
+
+    #screen-home .games-grid {
+        gap: 8px;
+        margin-bottom: 72px;
+    }
+
+    #screen-home .game-card {
+        min-height: 142px;
+        padding: 10px 8px 9px;
+    }
+
+    #screen-home .game-card .card-art-3d,
+    #screen-home .game-card .dice-card-visual {
+        height: 68px;
+        margin-bottom: 3px;
+    }
+
+    #screen-home .quick-penalty-box .neon-button {
+        min-height: 50px;
+    }
+
+    #crocodile-game-container,
+    #wheel-game-container,
+    #bomb-game-container,
+    .pirate-stage,
+    .dice-stage,
+    .cards-stage,
+    .bottle-stage,
+    .nbomb-stage,
+    .never-stage {
+        flex: 0 0 auto;
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+        min-width: 0;
+        overflow: visible;
+    }
+
+    .game-header:not(.overlay-header),
+    .game-top-bar {
+        min-height: 48px;
+        margin: 0;
+        padding: 3px 7px;
+        border-radius: 15px;
+    }
+
+    .game-header:not(.overlay-header) {
+        grid-template-columns: minmax(76px, auto) minmax(0, 1fr) minmax(76px, auto);
+    }
+
+    .game-header:not(.overlay-header) .game-title-kicker,
+    .game-header:not(.overlay-header) .game-subtitle {
+        display: none;
+    }
+
+    .game-header:not(.overlay-header) .game-title-wrap h2 {
+        font-size: 15px;
+    }
+
+    .game-header:not(.overlay-header) .back-btn,
+    .game-header:not(.overlay-header) .action-btn-small,
+    .game-top-bar .back-btn,
+    .game-top-bar .action-btn-small {
+        min-height: 42px;
+        padding: 7px 10px;
+        font-size: 11px;
+    }
+
+    .how-to-play {
+        width: 100%;
+        max-width: none;
+        min-width: 0;
+        margin: 4px 0;
+    }
+
+    .how-to-play summary {
+        min-height: 38px;
+        padding-block: 4px;
+    }
+
+    .game-bottom-bar {
+        align-self: stretch;
+        padding: 4px 0 max(4px, env(safe-area-inset-bottom));
+    }
+
+    .game-bottom-bar .primary-btn {
+        min-height: 50px;
+    }
+
+    /* Crocodile: configuration/status on the left, full interactive jaw on
+       the right. The character geometry is unchanged. */
+    #screen-crocodile .crocodile-stage {
+        display: grid;
+        grid-template-columns: minmax(260px, .8fr) minmax(360px, 1.2fr);
+        grid-template-rows: auto auto 1fr;
+        gap: 8px 14px;
+        align-items: center;
+        width: 100%;
+        height: auto;
+        min-height: 276px;
+        padding: 4px 0;
+        overflow: visible;
+    }
+
+    #screen-crocodile .croc-quick-bar,
+    #screen-crocodile .croc-status-banner,
+    #screen-crocodile .croc-hero-mark {
+        grid-column: 1;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+    }
+
+    #screen-crocodile .croc-box {
+        grid-column: 2;
+        grid-row: 1 / span 3;
+        width: min(43vw, 370px);
+        height: min(74vh, 300px);
+        margin: auto;
+    }
+
+    /* Wheel: wheel and pointer stay together in the left pane; the primary
+       action occupies a stable thumb-friendly pane on the right. */
+    #screen-wheel .wheel-stage {
+        display: grid;
+        grid-template-columns: minmax(330px, 1fr) minmax(250px, 300px);
+        grid-template-rows: 1fr;
+        gap: 16px;
+        align-items: center;
+        width: 100%;
+        height: auto;
+        min-height: 276px;
+        padding: 0;
+        overflow: visible;
+    }
+
+    #screen-wheel .canvas-wrapper {
+        grid-column: 1;
+        width: min(64vh, 280px) !important;
+        height: min(64vh, 280px) !important;
+        margin: auto;
+    }
+
+    #screen-wheel #wheel-canvas {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    #screen-wheel .wheel-pointer-container {
+        top: 8px;
+        left: calc((100% - 316px) / 2);
+        transform: translateX(-50%);
+    }
+
+    #screen-wheel .wheel-hero-mark {
+        display: none;
+    }
+
+    #screen-wheel .wheel-controls {
+        grid-column: 2;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 12px;
+    }
+
+    /* Finger is already a free-positioned playfield. Widening the shell is
+       enough; only compact its overlay chrome for the short height. */
+    #screen-finger .game-header.overlay-header {
+        top: 6px;
+        left: 8px;
+        right: 8px;
+        max-width: calc(100% - 16px);
+        min-height: 48px;
+        padding: 4px 7px;
+    }
+
+    #screen-finger .game-header.overlay-header .game-subtitle {
+        display: none;
+    }
+
+    #screen-finger .how-to-play {
+        width: min(46%, 520px);
+        margin: 60px auto 0;
+    }
+
+    #screen-finger .finger-hero-object {
+        top: 45%;
+        width: min(40vh, 190px);
+        height: min(40vh, 190px);
+    }
+
+    #screen-finger .finger-hint {
+        top: 70%;
+        max-width: 520px;
+    }
+
+    /* Bomb: visual at left, topic and pass action at right. */
+    #screen-bomb .bomb-stage {
+        display: grid;
+        grid-template-columns: minmax(280px, .9fr) minmax(330px, 1.1fr);
+        grid-template-rows: auto 1fr;
+        gap: 8px 18px;
+        align-items: center;
+        width: 100%;
+        height: auto;
+        min-height: 276px;
+        padding: 4px 0;
+        overflow: visible;
+    }
+
+    #screen-bomb .bomb-hero-mark {
+        display: none;
+    }
+
+    #screen-bomb .bomb-topic-card {
+        grid-column: 2;
+        grid-row: 1;
+        margin: 0;
+        padding: 9px 12px;
+    }
+
+    #screen-bomb .topic-header-badge {
+        margin-bottom: 4px;
+    }
+
+    #screen-bomb .topic-content {
+        min-height: 38px;
+        font-size: 16px;
+    }
+
+    #screen-bomb .bomb-box {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        margin: auto;
+    }
+
+    #screen-bomb .bomb-visual {
+        width: min(62vh, 250px);
+        height: min(62vh, 250px);
+    }
+
+    #screen-bomb .bomb-body {
+        width: min(54vh, 218px);
+        height: min(54vh, 218px);
+    }
+
+    #screen-bomb .bomb-controls {
+        grid-column: 2;
+        grid-row: 2;
+        width: 100%;
+        margin: 0;
+    }
+
+    /* Shared two-pane contract for static game layouts. */
+    .pirate-stage,
+    .dice-stage,
+    .cards-stage,
+    .bottle-stage,
+    .nbomb-stage,
+    .never-stage {
+        display: grid;
+        grid-template-columns: minmax(360px, 1.15fr) minmax(310px, .85fr);
+        grid-auto-rows: auto;
+        align-items: center;
+        align-content: center;
+        gap: 6px 14px;
+        padding: 4px 0 max(4px, env(safe-area-inset-bottom));
+    }
+
+    .pirate-stage > .game-top-bar,
+    .pirate-stage > .how-to-play,
+    .pirate-stage > .pirate-penalty-banner,
+    .pirate-stage > .game-bottom-bar,
+    .dice-stage > .game-top-bar,
+    .dice-stage > .how-to-play,
+    .dice-stage > .dice-pot-display,
+    .dice-stage > .dice-result-container,
+    .dice-stage > .dice-rule-info,
+    .dice-stage > .game-bottom-bar,
+    .cards-stage > .game-top-bar,
+    .cards-stage > .how-to-play,
+    .cards-stage > .cards-filter-bar,
+    .cards-stage > .cards-hero-mark,
+    .cards-stage > .game-bottom-bar,
+    .bottle-stage > .game-top-bar,
+    .bottle-stage > .how-to-play,
+    .bottle-stage > .bottle-result-box,
+    .bottle-stage > .game-bottom-bar,
+    .nbomb-stage > .game-top-bar,
+    .nbomb-stage > .how-to-play,
+    .nbomb-stage > .nbomb-result-container,
+    .nbomb-stage > .nbomb-numpad-grid,
+    .nbomb-stage > .game-bottom-bar,
+    .never-stage > .game-top-bar,
+    .never-stage > .how-to-play,
+    .never-stage > .never-filter-bar,
+    .never-stage > .never-actions-row,
+    .never-stage > .game-bottom-bar {
+        grid-column: 2;
+        min-width: 0;
+        width: 100%;
+    }
+
+    .pirate-stage > .pirate-arena-wrapper,
+    .dice-stage > .dice-arena-wrapper,
+    .cards-stage > .card-arena-wrapper,
+    .bottle-stage > .bottle-arena-wrapper,
+    .nbomb-stage > .nbomb-arena-wrapper,
+    .never-stage > .never-arena-wrapper {
+        grid-column: 1;
+        grid-row: 1 / span 8;
+        width: 100%;
+        height: min(78vh, 320px);
+        min-height: 280px;
+        max-height: none;
+        margin: 0;
+        align-self: center;
+    }
+
+    .pirate-stage > .pirate-arena-wrapper {
+        min-height: 300px;
+    }
+
+    .pirate-stage .pirate-barrel {
+        width: min(38vw, 330px);
+        height: min(68vh, 280px);
+    }
+
+    .pirate-stage .pirate-character {
+        top: 4px;
+        transform: scale(.88);
+        transform-origin: top center;
+    }
+
+    .dice-stage > .dice-arena-wrapper {
+        min-height: 300px;
+    }
+
+    .dice-stage .dice-viewport {
+        min-height: 250px;
+    }
+
+    .dice-stage > .dice-result-container {
+        min-height: 46px;
+        margin: 0;
+    }
+
+    .dice-stage .dice-mode-switch,
+    .dice-stage #dice-mode-select {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .dice-stage .dice-legend {
+        padding: 2px;
+        font-size: 11px;
+    }
+
+    .cards-stage > .card-arena-wrapper {
+        min-height: 300px;
+    }
+
+    .cards-stage .card-3d-box {
+        width: min(210px, calc((100dvh - 88px) * .696));
+        height: min(300px, calc(100dvh - 88px));
+    }
+
+    .cards-stage .card-face {
+        padding: 14px 12px;
+        border-radius: 20px;
+    }
+
+    .cards-stage .card-back-crest {
+        width: 78px;
+        height: 78px;
+    }
+
+    .cards-stage .card-back-title {
+        font-size: 15px;
+    }
+
+    .cards-stage .card-big-icon {
+        width: 52px;
+        height: 52px;
+        margin: 2px 0;
+    }
+
+    .cards-stage .card-title {
+        font-size: 18px;
+    }
+
+    .cards-stage .card-desc-box {
+        padding: 9px 10px;
+    }
+
+    .cards-stage .card-desc {
+        font-size: 12px;
+        line-height: 1.35;
+    }
+
+    .bottle-stage > .bottle-arena-wrapper {
+        min-height: 300px;
+    }
+
+    .bottle-stage .bottle-compass-ring,
+    .bottle-stage .bottle-touch-zone {
+        width: min(62vh, 250px);
+        height: min(62vh, 250px);
+    }
+
+    .bottle-stage .bottle-options-bar {
+        min-width: 0;
+    }
+
+    .bottle-stage .mini-select {
+        flex: 1 1 0;
+        width: 0;
+        max-width: none;
+    }
+
+    .nbomb-stage > .nbomb-arena-wrapper {
+        min-height: 280px;
+    }
+
+    .nbomb-stage > .nbomb-numpad-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 4px;
+    }
+
+    .nbomb-stage .numpad-btn {
+        min-height: 38px;
+        padding: 6px 0;
+        font-size: 17px;
+    }
+
+    .nbomb-stage .key-submit {
+        min-height: 42px;
+        padding: 7px 0;
+        font-size: 14px;
+    }
+
+    .never-stage > .never-arena-wrapper {
+        min-height: 290px;
+    }
+
+    .never-stage .never-card {
+        width: min(40vw, 340px);
+        min-height: 230px;
+        margin-top: 28px;
+        padding: 16px;
+    }
+
+    .never-stage .never-prompt-text {
+        font-size: 17px;
+        line-height: 1.35;
+    }
+
+    .never-stage .never-actions-row {
+        margin: 0;
+    }
+
+    /* Expanded help keeps the same screen-level scroll owner introduced by
+       Phase 3C2. No stage or guide becomes a nested scroller. */
+    .game-screen.guide-open .game-layout,
+    #screen-crocodile.game-screen.guide-open > #crocodile-game-container,
+    #screen-wheel.game-screen.guide-open > #wheel-game-container,
+    #screen-bomb.game-screen.guide-open > #bomb-game-container {
+        height: auto;
+        min-height: 100%;
+        overflow: visible;
+    }
+}
+
+/* Phase 3C5B regression guard: the smallest portrait viewport is shorter
+   than the legacy static-game stage minimums. Promote that narrow portrait
+   screen to the same intentional vertical scroll contract so the primary
+   action is reachable instead of being clipped by a fixed-height stage.
+   This is scoped to the viewport breakpoint only; game geometry and portrait
+   orientation behavior remain otherwise unchanged. */
+@media (orientation: portrait) and (max-width: 380px) {
+    #screen-pirate.game-screen.active,
+    #screen-cards.game-screen.active,
+    #screen-bottle.game-screen.active,
+    #screen-numberbomb.game-screen.active,
+    #screen-neverhave.game-screen.active {
+        overflow-x: hidden;
+        overflow-y: auto;
+        min-height: 0;
+        contain: none;
+        overscroll-behavior-y: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #screen-pirate.game-screen.active > .pirate-stage,
+    #screen-cards.game-screen.active > .cards-stage,
+    #screen-bottle.game-screen.active > .bottle-stage,
+    #screen-numberbomb.game-screen.active > .nbomb-stage,
+    #screen-neverhave.game-screen.active > .never-stage {
+        flex: 0 0 auto;
+        height: auto;
+        min-height: 100%;
+        min-width: 0;
+        overflow: visible;
+    }
+}
+
+/* 5.17B2: Bottle alone owns its seat annulus and natural screen scrolling. */
+#screen-bottle.game-screen.active {
+    overflow-x: hidden;
+    overflow-y: auto;
+    contain: none;
+}
+
+#screen-bottle .bottle-stage {
+    height: auto;
+    min-height: 100%;
+    flex: 0 0 auto;
+    overflow: visible;
+    min-width: 0;
+}
+
+#screen-bottle .bottle-arena-wrapper {
+    --bottle-ring-size: min(290px, calc(100vw - 80px));
+    flex: 0 0 auto;
+    min-height: 354px;
+    max-height: none;
+}
+
+#screen-bottle .bottle-seat-ring {
+    width: var(--bottle-ring-size);
+    height: var(--bottle-ring-size);
+}
+
+#screen-bottle .bottle-touch-zone {
+    z-index: 2;
+    width: calc(var(--bottle-ring-size) * .75);
+    height: calc(var(--bottle-ring-size) * .75);
+}
+
+#screen-bottle .bottle-3d {
+    /* Same conservative scale for all skins: ring240/270/290 -> 148/175/193.
+       Include the corners of selected-label paint, not only its radial edge.
+       Do not scale the independent .75-ring interaction surface. */
+    width: calc(var(--bottle-ring-size) * .9 - 68px);
+    height: calc(var(--bottle-ring-size) * .9 - 68px);
+}
+
+/* D1B neon spinner table: static decoration, no animation/state owner. */
+#screen-bottle .bottle-arena-wrapper {
+    background: radial-gradient(circle at 50% 50%, #2b2455 0%, #17142f 52%, #090f22 100%);
+    border-width: 1px;
+    border-color: #28425b;
+    box-shadow: inset 0 0 36px rgba(16, 224, 242, .08), 0 12px 28px rgba(0, 0, 0, .45);
+}
+
+#screen-bottle .bottle-compass-ring {
+    width: var(--bottle-ring-size);
+    height: var(--bottle-ring-size);
+    border: 1px solid rgba(92, 238, 255, .65);
+    background: radial-gradient(circle, rgba(88, 57, 148, .12), transparent 65%);
+    box-shadow: 0 0 10px rgba(32, 231, 255, .18), inset 0 0 8px rgba(32, 231, 255, .1);
+}
+
+#screen-bottle .bottle-compass-ring::before {
+    border-color: rgba(32, 231, 255, .12);
+}
+
+#screen-bottle .bottle-compass-ring::after {
+    border-color: rgba(255, 45, 141, .1);
+}
+
+#screen-bottle .bottle-sector-map {
+    stroke: rgba(138, 220, 242, .28);
+}
+
+#screen-bottle .bottle-sector-map .is-selected {
+    fill: rgba(255, 210, 107, .09);
+    stroke: #ffd26b;
+}
+
+#screen-bottle .bottle-seat {
+    background: #221b40;
+    border-color: #78cbdc;
+    color: #f3fbff;
+}
+
+#screen-bottle .bottle-seat.is-selected {
+    border-color: #ffd26b;
+    background: #332344;
+    outline-color: #f3fbff;
+}
+
+#screen-bottle .bottle-hero-mark {
+    top: 4px;
+    font-size: 10px;
+    padding: 3px 8px;
+    height: 24px;
+    min-height: 0;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+#screen-bottle .bottle-hero-mark .phase-b-stage-icon {
+    width: 16px;
+    height: 16px;
+    flex-basis: 16px;
+}
+
+#screen-bottle .bottle-options-bar {
+    min-width: 0;
+    flex-wrap: wrap;
+}
+
+#screen-bottle .bottle-options-bar .mini-select {
+    min-height: 44px;
+    min-width: 100px;
+}
+
+#screen-bottle .game-bottom-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+}
+
+#screen-bottle .bottle-seat-setup {
+    width: 100%;
+    min-width: 0;
+}
+
+@media (orientation: landscape) and (min-width: 700px) and (max-height: 600px) {
+    #screen-bottle .bottle-arena-wrapper {
+        --bottle-ring-size: 270px;
+        min-height: 334px;
+    }
+}
+
+/* ===================================================
+   PHASE 3C5C — Y700 DICE TABLET LANDSCAPE FIX
+   The Phase 3C5B wide+short contract intentionally stops at 600px height.
+   Tablet landscape is taller than that, so keep this policy Dice-only: the
+   arena remains a large left-hand playfield while the result/rules/CTA stack
+   stays reachable in a right-hand control pane. The screen is the sole
+   vertical scroll owner when the guide or result card grows; the stage and
+   arena never become nested scrollers. Renderer geometry is untouched.
+   =================================================== */
+@media (orientation: landscape) and (min-width: 1000px) and (min-height: 601px) {
+    #screen-dice.game-screen.active {
+        overflow-x: hidden;
+        overflow-y: auto;
+        min-height: 0;
+        contain: none;
+        overscroll-behavior-y: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #screen-dice .dice-stage {
+        display: grid;
+        grid-template-columns: minmax(520px, 1.35fr) minmax(340px, .85fr);
+        grid-auto-rows: auto;
+        align-items: center;
+        align-content: center;
+        gap: 8px 18px;
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+        min-width: 0;
+        padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+        overflow: visible;
+    }
+
+    #screen-dice .dice-stage > .game-top-bar,
+    #screen-dice .dice-stage > .how-to-play,
+    #screen-dice .dice-stage > .dice-pot-display,
+    #screen-dice .dice-stage > .dice-result-container,
+    #screen-dice .dice-stage > .dice-rule-info,
+    #screen-dice .dice-stage > .game-bottom-bar {
+        grid-column: 2;
+        min-width: 0;
+        width: 100%;
+    }
+
+    #screen-dice .dice-stage > .dice-arena-wrapper {
+        grid-column: 1;
+        grid-row: 1 / span 8;
+        width: 100%;
+        height: min(74vh, 420px);
+        min-height: 320px;
+        max-height: none;
+        margin: 0;
+        align-self: center;
+    }
+
+    #screen-dice .dice-stage .dice-viewport {
+        min-height: 280px;
+    }
+
+    #screen-dice .dice-stage > .dice-result-container {
+        min-height: 46px;
+        margin: 0;
+    }
+
+    #screen-dice .dice-stage .dice-mode-switch,
+    #screen-dice .dice-stage #dice-mode-select {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    #screen-dice .dice-stage .dice-legend {
+        padding: 2px;
+        font-size: 11px;
+    }
+
+    #screen-dice.game-screen.guide-open .dice-stage {
+        flex: 0 0 auto;
+        height: auto;
+        min-height: 100%;
+        overflow: visible;
+    }
+
+    #screen-dice.game-screen.guide-open .how-to-play {
+        max-width: none;
+        overflow: hidden;
+    }
+}
+
+/* ===================================================
+   PHASE 4B3 — MINIMUM TOUCH-TARGET CONTRACT
+   Keep compact controls reachable without changing their glyph/icon scale.
+   Inputs and labels use their existing layout; only the interactive box grows.
+   =================================================== */
+.filter-chip,
+.how-to-play summary,
+.close-modal-btn,
+.tutorial-toast-close,
+.delete-slice-btn,
+.add-btn,
+.editor-input,
+.add-slice-box input,
+.add-slice-box select,
+.custom-medium-box input,
+.phase-d-toggle,
+.pill-btn,
+.pill-btn-more,
+.mini-retry,
+.touch-target-label {
+    min-height: var(--control-height-default);
+}
+
+.close-modal-btn,
+.tutorial-toast-close,
+.delete-slice-btn,
+.pill-btn,
+.pill-btn-more {
+    min-width: var(--control-height-default);
+}
+
+.touch-target-label-inline {
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Keep the Crocodile quick selector usable when 44px pills cannot fit one row. */
+.croc-quick-bar {
+    max-width: 100%;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    row-gap: 5px;
+}
+
+.bad-teeth-pills {
+    min-width: 0;
+    max-width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.add-slice-box input,
+.add-slice-box select {
+    min-width: 0;
+}
+
+.custom-medium-box input {
+    min-width: 0;
+}
+
+.game-header:not(.overlay-header) .back-btn,
+.game-header:not(.overlay-header) .action-btn-small,
+.game-top-bar .back-btn,
+.game-top-bar .action-btn-small {
+    min-height: var(--control-height-default);
+}
+
+.nbomb-stage .numpad-btn,
+.nbomb-stage .key-submit {
+    min-height: var(--control-height-default);
+}
+
+/* ===================================================
+   PHASE 3C5E — CARDS TABLET LANDSCAPE CTA FIX
+   Cards keeps the existing geometry and CTA sizing, but the legacy
+   fixed-height/flex stage could place the primary action below a screen
+   whose overflow was hidden. On taller tablet landscape viewports make the
+   Cards screen the sole vertical scroll owner and let its stage contribute
+   intrinsic height. No card or CTA is resized and no nested scroller/fixed
+   positioning is introduced.
+   =================================================== */
+@media (orientation: landscape) and (min-width: 1000px) and (min-height: 601px) {
+    #screen-cards.game-screen.active {
+        overflow-x: hidden;
+        overflow-y: auto;
+        min-height: 0;
+        contain: none;
+        overscroll-behavior-y: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #screen-cards > .cards-stage {
+        flex: 0 0 auto;
+        height: auto;
+        min-height: 100%;
+        min-width: 0;
+        overflow: visible;
+    }
+}
+
+/* ===================================================
+   PHASE 8B6 — RESPONSIVE / TABLET / SPLIT-SCREEN POLISH
+   Keep Home and each active game as the existing screen-level scroll owner.
+   Short windows move the action dock back into natural flow so it cannot
+   cover game cards or a primary CTA. Tablet portrait gets a real shell and
+   grid width without changing any game state, geometry or runtime behavior.
+   =================================================== */
+
+/* The Home screen remains the only vertical scroll owner. At low available
+   heights (including split-window simulations below 700px wide), the action
+   dock is part of normal flow rather than a sticky overlay. */
+@media (max-height: 600px) {
+    #screen-home {
+        padding-top: 6px;
+        padding-bottom: max(8px, env(safe-area-inset-bottom));
+        scroll-padding-bottom: max(8px, env(safe-area-inset-bottom));
+    }
+
+    #screen-home .hero-banner {
+        min-height: 78px;
+        margin-bottom: 8px;
+        padding: 10px 12px;
+    }
+
+    #screen-home .hero-banner h1 {
+        font-size: clamp(20px, 4vw, 24px);
+    }
+
+    #screen-home .home-toolbar {
+        margin-bottom: 6px;
+    }
+
+    #screen-home .games-grid {
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+
+    #screen-home .quick-penalty-box {
+        position: static;
+        margin: 8px 0 max(4px, env(safe-area-inset-bottom));
+        padding: 6px 0 0;
+        background: none;
+        backdrop-filter: none;
+    }
+
+    #screen-home .quick-penalty-box .neon-button {
+        min-height: 48px;
+        padding: 8px 10px;
+    }
+
+    .modal-overlay {
+        padding: 8px;
+    }
+
+    .modal-content {
+        max-height: calc(100dvh - 16px);
+        padding: 12px;
+    }
+
+    .modal-header {
+        margin-bottom: 8px;
+        padding-bottom: 8px;
+    }
+
+    .modal-intro {
+        margin-bottom: 10px;
+    }
+
+    .settings-category-group,
+    .settings-option-list {
+        gap: 6px;
+    }
+
+    .settings-category-group {
+        margin-bottom: 12px;
+    }
+
+    .modal-divider {
+        margin: 12px 0;
+    }
+}
+
+/* Narrow portrait is still a natural Home scroll path; do not let the dock
+   float over the filter/cards when the header and toolbar consume most of a
+   320px-wide viewport. */
+@media (max-width: 380px) {
+    .modal-content {
+        min-width: 0;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .modal-header,
+    .modal-header h3 {
+        min-width: 0;
+    }
+
+    .modal-header h3 {
+        overflow-wrap: anywhere;
+    }
+
+    #screen-home .quick-penalty-box {
+        position: static;
+        margin: 8px 0 max(4px, env(safe-area-inset-bottom));
+        padding: 6px 0 0;
+        background: none;
+        backdrop-filter: none;
+    }
+
+    #screen-home .games-grid {
+        margin-bottom: 12px;
+    }
+
+    .settings-category-group {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: stretch;
+    }
+
+    .settings-filter-chip {
+        min-width: 0;
+        justify-content: center;
+        padding-inline: 6px;
+        white-space: normal;
+    }
+
+    .add-slice-box {
+        display: grid;
+        grid-template-columns: minmax(0, .85fr) minmax(0, 1.35fr) auto;
+        gap: 6px;
+        min-width: 0;
+    }
+
+    .add-slice-box input,
+    .add-slice-box select,
+    .add-slice-box .add-btn {
+        min-width: 0;
+    }
+
+    .add-slice-box .add-btn {
+        padding-inline: 10px;
+    }
+
+    .session-history-summary {
+        min-width: 0;
+        gap: 4px;
+    }
+
+    .session-history-stat {
+        min-width: 0;
+        overflow: hidden;
+        padding: 8px 2px;
+    }
+
+    .session-history-stat strong {
+        font-size: 20px;
+    }
+
+    .session-history-stat span {
+        font-size: 10px;
+        letter-spacing: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .session-attribution-options {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .session-attribution-line {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .session-attribution-actions {
+        justify-content: flex-end;
+    }
+}
+
+/* The modal entrance scale also scales its hit boxes. On phone and short
+   panes, compensate that visual transform so the rendered control remains
+   at least 44px without changing the modal/focus owner. */
+@media (max-width: 420px), (max-height: 600px) {
+    .modal-content button,
+    .modal-content select,
+    .modal-content input:not([type="checkbox"]):not([type="radio"]),
+    .modal-content summary,
+    .modal-content .touch-target-label {
+        min-height: 47px;
+    }
+
+    .modal-content .close-modal-btn,
+    .modal-content .delete-slice-btn,
+    .modal-content .pill-btn,
+    .modal-content .pill-btn-more {
+        min-width: 47px;
+    }
+}
+
+/* Tablet portrait gets a wider shared shell and three-column Home rhythm;
+   game-local stages and the Dice/Cards tablet-landscape rules remain intact. */
+@media (orientation: portrait) and (min-width: 700px) {
+    #app-root {
+        max-width: 760px;
+    }
+
+    #screen-home {
+        padding-inline: 24px;
+    }
+
+    #screen-home .games-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    #screen-home .game-card {
+        min-height: 178px;
+        padding-inline: 12px;
+    }
+
+    #screen-home .hero-banner {
+        padding-inline: 24px;
+    }
+
+    .modal-content {
+        max-width: min(560px, calc(100vw - 32px));
+    }
+
+    .session-history-modal-content {
+        max-width: min(680px, calc(100vw - 32px));
+    }
+}
+
+/* Wide short panes keep the compact shell but use a little more breathing
+   room for controls than the phone-sized split-window rule. */
+@media (orientation: landscape) and (min-width: 700px) and (max-height: 600px) {
+    #screen-home .games-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    #screen-home .quick-penalty-actions {
+        max-width: 620px;
+    }
+
+    .session-history-modal-content {
+        max-width: min(680px, calc(100vw - 32px));
+    }
+}
+
+/* 5.18C1 — Crocodile alone owns its hybrid layout and scroll surface.
+   Keep these after legacy landscape/guide policies; no other game migrates. */
+#screen-crocodile.game-screen.active {
+    overflow-y: auto;
+    overflow-x: hidden;
+    contain: none;
+    padding: 8px 8px max(12px, env(safe-area-inset-bottom));
+    overscroll-behavior-y: contain;
+}
+#screen-crocodile > #crocodile-game-container {
+    height: auto;
+    min-height: 100%;
+    flex: 0 0 auto;
+    overflow: visible;
+    min-width: 0;
+    gap: 8px;
+}
+#screen-crocodile.game-screen .croc-local-header.game-header:not(.overlay-header) {
+    display: grid;
+    grid-template-columns: minmax(44px, 96px) minmax(0, 1fr) minmax(44px, 96px);
+    gap: 6px;
+    align-items: center;
+    margin: 0;
+    width: 100%;
+    min-width: 0;
+    padding: 8px 4px;
+}
+#screen-crocodile .croc-local-header .game-title-wrap { min-width: 0; }
+#screen-crocodile .croc-local-header h2 { font-size: clamp(16px, 4vw, 22px); }
+#screen-crocodile .croc-local-header .game-title-kicker { display: flex; font-size: 10px; }
+#screen-crocodile .croc-local-header .game-subtitle { display: block; font-size: 11px; }
+#screen-crocodile .croc-local-header .back-btn { min-height: 44px; justify-content: center; padding: 8px; }
+#screen-crocodile .croc-guide-slot,
+#screen-crocodile .croc-local-header .how-to-play { display: contents; }
+#screen-crocodile .croc-local-header .how-to-play summary {
+    display: flex;
+    gap: 4px;
+    grid-column: 3;
+    grid-row: 1;
+    min-height: 44px;
+    margin: 0;
+    padding: 8px 4px;
+    justify-content: center;
+    border: 1px solid var(--color-border-default);
+    border-radius: 12px;
+    font-size: 11px;
+}
+#screen-crocodile .croc-local-header .how-to-play-game,
+#screen-crocodile .croc-local-header .how-to-play-chevron { display: none; }
+/* Chromium's native details content wrapper is the grid item, not its body.
+   Preserve native disclosure visibility while giving the open guide all columns. */
+#screen-crocodile .croc-local-header .how-to-play::details-content {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    min-width: 0;
+}
+#screen-crocodile .croc-local-header .how-to-play-body {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    padding: 10px 14px;
+    min-width: 0;
+    border-radius: 16px;
+    background: var(--color-surface-control);
+}
+#screen-crocodile .crocodile-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 0 0 auto;
+    height: auto;
+    min-height: 0;
+    padding: 10px 0;
+    gap: 12px;
+    overflow: visible;
+    background: radial-gradient(ellipse at 50% 25%, #713ab044, transparent 65%);
+}
+#screen-crocodile .croc-rig {
+    width: min(100%, 520px);
+    height: auto;
+    /* Reserve mouth depth even at 320px: upper/lower 56px hitboxes must not
+       intersect. Extra height belongs to the screen's natural scroll flow. */
+    min-height: 320px;
+    margin: 0 auto;
+    grid-column: auto;
+    grid-row: auto;
+}
+#screen-crocodile .croc-config-panel {
+    width: min(100%, 520px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+#screen-crocodile .croc-quick-bar {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 8px;
+    border-radius: 18px;
+    flex-direction: column;
+    gap: 6px;
+}
+#screen-crocodile .bad-teeth-pills { flex-wrap: wrap; gap: 4px; }
+#screen-crocodile .bad-teeth-pills button { min-width: 44px; min-height: 44px; transform: none; }
+#screen-crocodile .croc-status-banner {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    min-height: 64px;
+    display: grid;
+    align-items: center;
+    padding: 8px 12px;
+    font-size: 13px;
+    line-height: 1.45;
+}
+#screen-crocodile .croc-status-banner.danger-flash { color: #ffb7ce; animation: none; }
+#screen-crocodile .croc-hero-mark { margin: 0; font-size: 11px; }
+#screen-crocodile .croc-controls { margin: 0; padding: 0; }
+#screen-crocodile .turn-counter { font-size: 12px; }
+#screen-crocodile .croc-secondary-actions { display: flex; justify-content: center; gap: 8px; width: 100%; }
+#screen-crocodile .croc-secondary-actions button { min-height: 44px; flex: 1 1 0; }
+
+/* Shared FX call/lifecycle stays intact. Only Crocodile suppresses the legacy
+   app-root earthquake rotation; local jaws animate centrally on Y instead. */
+#app-root.heavy-screen-shake:has(#screen-crocodile.active) {
+    animation: none !important;
+    transform: none !important;
+}
+@media (max-width: 380px) {
+    #screen-crocodile.game-screen .croc-local-header.game-header:not(.overlay-header) { grid-template-columns: 44px minmax(0, 1fr) 44px; }
+    #screen-crocodile .croc-local-header .back-btn { font-size: 0; gap: 0; }
+    #screen-crocodile .croc-local-header .how-to-play-label { display: none; }
+}
+@media (orientation: landscape) and (max-height: 600px) {
+    #screen-crocodile .crocodile-stage {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(220px, .8fr);
+        gap: 12px;
+        align-items: center;
+    }
+    #screen-crocodile .croc-rig { width: min(100%, 440px); }
+    #screen-crocodile .croc-config-panel { width: 100%; }
+}
+
+
+/* 5.18 Pirate P2: bounded hybrid WebP composition. Existing 16 native DOM
+   slots remain stable; only decorative raster paint animates during shake. */
+#screen-pirate.game-screen.active {
+  overflow-x:hidden;
+  overflow-y:auto;
+  contain:none;
+  overscroll-behavior-y:contain;
+  -webkit-overflow-scrolling:touch;
+}
+#screen-pirate .pirate-stage {
+  height:auto;
+  min-height:100%;
+  flex:0 0 auto;
+  min-width:0;
+  width:100%;
+  overflow:visible;
+  justify-content:flex-start;
+  gap:10px;
+}
+#screen-pirate .game-top-bar {
+  min-height:48px;
+  height:auto;
+  flex-wrap:wrap;
+  gap:6px;
+}
+#screen-pirate #pirate-turn-indicator {
+  width:auto;
+  min-width:95px;
+  max-width:100%;
+  overflow-wrap:anywhere;
+}
+#screen-pirate .pirate-arena-wrapper {
+  --pirate-scene-w:min(calc(100vw - 38px),340px);
+  --pirate-scene-h:calc(var(--pirate-scene-w) * 420 / 340);
+  --pirate-mascot-w:calc(var(--pirate-scene-w) * .63);
+  width:100%;
+  height:auto;
+  min-height:calc(185px + var(--pirate-scene-h) + 62px);
+  max-height:none;
+  flex:0 0 auto;
+  display:block;
+  position:relative;
+  align-self:stretch;
+  margin:0;
+  overflow:visible;
+  transform:none;
+  perspective:none;
+}
+#screen-pirate #pirate-character {
+  position:absolute;
+  left:50%;
+  top:calc(185px + var(--pirate-scene-w) * 8 / 340 - var(--pirate-mascot-w) * 348 / 384);
+  margin-left:calc(var(--pirate-mascot-w) / -2);
+  width:var(--pirate-mascot-w);
+  height:var(--pirate-mascot-w);
+  background:url('../assets/art/pirate-game/pirate-mascot.webp') center / 100% 100% no-repeat;
+  border:0;
+  z-index:5;
+  pointer-events:none;
+  display:block;
+  filter:drop-shadow(0 6px 8px rgba(0,0,0,.35));
+  transform-origin:50% 82%;
+  transform:none;
+  transition:none;
+}
+#screen-pirate #pirate-character > * { display:none; }
+#screen-pirate #pirate-character.pirate-wobble {
+  animation:pirateArtWobble .35s ease-out;
+}
+#screen-pirate #pirate-character.pirate-launched {
+  animation:pirateArtSpringPop .85s cubic-bezier(.15,.9,.35,1) forwards !important;
+}
+@keyframes pirateArtWobble {
+  0%,100% {transform:translateY(0) rotate(0deg);}
+  38% {transform:translateY(-13px) rotate(-5deg);}
+  70% {transform:translateY(-7px) rotate(4deg);}
+}
+@keyframes pirateArtSpringPop {
+  0% {transform:translateY(0) scale(1) rotate(0deg);}
+  30% {transform:translateY(-70px) scale(1.12) rotate(-9deg);}
+  58% {transform:translateY(-92px) scale(1.16) rotate(7deg);}
+  78% {transform:translateY(-74px) scale(1.09) rotate(-3deg);}
+  100% {transform:translateY(-78px) scale(1.1) rotate(0deg);}
+}
+#screen-pirate #pirate-barrel {
+  position:absolute;
+  left:50%;
+  top:185px;
+  margin-left:calc(var(--pirate-scene-w) / -2);
+  width:var(--pirate-scene-w);
+  height:var(--pirate-scene-h);
+  min-height:0;
+  max-height:none;
+  box-sizing:border-box;
+  padding:0;
+  display:block;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+  background:none;
+  transform:none;
+  transition:none;
+  z-index:8;
+  overflow:visible;
+}
+#screen-pirate #pirate-barrel::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:url('../assets/art/pirate-game/barrel-back.webp') center / 100% 100% no-repeat;
+  transform-origin:50% 52%;
+  z-index:0;
+  filter:drop-shadow(0 14px 18px rgba(0,0,0,.45));
+}
+#screen-pirate #pirate-barrel.barrel-shaking {
+  animation:none;
+}
+#screen-pirate #pirate-barrel.barrel-shaking::before {
+  animation:pirateArtWoodShake .6s ease-in-out;
+}
+@keyframes pirateArtWoodShake {
+  0%,100% { transform:translateX(0) rotate(0deg); }
+  18% { transform:translateX(-5px) rotate(-2deg); }
+  38% { transform:translateX(6px) rotate(2deg); }
+  58% { transform:translateX(-4px) rotate(-1.6deg); }
+  78% { transform:translateX(3px) rotate(1deg); }
+}
+#screen-pirate #pirate-barrel .barrel-top-rim,
+#screen-pirate #pirate-barrel .barrel-ring,
+#screen-pirate #pirate-barrel .barrel-wood-overlay {
+  display:none;
+}
+#screen-pirate #pirate-slots-grid {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  padding:0 10%;
+  box-sizing:border-box;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-template-rows:repeat(4,44px);
+  column-gap:10px;
+  row-gap:6px;
+  align-content:center;
+  justify-content:center;
+  z-index:12;
+  transform:translateY(20px);
+  pointer-events:none;
+}
+#screen-pirate .pirate-slot-btn {
+  width:100%;
+  height:44px;
+  min-height:44px;
+  min-width:0;
+  box-sizing:border-box;
+  display:flex;
+  position:relative;
+  overflow:visible;
+  z-index:2;
+  pointer-events:auto;
+  touch-action:manipulation;
+}
+#screen-pirate .pirate-slot-btn:focus-visible {
+  outline:3px solid white;
+  outline-offset:1px;
+  border-radius:10px;
+}
+#screen-pirate .pirate-slot-btn .slot-hole {
+  width:min(28px,72%);
+  height:12px;
+  box-sizing:border-box;
+  background:#160e12;
+  border:2px solid #ffd381;
+  box-shadow:inset 0 3px 5px #000, 0 0 6px rgba(255,167,43,.45);
+  border-radius:50%;
+  pointer-events:none;
+}
+#screen-pirate .inserted-sword {
+  position:absolute;
+  display:none;
+  width:60px;
+  height:26px;
+  right:50%;
+  left:auto;
+  margin-right:-24px;
+  top:50%;
+  margin-top:-13px;
+  background:url('../assets/art/pirate-game/sword-neutral.webp') center / contain no-repeat;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+  filter:drop-shadow(0 0 4px var(--sword-color,#ff4757));
+  pointer-events:none;
+  z-index:21;
+  transform-origin:78% 50%;
+}
+#screen-pirate .inserted-sword::before,
+#screen-pirate .inserted-sword::after { display:none; }
+#screen-pirate .inserted-sword.sword-inserted {
+  display:block;
+  animation:pirateArtSwordIn .25s cubic-bezier(.175,.885,.32,1.275) forwards;
+}
+@keyframes pirateArtSwordIn {
+  0% {transform:translateX(-10px) scale(1.25) rotate(var(--sword-angle,0deg));opacity:0;}
+  100% {transform:translateX(0) scale(1) rotate(var(--sword-angle,0deg));opacity:1;}
+}
+#screen-pirate .pirate-action-legend {
+  position:absolute;
+  left:0;
+  right:0;
+  top:calc(185px + var(--pirate-scene-h) + 12px);
+  bottom:auto;
+  margin:0 auto;
+  max-width:calc(100% - 20px);
+  width:max-content;
+  min-width:0;
+  transform:none;
+  white-space:normal;
+  justify-content:center;
+  text-align:center;
+  pointer-events:none;
+}
+#screen-pirate .pirate-epic-badge { pointer-events:none; }
+@media (max-width:478px) {
+  #screen-pirate .game-top-bar {
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    gap:5px;
+  }
+  #screen-pirate .game-top-bar .back-btn {grid-column:1;grid-row:1;}
+  #screen-pirate #pirate-turn-indicator {grid-column:1;grid-row:2;}
+  #screen-pirate .trap-select-box {grid-column:2;grid-row:1 / span 2;}
+}
+@media (min-width:700px) and (max-height:600px) {
+  #screen-pirate .game-top-bar {
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    gap:5px;
+  }
+  #screen-pirate .game-top-bar .back-btn {grid-column:1;grid-row:1;}
+  #screen-pirate #pirate-turn-indicator {grid-column:1;grid-row:2;white-space:normal;}
+  #screen-pirate .trap-select-box {grid-column:2;grid-row:1 / span 2;}
+}
+@media (prefers-reduced-motion:reduce) {
+  #screen-pirate #pirate-character.pirate-wobble,
+  #screen-pirate #pirate-character.pirate-launched,
+  #screen-pirate #pirate-barrel.barrel-shaking::before,
+  #screen-pirate .inserted-sword.sword-inserted {
+    animation:none !important;
+  }
+  #screen-pirate #pirate-character.pirate-launched {
+    transform:translateY(-14px);
+  }
+  #screen-pirate .inserted-sword.sword-inserted {
+    transform:rotate(var(--sword-angle,0deg));
+    opacity:1;
+  }
+}
+
+/* 5.18 Pirate owner-review R1: concealed ready pose; popup only on trap.
+   Browser fidelity review is required before this patch is accepted. */
+#screen-pirate #pirate-character {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(calc(var(--pirate-mascot-w) * .72));
+}
+#screen-pirate #pirate-character.pirate-wobble {
+  visibility: hidden;
+  opacity: 0;
+  animation: none;
+}
+#screen-pirate #pirate-character.pirate-launched {
+  visibility: visible;
+  animation: pirateRevealOnTrap .85s cubic-bezier(.15,.9,.35,1) forwards !important;
+}
+@keyframes pirateRevealOnTrap {
+  0%   {opacity:0;transform:translateY(calc(var(--pirate-mascot-w) * .72)) scale(.86);}
+  17%  {opacity:0;transform:translateY(calc(var(--pirate-mascot-w) * .32)) scale(.95) rotate(-4deg);}
+  34%  {opacity:1;transform:translateY(-10px) scale(1.04) rotate(-7deg);}
+  58%  {opacity:1;transform:translateY(-65px) scale(1.16) rotate(7deg);}
+  80%  {opacity:1;transform:translateY(-26px) scale(1.08) rotate(-3deg);}
+  100% {opacity:1;transform:translateY(-30px) scale(1.10) rotate(0deg);}
+}
+@media (prefers-reduced-motion:reduce) {
+  #screen-pirate #pirate-character.pirate-launched {
+    visibility: visible;
+    opacity: 1;
+    animation: none !important;
+    transform: translateY(-30px);
+  }
+}
+
+/* 5.18 Pirate owner-review R1: approved substantial cutlass.
+   The blade tip is anchored over the clicked DOM socket. */
+#screen-pirate .pirate-slot-btn {
+  --cutlass-width: calc(var(--pirate-scene-w) * .215);
+}
+#screen-pirate .inserted-sword {
+  --cutlass-facing: 1;
+  width: var(--cutlass-width);
+  height: calc(var(--cutlass-width) * .5);
+  top:50%;
+  margin-top:calc(var(--cutlass-width) * -.25);
+  right:auto;
+  margin-right:0;
+  left:calc(50% - var(--cutlass-width) * .90);
+  background-image:url('../assets/art/pirate-game/sword-cutlass.webp');
+  background-size:100% 100%;
+  background-position:center;
+  transform-origin:90% 50%;
+  filter:drop-shadow(0 1px 2px rgba(5,3,12,.70))
+         drop-shadow(0 0 4px var(--sword-color,#ff4757));
+}
+#screen-pirate .pirate-slot-btn:nth-child(4n + 3) .inserted-sword,
+#screen-pirate .pirate-slot-btn:nth-child(4n + 4) .inserted-sword {
+  --cutlass-facing:-1;
+  left:calc(50% - var(--cutlass-width) * .10);
+  transform-origin:10% 50%;
+}
+#screen-pirate .inserted-sword.sword-inserted {
+  animation:pirateCutlassInsert .25s cubic-bezier(.175,.885,.32,1.275) forwards;
+}
+@keyframes pirateCutlassInsert {
+  0% {
+    transform:translateX(calc(-12px * var(--cutlass-facing))) rotate(var(--sword-angle,0deg)) scaleX(var(--cutlass-facing)) scale(1.15);
+    opacity:0;
+  }
+  100% {
+    transform:translateX(0) rotate(var(--sword-angle,0deg)) scaleX(var(--cutlass-facing));
+    opacity:1;
+  }
+}
+@media (prefers-reduced-motion:reduce) {
+  #screen-pirate .inserted-sword.sword-inserted {
+    animation:none !important;
+    transform:rotate(var(--sword-angle,0deg)) scaleX(var(--cutlass-facing));
+    opacity:1;
+  }
+}
+
+/* Pirate owner-review R1: no need to reserve exposed-mascot height while idle. */
+#screen-pirate .pirate-arena-wrapper {
+  --pirate-stage-gap:118px;
+  min-height:calc(var(--pirate-stage-gap) + var(--pirate-scene-h) + 62px);
+}
+#screen-pirate #pirate-barrel {
+  top:var(--pirate-stage-gap);
+}
+#screen-pirate #pirate-character {
+  top:calc(var(--pirate-stage-gap) + var(--pirate-scene-w) * 8 / 340 - var(--pirate-mascot-w) * 348 / 384 + var(--pirate-mascot-w) * .44);
+}
+#screen-pirate .pirate-action-legend {
+  top:calc(var(--pirate-stage-gap) + var(--pirate-scene-h) + 12px);
+}
+
+/* Pirate owner-review R1: face must be readable after popping.
+   Existing status and penalty banner remain the result authority. */
+#screen-pirate #pirate-epic-badge {
+  display:none !important;
+}
+@media (max-width:360px) {
+  #screen-pirate #pirate-character {
+    top:calc(var(--pirate-stage-gap) + var(--pirate-scene-w) * 8 / 340 - var(--pirate-mascot-w) * 348 / 384 + var(--pirate-mascot-w) * .46);
+  }
+}
+
+/* Pirate owner R2: two registered barrel paint planes, keeping native buttons static. */
+#screen-pirate .pirate-arena-wrapper {
+ --pirate-stage-gap:206px;
+ --pirate-rise-32:-.38; --pirate-rise-52:-.60;
+ --pirate-rise-68:-.68; --pirate-rise-82:-.70;
+ --pirate-pop-settle:-.70;
+}
+#screen-pirate .pirate-barrel-backdrop {
+ position:absolute; left:50%; top:var(--pirate-stage-gap);
+ margin-left:calc(var(--pirate-scene-w) / -2);
+ width:var(--pirate-scene-w); height:var(--pirate-scene-h);
+ background:url('../assets/art/pirate-game/barrel-back.webp') center / 100% 100% no-repeat;
+ z-index:4; pointer-events:none;
+}
+#screen-pirate #pirate-barrel::before { clip-path:inset(12% 0 0 0); }
+#screen-pirate .pirate-arena-wrapper:has(#pirate-barrel.barrel-shaking) .pirate-barrel-backdrop {
+ animation:pirateArtWoodShake .6s ease-in-out;
+}
+/* Starting pose is inside the barrel; occlusion—not opacity—hides it. */
+#screen-pirate #pirate-character {
+ top:calc(var(--pirate-stage-gap) + var(--pirate-scene-w) * .24);
+ z-index:6; visibility:visible; opacity:1;
+ transform:scale(.89); transform-origin:50% 87%;
+}
+#screen-pirate #pirate-character.pirate-wobble {visibility:visible;opacity:1;animation:none;}
+#screen-pirate #pirate-character.pirate-launched {
+ visibility:visible; opacity:1;
+ animation:pirateRiseThroughRim .85s cubic-bezier(.2,.75,.28,1) both !important;
+}
+@keyframes pirateRiseThroughRim {
+ 0% {transform:translateY(0) scale(.89);}
+ 16% {transform:translateY(calc(var(--pirate-scene-w) * -.15)) scale(.90);}
+ 32% {transform:translateY(calc(var(--pirate-scene-w) * var(--pirate-rise-32))) scale(.98) rotate(-4deg);}
+ 52% {transform:translateY(calc(var(--pirate-scene-w) * var(--pirate-rise-52))) scale(1.06) rotate(6deg);}
+ 68% {transform:translateY(calc(var(--pirate-scene-w) * var(--pirate-rise-68))) scale(1.08) rotate(-3deg);}
+ 82% {transform:translateY(calc(var(--pirate-scene-w) * var(--pirate-rise-82))) scale(1.03) rotate(2deg);}
+ 100% {transform:translateY(calc(var(--pirate-scene-w) * var(--pirate-pop-settle))) scale(1.04) rotate(0deg);}
+}
+/* Cutlass sprite tip (300/320, 72/160) pinned to the DOM socket center. */
+#screen-pirate .pirate-slot-btn { --cutlass-width:calc(var(--pirate-scene-w) * .25); }
+#screen-pirate .inserted-sword,
+#screen-pirate .pirate-slot-btn:nth-child(4n + 3) .inserted-sword,
+#screen-pirate .pirate-slot-btn:nth-child(4n + 4) .inserted-sword {
+ width:var(--cutlass-width); height:calc(var(--cutlass-width) * .5);
+ left:calc(50% - var(--cutlass-width) * .9375);
+ top:calc(50% - var(--cutlass-width) * .225);
+ margin-top:0; transform-origin:93.75% 45%; z-index:21;
+ filter:drop-shadow(0 3px 3px rgba(16,6,3,.86)) drop-shadow(0 0 2px var(--sword-color,#ff4757));
+}
+#screen-pirate .inserted-sword { --cutlass-yaw:-18deg; --cutlass-lean:-20deg; }
+#screen-pirate .pirate-slot-btn:nth-child(4n + 3) .inserted-sword,
+#screen-pirate .pirate-slot-btn:nth-child(4n + 4) .inserted-sword { --cutlass-yaw:18deg; --cutlass-lean:20deg; }
+/* Foreground socket lip masks the penetrating tip; pointer stays on button. */
+#screen-pirate .pirate-slot-btn .slot-hole {
+ position:relative; z-index:30; width:20px; height:12px;
+ border:2px solid #f7ce83;
+ background:radial-gradient(ellipse at 50% 62%,#070507 0%,#150a08 64%,#57301a 100%);
+ box-shadow:inset 0 3px 5px #000,0 1px 0 #8f4a21,0 0 5px rgba(255,184,82,.35);
+ pointer-events:none;
+}
+#screen-pirate .pirate-slot-btn.slot-used .slot-hole {
+ border-color:#ffda88;
+ box-shadow:inset 0 4px 6px #000,0 2px 4px rgba(12,3,5,.85),0 0 2px #ffb25b;
+}
+#screen-pirate .inserted-sword.sword-inserted {
+ animation:pirateBladeIntoSocket .28s cubic-bezier(.15,.74,.25,1) both;
+}
+@keyframes pirateBladeIntoSocket {
+ 0% {transform:translateX(calc(-14px * var(--cutlass-facing))) rotate(calc(var(--sword-angle,0deg) + var(--cutlass-lean))) perspective(180px) rotateY(var(--cutlass-yaw)) scaleX(var(--cutlass-facing)) scale(.91);opacity:.88;}
+ 72% {transform:translateX(calc(3px * var(--cutlass-facing))) rotate(calc(var(--sword-angle,0deg) + var(--cutlass-lean))) perspective(180px) rotateY(var(--cutlass-yaw)) scaleX(var(--cutlass-facing)) scale(1.02);opacity:1;}
+ 100% {transform:translateX(0) rotate(calc(var(--sword-angle,0deg) + var(--cutlass-lean))) perspective(180px) rotateY(var(--cutlass-yaw)) scaleX(var(--cutlass-facing));opacity:1;}
+}
+@media (prefers-reduced-motion:reduce) {
+ #screen-pirate #pirate-character.pirate-launched {
+  visibility:visible; opacity:1; animation:none !important;
+  transform:translateY(calc(var(--pirate-scene-w) * var(--pirate-pop-settle))) scale(1.04);
+ }
+ #screen-pirate .inserted-sword.sword-inserted {
+  animation:none !important;
+  transform:rotate(calc(var(--sword-angle,0deg) + var(--cutlass-lean))) perspective(180px) rotateY(var(--cutlass-yaw)) scaleX(var(--cutlass-facing));
+  opacity:1;
+ }
+ #screen-pirate .pirate-arena-wrapper:has(#pirate-barrel.barrel-shaking) .pirate-barrel-backdrop {animation:none;}
+}
+
+/* Short landscape: keep barrel mouth and pop corridor near the visible fold.
+   Slots retain 44px native rows and the screen remains the only scroll owner. */
+@media (min-width:700px) and (max-height:600px) {
+ #screen-pirate .pirate-arena-wrapper {
+  --pirate-scene-w:260px;
+  --pirate-stage-gap:clamp(98px,calc(100vh * .30),130px);
+ }
+}
+
+@media (max-width:360px) and (orientation:portrait) {
+ /* A centered last-row tap leaves less room above the rim than on taller screens. */
+ #screen-pirate .pirate-arena-wrapper {
+  --pirate-rise-32:-.29; --pirate-rise-52:-.45;
+  --pirate-rise-68:-.51; --pirate-rise-82:-.54;
+  --pirate-pop-settle:-.56;
+ }
+}
+@media (min-width:1000px) {
+ /* Centered desktop scroll must also keep the whole hat below the app header. */
+ #screen-pirate .pirate-arena-wrapper {
+  --pirate-rise-32:-.34; --pirate-rise-52:-.53;
+  --pirate-rise-68:-.58; --pirate-rise-82:-.60;
+  --pirate-pop-settle:-.60;
+ }
+}
+
+/* Narrow viewport scroll targeting leaves room above a selected socket for
+   the spring reveal; changes no target box or pointer ownership. */
+@media (max-width:360px) and (orientation:portrait) {
+ #screen-pirate.game-screen.active {scroll-padding-top:100px;}
+ #screen-pirate .pirate-slot-btn {scroll-margin-top:140px;}
+}
+
+/* Pirate owner R3A: trap-only grimace and deeper cutlass/socket contact.
+   Native button boxes and Pirate's state/class ownership remain unchanged. */
+#screen-pirate #pirate-character.pirate-launched {
+ background-image:url('../assets/art/pirate-game/pirate-mascot-trap.webp');
+}
+#screen-pirate .inserted-sword,
+#screen-pirate .pirate-slot-btn:nth-child(4n + 3) .inserted-sword,
+#screen-pirate .pirate-slot-btn:nth-child(4n + 4) .inserted-sword {
+ --cutlass-lean:-16deg;
+ --cutlass-yaw:-32deg;
+ left:calc(50% - var(--cutlass-width) * .88);
+ transform-origin:93.75% 45%;
+ -webkit-mask-image:linear-gradient(to right,#000 0%,#000 78%,rgba(0,0,0,.82) 86%,transparent 100%);
+ mask-image:linear-gradient(to right,#000 0%,#000 78%,rgba(0,0,0,.82) 86%,transparent 100%);
+ filter:drop-shadow(0 2px 2px rgba(16,6,3,.65)) drop-shadow(0 0 2px var(--sword-color,#ff4757));
+ pointer-events:none;
+}
+#screen-pirate .pirate-slot-btn:nth-child(4n + 3) .inserted-sword,
+#screen-pirate .pirate-slot-btn:nth-child(4n + 4) .inserted-sword {
+ --cutlass-lean:16deg;
+ --cutlass-yaw:32deg;
+ left:calc(50% - var(--cutlass-width) * .995);
+}
+#screen-pirate .pirate-slot-btn.slot-used .slot-hole {
+ width:24px;
+ height:14px;
+ border-color:#f8d996;
+ background:radial-gradient(ellipse at 50% 35%,#060405 0%,#100807 68%,#36190d 100%);
+ box-shadow:inset 0 4px 6px #000,0 2px 5px rgba(14,5,3,.88),0 0 3px rgba(255,188,84,.42);
+}
+/* Shadow falls onto the blade at its entry, while the near rim masks the tip. */
+#screen-pirate .pirate-slot-btn.slot-used .slot-hole::before,
+#screen-pirate .pirate-slot-btn.slot-used .slot-hole::after {
+ content:'';
+ position:absolute;
+ pointer-events:none;
+}
+#screen-pirate .pirate-slot-btn.slot-used .slot-hole::before {
+ left:-18px; top:-3px; width:34px; height:16px;
+ border-radius:50%;
+ background:linear-gradient(90deg,transparent 3%,rgba(6,3,4,.7) 72%,rgba(6,3,4,.25));
+ filter:blur(2px);
+}
+#screen-pirate .pirate-slot-btn:nth-child(4n + 3).slot-used .slot-hole::before,
+#screen-pirate .pirate-slot-btn:nth-child(4n + 4).slot-used .slot-hole::before {
+ left:4px;
+ transform:scaleX(-1);
+}
+#screen-pirate .pirate-slot-btn.slot-used .slot-hole::after {
+ left:-4px; right:-4px; top:6px; height:9px;
+ border-radius:0 0 50% 50%;
+ background:linear-gradient(#b7783b,#754018 57%,#2a1009);
+ border-bottom:2px solid #f9c879;
+ box-shadow:0 2px 3px rgba(7,2,3,.85);
+}
+@keyframes pirateBladeIntoSocket {
+ 0% {transform:translateX(calc(-14px * var(--cutlass-facing))) rotate(calc(var(--sword-angle,0deg) + var(--cutlass-lean))) perspective(150px) rotateY(var(--cutlass-yaw)) rotateX(9deg) scaleX(var(--cutlass-facing)) scale(.91);opacity:.88;}
+ 72% {transform:translateX(calc(3px * var(--cutlass-facing))) rotate(calc(var(--sword-angle,0deg) + var(--cutlass-lean))) perspective(150px) rotateY(var(--cutlass-yaw)) rotateX(9deg) scaleX(var(--cutlass-facing)) scale(1.02);opacity:1;}
+ 100% {transform:translateX(0) rotate(calc(var(--sword-angle,0deg) + var(--cutlass-lean))) perspective(150px) rotateY(var(--cutlass-yaw)) rotateX(9deg) scaleX(var(--cutlass-facing));opacity:1;}
+}
+@media (prefers-reduced-motion:reduce) {
+ #screen-pirate .inserted-sword.sword-inserted {
+  transform:rotate(calc(var(--sword-angle,0deg) + var(--cutlass-lean))) perspective(150px) rotateY(var(--cutlass-yaw)) rotateX(9deg) scaleX(var(--cutlass-facing));
+ }
+}
+
+/* Pirate R3B — selectable actual socket count. All sockets remain real DOM buttons.
+   Four columns preserve the side-specific cutlass transforms; row gaps balance
+   the shorter rounds over the original 340x420 wood field, no phantom holes. */
+#screen-pirate .pirate-select-group {
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  gap:6px 10px;
+  min-width:0;
+}
+#screen-pirate .pirate-hole-select-box {
+  display:flex;
+  align-items:center;
+  gap:5px;
+  white-space:nowrap;
+}
+#screen-pirate .pirate-select-group .mini-select {
+  min-height:44px;
+}
+#screen-pirate #pirate-slots-grid[data-slots="8"] {
+  grid-template-rows:repeat(2,44px);
+  row-gap:58px;
+}
+#screen-pirate #pirate-slots-grid[data-slots="12"] {
+  grid-template-rows:repeat(3,44px);
+  row-gap:24px;
+}
+#screen-pirate #pirate-slots-grid[data-slots="16"] {
+  grid-template-rows:repeat(4,44px);
+  row-gap:6px;
+}
+@media (max-width:478px) {
+  #screen-pirate .game-top-bar .pirate-select-group {
+    grid-column:1 / -1;
+    grid-row:3;
+    justify-content:flex-start;
+  }
+}
+@media (min-width:700px) and (max-height:600px) {
+  #screen-pirate .game-top-bar .pirate-select-group {
+    grid-column:2;
+    grid-row:1 / span 2;
+    align-self:center;
+  }
+}
+
+/* Keep both native setup selects on one readable line at 320px. */
+@media (max-width:360px) {
+ #screen-pirate .pirate-select-group {
+   flex-wrap:nowrap;
+   gap:4px;
+ }
+ #screen-pirate .pirate-hole-select-box,
+ #screen-pirate .pirate-select-group .trap-select-box {
+   display:flex;
+   align-items:center;
+   gap:3px;
+   flex:0 1 auto;
+   min-width:0;
+   white-space:nowrap;
+ }
+ #screen-pirate .pirate-select-group .mini-select {
+   max-width:none;
+   padding:8px 25px 8px 8px;
+   font-size:12px;
+ }
+}
+
+/* VBN-FINGER-UI-FIX-10: Finger chrome, guide and touch stage share normal flow.
+   Keep this screen-local so other overlay-header games remain unchanged. */
+#screen-finger #finger-game-container {
+    box-sizing: border-box;
+    gap: 8px;
+    height: 100%;
+    min-height: 0;
+    padding: max(8px, env(safe-area-inset-top)) 12px max(8px, env(safe-area-inset-bottom));
+    overflow: hidden;
+}
+
+#screen-finger #finger-game-container > .game-header.overlay-header {
+    position: relative;
+    inset: auto;
+    z-index: auto;
+    display: grid;
+    grid-template-columns: minmax(44px, max-content) minmax(0, 1fr) minmax(44px, max-content);
+    align-items: center;
+    gap: 6px;
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 6px;
+    box-sizing: border-box;
+}
+
+#screen-finger #finger-game-container > .game-header.overlay-header .back-btn,
+#screen-finger #finger-game-container > .game-header.overlay-header .action-btn-small {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    min-height: 44px;
+    padding: 6px;
+    justify-content: center;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    line-height: 1.15;
+    font-size: clamp(10px, 3.2vw, 14px);
+}
+
+#screen-finger #finger-game-container > .game-header.overlay-header .game-title-wrap {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+#screen-finger #finger-game-container > .game-header.overlay-header .game-title-wrap h2 {
+    overflow-wrap: anywhere;
+}
+
+#screen-finger #finger-game-container > .how-to-play {
+    position: relative;
+    z-index: auto;
+    align-self: stretch;
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin: 0;
+}
+
+#screen-finger #finger-game-container > .finger-stage {
+    position: relative;
+    inset: auto;
+    flex: 1 1 auto;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    min-width: 0;
+    touch-action: none;
+    overflow: hidden;
+}
+
+#screen-finger.game-screen.guide-open > #finger-game-container {
+    flex: 0 0 auto;
+    height: auto;
+    min-height: 100%;
+    overflow: visible;
+}
+
+#screen-finger.game-screen.guide-open > #finger-game-container > .finger-stage {
+    flex: 1 0 clamp(200px, 34vh, 320px);
+    min-height: clamp(200px, 34vh, 320px);
+}
+
+/* Short viewports use the game screen as the sole scroll owner, including
+   while the guide is closed, so the normal-flow stage retains a usable area. */
+@media (max-height: 600px) {
+    #screen-finger.game-screen.active {
+        overflow-x: hidden;
+        overflow-y: auto;
+        min-height: 0;
+        padding: 0;
+        contain: none;
+        overscroll-behavior-y: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #screen-finger #finger-game-container {
+        flex: 0 0 auto;
+        height: auto;
+        min-height: 100%;
+        overflow: visible;
+    }
+
+    #screen-finger #finger-game-container > .game-header.overlay-header .game-subtitle {
+        display: none;
+    }
+
+    #screen-finger #finger-game-container > .finger-stage,
+    #screen-finger.game-screen.guide-open > #finger-game-container > .finger-stage {
+        flex: 1 0 240px;
+        min-height: 240px;
+    }
+
+    #screen-finger .finger-hint {
+        top: 6%;
+        transform: translateX(-50%);
+    }
+
+    #screen-finger .gesture-guide,
+    #screen-finger .pulse-icon,
+    #screen-finger .finger-rule-chip {
+        display: none;
+    }
+
+    #screen-finger .finger-hero-object {
+        top: 62%;
+        width: min(22vh, 90px);
+        height: min(22vh, 90px);
+    }
+
+    #screen-finger .finger-hero-label {
+        display: none;
+    }
+}
+
+@media (max-height: 390px) {
+    #screen-finger #finger-game-container > .finger-stage,
+    #screen-finger.game-screen.guide-open > #finger-game-container > .finger-stage {
+        flex-basis: 240px;
+        min-height: 240px;
+    }
+}
+
+/* Wheel and Bomb headers can wrap beyond their 62px minimum on narrow phones.
+   Keep their intrinsic height so the subtitle cannot cover the guide summary. */
+#screen-wheel > #wheel-game-container > .game-header,
+#screen-bomb > #bomb-game-container > .game-header {
+    flex: 0 0 auto;
+}
