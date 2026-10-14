@@ -1,7 +1,7 @@
 {
   "name": "Vua Bàn Nhậu - Game May Rủi Bàn Tiệc",
   "short_name": "Vua Bàn Nhậu",
-  "description": "Ứng dụng tổng hợp các trò chơi may rủi, cắn răng cá sấu, vòng quay sát phạt, chạm ngón tay và quả bom hẹn giờ cho bàn nhậu và tiệc tùng!",
+  "description": "Vua Bàn Nhậu — 10 trò chơi bàn tiệc, phiên bản số phát triển bởi NiQuitin. Giải trí dành cho người lớn, không cần sử dụng đồ uống có cồn.",
   "id": "./",
   "start_url": "./index.html",
   "scope": "./",
@@ -9,7 +9,10 @@
   "background_color": "#0a0618",
   "theme_color": "#0a0618",
   "orientation": "portrait",
-  "categories": ["games", "entertainment"],
+  "categories": [
+    "games",
+    "entertainment"
+  ],
   "icons": [
     {
       "src": "assets/icons/app-icon-192.png",

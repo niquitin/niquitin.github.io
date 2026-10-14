@@ -2,12 +2,14 @@
 // Keep the web release version in one place. Every versioned shell URL below
 // is derived from this value so a new deploy cannot mix old query keys with a
 // new cache namespace.
-const APP_VERSION = '5.18.5';
+const APP_VERSION = '5.18.6';
 const CACHE_NAME = `vbn-shell-${APP_VERSION}`;
 const asset = (path) => `${path}?v=${APP_VERSION}`;
 const SHELL = [
     './index.html',
     './privacy.html',
+    './terms.html',
+    './third-party-notices.html',
     asset('./css/style.css'),
     asset('./css/components.css'),
     asset('./css/phase2.css'),
@@ -128,14 +130,17 @@ self.addEventListener('fetch', (event) => {
     // Keep navigation resilient: a fresh page is preferred, but the cached
     // app shell keeps the party playable when the venue has no signal.
     if (request.mode === 'navigate') {
+        const filename = url.pathname.split('/').pop();
+        const offlinePage = ['privacy.html', 'terms.html', 'third-party-notices.html'].includes(filename)
+            ? './' + filename : './index.html';
         event.respondWith(
             fetch(request)
                 .then((response) => {
                     const copy = response.clone();
-                    caches.open(CACHE_NAME).then((cache) => cache.put('./index.html', copy));
+                    caches.open(CACHE_NAME).then((cache) => cache.put(offlinePage, copy));
                     return response;
                 })
-                .catch(() => caches.match('./index.html'))
+                .catch(() => caches.match(offlinePage).then((match) => match || caches.match('./index.html')))
         );
         return;
     }

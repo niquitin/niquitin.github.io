@@ -2222,3 +2222,21 @@ body {
 .status-panel.is-warning { color: var(--color-warning); }
 .status-panel.is-danger { color: var(--color-danger); }
 .status-panel.is-info { color: var(--color-info); }
+
+
+/* NiQuitin author identity and responsible-play notices (5.18.6). */
+.niquitin-byline { margin: 9px 0 0; color: #c7b7e4; font-size: 12px; letter-spacing: .015em; line-height: 1.5; }
+.niquitin-byline strong { color: #7debff; font-weight: 800; }
+.niquitin-footer { margin: 12px 0 24px; padding: 16px 14px; border: 1px solid rgba(125,235,255,.24); border-radius: 16px; background: rgba(24,14,52,.8); text-align: center; }
+.niquitin-footer-credit { margin: 0 0 7px; font-size: 13px; color: #d8d0e8; }
+.niquitin-footer-credit strong { color: #7debff; font-weight: 800; }
+.niquitin-footer-safety { margin: 0 0 12px; color: #d8d0e8; font-size: 11px; line-height: 1.6; }
+.niquitin-footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 7px 16px; }
+.niquitin-footer-links a { color: #7debff; text-decoration: underline; text-underline-offset: 3px; font-size: 12px; padding: 8px 2px; min-height: 36px; }
+.niquitin-footer-links a:focus-visible { outline: 2px solid #7debff; outline-offset: 3px; border-radius: 3px; }
+.niquitin-settings-credit { border-top: 1px solid rgba(255,255,255,.12); }
+@media (max-width: 380px) {
+  .niquitin-footer { padding: 14px 10px; }
+  .niquitin-footer-links { gap: 4px 11px; }
+  .niquitin-footer-links a { font-size: 11px; }
+}
