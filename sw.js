@@ -2,13 +2,14 @@
 // Keep the web release version in one place. Every versioned shell URL below
 // is derived from this value so a new deploy cannot mix old query keys with a
 // new cache namespace.
-const APP_VERSION = '5.18.6-wheel-r2';
+const APP_VERSION = '5.18.6-wheel-r2-apk-beta1';
 const CACHE_NAME = `vbn-shell-${APP_VERSION}`;
 const asset = (path) => `${path}?v=${APP_VERSION}`;
 const SHELL = [
     './index.html',
     './privacy.html',
     './terms.html',
+    './android.html',
     './third-party-notices.html',
     asset('./css/style.css'),
     asset('./css/components.css'),
@@ -131,7 +132,7 @@ self.addEventListener('fetch', (event) => {
     // app shell keeps the party playable when the venue has no signal.
     if (request.mode === 'navigate') {
         const filename = url.pathname.split('/').pop();
-        const offlinePage = ['privacy.html', 'terms.html', 'third-party-notices.html'].includes(filename)
+        const offlinePage = ['privacy.html', 'terms.html', 'third-party-notices.html', 'android.html'].includes(filename)
             ? './' + filename : './index.html';
         event.respondWith(
             fetch(request)

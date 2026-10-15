@@ -2240,3 +2240,16 @@ body {
   .niquitin-footer-links { gap: 4px 11px; }
   .niquitin-footer-links a { font-size: 11px; }
 }
+
+/* NiQuitin Android Beta download: responsive Home CTA. */
+.android-apk-cta{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin:14px 0 20px;padding:16px 20px;border-radius:18px;border:1px solid rgba(125,235,255,.4);background:linear-gradient(112deg,rgba(23,48,77,.8),rgba(34,18,77,.89));}
+.android-apk-cta-copy{flex:1 1 250px;min-width:0;}
+.android-apk-cta-copy strong{color:#7debff;font-weight:800;font-size:16px;letter-spacing:.02em;}
+.android-apk-cta-copy p{margin:6px 0 0;color:#ede7fa;font-size:13px;line-height:1.55;}
+.android-apk-cta-copy .android-apk-cta-note{color:#e9cda2;font-size:11px;}
+.android-apk-cta-actions{display:flex;flex-direction:column;gap:8px;flex:0 1 210px;text-align:center;}
+.android-apk-cta-actions a{min-height:43px;display:inline-flex;justify-content:center;align-items:center;border-radius:12px;font-size:12px;font-weight:800;line-height:1.4;padding:9px 12px;text-decoration:none;}
+.android-apk-download{color:#100d27;background:#7debff;border:2px solid #7debff;}
+.android-apk-guide{color:#7debff;border:1px solid rgba(125,235,255,.5);background:rgba(18,14,42,.7);}
+.android-apk-cta-actions a:focus-visible{outline:3px solid #ffd577;outline-offset:3px;}
+@media(max-width:600px){.android-apk-cta{padding:15px;gap:12px;}.android-apk-cta-actions{flex:1 1 100%;}.android-apk-cta-actions a{font-size:14px;}}
