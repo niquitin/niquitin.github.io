@@ -25,6 +25,7 @@ class WheelGame {
         this.spinStep = 0;
         this.spinTotalSteps = 0;
         this.spinReducedMotion = false;
+        this.safeLandingCorrection = 0;
         this.runId = 0;
         this.init();
     }
@@ -164,6 +165,7 @@ class WheelGame {
         const radius = size / 2 - 14;
         const numSlices = this.slices.length;
         const sliceAngle = (2 * Math.PI) / numSlices;
+        const displayAngle = this.getRenderAngle();
 
         this.ctx.clearRect(0, 0, size, size);
 
@@ -180,7 +182,7 @@ class WheelGame {
 
         // Draw Slices
         for (let i = 0; i < numSlices; i++) {
-            const start = this.currentAngle + i * sliceAngle;
+            const start = displayAngle + i * sliceAngle;
             const end = start + sliceAngle;
             const item = this.slices[i];
 
@@ -235,7 +237,7 @@ class WheelGame {
 
         // Draw Gold Casino Bulbs around the wheel rim
         for (let i = 0; i < numSlices; i++) {
-            const pegAngle = this.currentAngle + i * sliceAngle;
+            const pegAngle = displayAngle + i * sliceAngle;
             const px = centerX + (radius + 2) * Math.cos(pegAngle);
             const py = centerY + (radius + 2) * Math.sin(pegAngle);
 
@@ -257,6 +259,9 @@ class WheelGame {
 
     spin() {
         if (this.isSpinning || this.resultTimeout !== null) return;
+        // Commit the previous displayed safe landing before starting new physics.
+        this.currentAngle = this.getRenderAngle();
+        this.safeLandingCorrection = 0;
         const runId = ++this.runId;
         this.isSpinning = true;
         this.renderWheelModeUI();
@@ -269,12 +274,53 @@ class WheelGame {
         this.spinStartedAt = performance.now();
         this.spinStep = 0;
         this.spinTotalSteps = this.getSpinStepCount(this.angularVelocity);
+        // Physics remains bit-for-bit legacy; the last 80 visual steps smoothly
+        // shift the indicator footprint into the middle half of the same sector.
+        this.safeLandingCorrection = this.computeSafeLandingCorrection();
         this.spinReducedMotion = Boolean(
             window.matchMedia
             && window.matchMedia("(prefers-reduced-motion: reduce)").matches
         );
         this.spinDeadlineTimeout = setTimeout(() => this.finishSpinAtDeadline(runId), 8000);
         this.animate(runId, this.spinStartedAt);
+    }
+
+    computeSafeLandingCorrection() {
+        const count = this.slices.length;
+        if (!count || !this.spinTotalSteps) return 0;
+        // Predict the exact legacy end angle without consuming more randomness.
+        let predicted = this.currentAngle;
+        let velocity = this.angularVelocity;
+        for (let i = 0; i < this.spinTotalSteps; i++) {
+            predicted += velocity;
+            velocity *= this.friction;
+        }
+        const tau = 2 * Math.PI;
+        const sectorWidth = tau / count;
+        // Match announceResult()/legacy winner arithmetic exactly at boundaries.
+        const normalizedAngle = (tau - (predicted % tau)) % tau;
+        const topAngle = (normalizedAngle + 1.5 * Math.PI) % tau;
+        const position = topAngle / sectorWidth;
+        const fraction = position - Math.floor(position);
+        const safeFraction = 0.25 + 0.5 * fraction;
+        // Positive rotation moves the visual indicator toward lower fractions.
+        // |correction| <= sectorWidth / 4; winning sector never changes.
+        return (fraction - safeFraction) * sectorWidth;
+    }
+
+    getRenderAngle() {
+        const adjustment = this.safeLandingCorrection || 0;
+        if (!adjustment) return this.currentAngle;
+        const count = Math.max(1, this.slices.length);
+        // 3-sector custom wheels require a longer easing tail to avoid reverse
+        // movement; normal 12/18-sector wheels use at least 80 physics steps.
+        const tail = Math.min(this.spinTotalSteps || 0,
+            Math.max(80, Math.ceil(720 / count)));
+        if (!tail) return this.currentAngle;
+        const progress = Math.min(1, Math.max(0,
+            (this.spinStep - (this.spinTotalSteps - tail)) / tail));
+        const smoothstep = progress * progress * (3 - 2 * progress);
+        return this.currentAngle + adjustment * smoothstep;
     }
 
     getSpinStepCount(initialVelocity) {
@@ -375,7 +421,8 @@ class WheelGame {
         // Needle points at TOP (3 * PI / 2 or 270 deg)
         const numSlices = this.slices.length;
         const sliceAngle = (2 * Math.PI) / numSlices;
-        const normalizedAngle = (2 * Math.PI - (this.currentAngle % (2 * Math.PI))) % (2 * Math.PI);
+        const visualAngle = this.getRenderAngle();
+        const normalizedAngle = (2 * Math.PI - (visualAngle % (2 * Math.PI))) % (2 * Math.PI);
         const topAngle = (normalizedAngle + (3 * Math.PI) / 2) % (2 * Math.PI);
         const winningIndex = Math.floor(topAngle / sliceAngle) % numSlices;
         const winner = this.slices[winningIndex];
@@ -425,6 +472,12 @@ class WheelGame {
         }
         const spinBtn = document.getElementById("spin-btn");
         if (spinBtn) spinBtn.disabled = false;
+        // Finished display correction should survive Back/re-entry; partial
+        // canceled corrections are abandoned without publishing a result.
+        if (this.spinTotalSteps > 0 && this.spinStep >= this.spinTotalSteps) {
+            this.currentAngle = this.getRenderAngle();
+        }
+        this.safeLandingCorrection = 0;
         const needle = document.getElementById("wheel-pointer");
         if (needle) needle.classList.remove("flap");
         this.renderWheelModeUI();

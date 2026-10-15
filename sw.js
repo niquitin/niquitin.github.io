@@ -2,7 +2,7 @@
 // Keep the web release version in one place. Every versioned shell URL below
 // is derived from this value so a new deploy cannot mix old query keys with a
 // new cache namespace.
-const APP_VERSION = '5.18.6-wheel-r1';
+const APP_VERSION = '5.18.6-wheel-r2';
 const CACHE_NAME = `vbn-shell-${APP_VERSION}`;
 const asset = (path) => `${path}?v=${APP_VERSION}`;
 const SHELL = [
