@@ -36,6 +36,22 @@ class WheelGame {
             this.ctx = this.canvas.getContext("2d");
             this.setupCanvas();
             this.slices = window.penaltyManager.getActiveWheelSlices();
+            // The initial rest position centers slice zero at the 12 o'clock pointer.
+            if (this.slices.length) this.currentAngle = 1.5 * Math.PI - Math.PI / this.slices.length;
+            if (typeof ResizeObserver !== "undefined") {
+                this.wheelResizeObserver = new ResizeObserver(() => {
+                    const wrapper = this.canvas && this.canvas.parentElement;
+                    const measured = wrapper && wrapper.getBoundingClientRect().width;
+                    if (!measured || measured < 1) return;
+                    const cssPixels = Math.round(measured);
+                    const backingPixels = Math.round(cssPixels * Math.max(1, window.devicePixelRatio || 1));
+                    if (this.size === cssPixels && this.canvas.width === backingPixels) return;
+                    // Setting canvas.width clears every pixel: redraw unconditionally.
+                    this.setupCanvas();
+                    this.drawWheel();
+                });
+                this.wheelResizeObserver.observe(this.canvas.parentElement);
+            }
             this.renderWheelModeUI();
             this.drawWheel();
         }
@@ -69,28 +85,27 @@ class WheelGame {
                     <svg class="phase-b-stage-icon"><use href="assets/icons/game-icons.svg#wheel"></use></svg>
                     <span>VUỐT HOẶC CHẠM · ĐỂ VẬN MAY CHỌN</span>
                 </div>
-                <!-- Pointer indicator with jeweled pin -->
-                <div class="wheel-pointer-container">
-                    <div class="wheel-needle-pin"></div>
-                    <div id="wheel-pointer" class="wheel-needle"></div>
-                </div>
-
-                <!-- Interactive Wheel Canvas -->
+                <!-- Wheel and indicator now share a single canvas coordinate space. -->
                 <div class="canvas-wrapper">
                     <canvas id="wheel-canvas" width="400" height="400"></canvas>
+                    <div class="wheel-pointer-container" aria-hidden="true">
+                        <div class="wheel-needle-pin"></div>
+                        <div id="wheel-pointer" class="wheel-needle"></div>
+                    </div>
                     <button id="wheel-center-btn" class="wheel-center-btn" onclick="window.wheelGame.spin()">
                         <svg class="center-btn-icon" aria-hidden="true"><use href="assets/icons/game-icons.svg#target"></use></svg>
                         <span class="center-btn-text">QUAY</span>
                     </button>
                 </div>
 
-                <ol id="wheel-mode-legend" class="wheel-mode-legend" hidden></ol>
-
-                <!-- Spin controls -->
-                <div class="wheel-controls">
+                <div class="wheel-side-panel">
+                    <ol id="wheel-mode-legend" class="wheel-mode-legend" aria-label="Danh sách nội dung đầy đủ của vòng quay"></ol>
+                    <!-- Spin controls -->
+                    <div class="wheel-controls">
                     <button id="spin-btn" class="neon-button primary-btn" onclick="window.wheelGame.spin()">
                         <svg class="cta-icon" aria-hidden="true"><use href="assets/icons/game-icons.svg#target"></use></svg> QUAY NGAY
                     </button>
+                    </div>
                 </div>
             </div>
         `;
@@ -111,10 +126,9 @@ class WheelGame {
         });
         const legend = document.getElementById("wheel-mode-legend");
         if (!legend) return;
-        const numbered = mode === "expanded12" || mode === "all18";
-        legend.hidden = !numbered;
+        // Sector numbers stay readable on small screens; list contains full content.
+        legend.hidden = this.slices.length === 0;
         legend.replaceChildren();
-        if (!numbered) return;
         this.slices.forEach((slice, i) => {
             const row = document.createElement("li");
             row.textContent = String(i + 1).padStart(2, "0") + " — " + slice.text;
@@ -124,24 +138,20 @@ class WheelGame {
 
     setupCanvas() {
         if (!this.canvas) return;
-        const dpr = window.devicePixelRatio || 1;
-        // Optimal size: adapts to both width and available screen height
-        const availableHeight = Math.floor((window.innerHeight || 600) * 0.52);
-        const availableWidth = Math.floor((window.innerWidth || 360) - 20);
-        const size = Math.round(Math.min(410, Math.max(320, Math.min(availableWidth, availableHeight))));
-        
-        this.canvas.width = size * dpr;
-        this.canvas.height = size * dpr;
-        this.canvas.style.width = `${size}px`;
-        this.canvas.style.height = `${size}px`;
-        this.ctx.scale(dpr, dpr);
-        this.size = size;
-
         const wrapper = this.canvas.parentElement;
-        if (wrapper) {
-            wrapper.style.width = `${size}px`;
-            wrapper.style.height = `${size}px`;
-        }
+        const measured = wrapper && wrapper.getBoundingClientRect
+            ? wrapper.getBoundingClientRect().width : 0;
+        // Screen is hidden at startup; ResizeObserver sizes it when visible.
+        const fallback = Math.min(385, Math.max(280,
+            Math.min((window.innerWidth || 360) - 20, (window.innerHeight || 600) * 0.52)));
+        const size = Math.max(1, Math.round(measured || fallback));
+        const dpr = Math.max(1, window.devicePixelRatio || 1);
+        this.canvas.width = Math.round(size * dpr);
+        this.canvas.height = Math.round(size * dpr);
+        this.canvas.style.width = "100%";
+        this.canvas.style.height = "100%";
+        this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        this.size = size;
     }
 
 
@@ -206,19 +216,19 @@ class WheelGame {
             const maxTextWidth = radius - 58 - 46; // Space between icon and center hub
             let fontSize = 13;
             this.ctx.font = `bold ${fontSize}px 'Be Vietnam Pro', sans-serif`;
-            const sectorLabel = window.penaltyManager.wheelMode === "expanded12" || window.penaltyManager.wheelMode === "all18"
-                ? String(i + 1).padStart(2, "0") : item.text;
+            const sectorLabel = String(i + 1).padStart(2, "0");
             let textWidth = this.ctx.measureText(sectorLabel).width;
             if (textWidth > maxTextWidth) {
                 fontSize = Math.max(10, Math.floor(fontSize * (maxTextWidth / textWidth)));
                 this.ctx.font = `bold ${fontSize}px 'Be Vietnam Pro', sans-serif`;
             }
-            this.ctx.textAlign = "right";
+            this.ctx.textAlign = "center";
             this.ctx.textBaseline = "middle";
             this.ctx.fillStyle = "#ffffff";
             this.ctx.shadowColor = "rgba(0, 0, 0, 0.9)";
             this.ctx.shadowBlur = 5;
-            this.ctx.fillText(sectorLabel, radius - 52, 0);
+            // The center button radius is 41px; keep sector numbers beyond it.
+            this.ctx.fillText(sectorLabel, Math.max(65, radius * 0.64), 0);
 
             this.ctx.restore();
         }
@@ -354,6 +364,8 @@ class WheelGame {
 
         const spinBtn = document.getElementById("spin-btn");
         if (spinBtn) spinBtn.disabled = false;
+        const needle = document.getElementById("wheel-pointer");
+        if (needle) needle.classList.remove("flap");
         this.announceResult(runId);
         return true;
     }
@@ -413,6 +425,8 @@ class WheelGame {
         }
         const spinBtn = document.getElementById("spin-btn");
         if (spinBtn) spinBtn.disabled = false;
+        const needle = document.getElementById("wheel-pointer");
+        if (needle) needle.classList.remove("flap");
         this.renderWheelModeUI();
     }
 
