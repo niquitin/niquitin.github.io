@@ -2,13 +2,15 @@
 // Keep the web release version in one place. Every versioned shell URL below
 // is derived from this value so a new deploy cannot mix old query keys with a
 // new cache namespace.
-const APP_VERSION = '5.18.6-wheel-r2-apk-beta1';
+const APP_VERSION = '5.18.6-wheel-r2-apk-latest1';
 const CACHE_NAME = `vbn-shell-${APP_VERSION}`;
 const asset = (path) => `${path}?v=${APP_VERSION}`;
 const SHELL = [
     './index.html',
     './privacy.html',
     './terms.html',
+    './android-latest.json',
+    './js/android-latest.js',
     './android.html',
     './third-party-notices.html',
     asset('./css/style.css'),
@@ -127,6 +129,23 @@ self.addEventListener('fetch', (event) => {
 
     const url = new URL(request.url);
     if (url.origin !== self.location.origin) return;
+
+    // The Android download channel always prefers a fresh release witness.
+    // Do not serve a stale APK link just because other game assets are cache-first.
+    if (url.pathname.endsWith('/android-latest.json')) {
+        event.respondWith(
+            fetch(request, { cache: 'no-store' })
+                .then((response) => {
+                    if (response.ok) {
+                        const copy = response.clone();
+                        event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.put('./android-latest.json', copy)));
+                    }
+                    return response;
+                })
+                .catch(() => caches.match('./android-latest.json'))
+        );
+        return;
+    }
 
     // Keep navigation resilient: a fresh page is preferred, but the cached
     // app shell keeps the party playable when the venue has no signal.

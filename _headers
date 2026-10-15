@@ -6,6 +6,8 @@
   Cache-Control: no-cache
 /sw.js
   Cache-Control: no-cache
+/android-latest.json
+  Cache-Control: no-store
 
 /terms.html
   Cache-Control: no-cache

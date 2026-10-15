@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "product": "Vua Bàn Nhậu",
+  "developer": "NiQuitin",
+  "channel": "beta",
+  "version": "5.19.0-beta.1",
+  "versionCode": 32,
+  "applicationId": "com.partygame.vuabannhau",
+  "androidMinimumApi": 24,
+  "filename": "VuaBanNhau-NiQuitin-5.19.0-beta.1-Android-signed.apk",
+  "downloadUrl": "https://github.com/niquitin/niquitin.github.io/releases/download/v5.19.0-beta.1/VuaBanNhau-NiQuitin-5.19.0-beta.1-Android-signed.apk",
+  "releasePage": "https://github.com/niquitin/niquitin.github.io/releases/tag/v5.19.0-beta.1",
+  "sha256": "d461dbfa56c65788e21840746c1d7a946d95a550222426eb72e49a21653fbf61",
+  "signerCertificateSha256": "f2ab635d4c330919d639894ba3bbca265ae156938dbadcc7f26f114dd818248f",
+  "sizeBytes": 5473394,
+  "releaseStatus": "beta-tested",
+  "offlineCapable": true,
+  "notice": "Bản Beta đã được ký và kiểm thử trên giả lập Android. Thiết lập mới thay đổi có thể mất nếu ứng dụng bị buộc dừng ngay lập tức."
+}
