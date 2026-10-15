@@ -4120,3 +4120,90 @@
 #screen-bomb > #bomb-game-container > .game-header {
     flex: 0 0 auto;
 }
+
+/* G3-WHEEL-R1: share coordinates between wheel, hub, and pointer. */
+#screen-wheel .canvas-wrapper {
+    flex: 0 0 auto;
+    position: relative;
+    box-sizing: border-box;
+    width: min(100%, 94vw, 385px, 52dvh);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    margin: auto;
+}
+#screen-wheel .canvas-wrapper > #wheel-canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+#screen-wheel .canvas-wrapper > .wheel-pointer-container {
+    position: absolute;
+    left: 50%;
+    top: -44px;
+    transform: translateX(-50%);
+    z-index: 35;
+    pointer-events: none;
+}
+#screen-wheel .wheel-needle:not(.flap) { transform: rotate(0deg); }
+#screen-wheel .wheel-side-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+    min-width: 0;
+}
+#screen-wheel .wheel-mode-legend {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+    margin: 0 auto;
+    width: min(100%, 460px);
+    max-height: 136px;
+    overflow-y: auto;
+    padding: 8px 10px 8px 31px;
+    border-radius: 12px;
+    background: rgba(12,8,29,.55);
+    scrollbar-width: thin;
+    line-height: 1.45;
+    font-size: 12px;
+}
+#screen-wheel .wheel-mode-legend li { padding-inline: 2px; overflow-wrap: anywhere; }
+#screen-wheel .wheel-controls { width: 100%; margin: 0 auto; }
+@media (min-width: 980px) and (max-height: 700px) {
+    #screen-wheel .canvas-wrapper {
+        width: min(64vh, 280px) !important;
+        height: auto !important;
+    }
+    #screen-wheel .wheel-side-panel {
+        grid-column: 2;
+        grid-row: 1;
+        justify-content: center;
+        align-self: stretch;
+    }
+    #screen-wheel .wheel-mode-legend { max-height: 220px; }
+    #screen-wheel .wheel-controls { max-width: none; }
+}
+
+/* R1 visual QA: prevent the decorative banner from covering the needle/rim. */
+#screen-wheel .wheel-stage {
+    justify-content: flex-start;
+    gap: 0;
+}
+#screen-wheel .wheel-hero-mark {
+    position: relative;
+    top: auto;
+    z-index: 1;
+    margin: 0 auto 52px;
+}
+#screen-wheel .canvas-wrapper {
+    margin: 0 auto 16px;
+}
+@media (max-width: 600px) {
+    #screen-wheel .wheel-hero-mark { display: none; }
+    #screen-wheel .wheel-stage { padding-top: 50px; }
+}
+@media (min-width: 980px) and (max-height: 700px) {
+    #screen-wheel .wheel-stage { padding-top: 0; }
+    #screen-wheel .canvas-wrapper { margin: auto; }
+}
