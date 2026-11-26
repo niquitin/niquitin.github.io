@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="mv-title mv-desc">
+  <title id="mv-title">MeloVault</title>
+  <desc id="mv-desc">Biểu tượng sóng âm bốn cột của MeloVault</desc>
+  <defs>
+    <linearGradient id="mv-bg" x1="0.1" y1="0" x2="0.9" y2="1">
+      <stop offset="0%" stop-color="#14b8a6"/>
+      <stop offset="52%" stop-color="#0f766e"/>
+      <stop offset="100%" stop-color="#0b4642"/>
+    </linearGradient>
+    <linearGradient id="mv-bar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#d7faf5"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#mv-bg)"/>
+  <rect x="12" y="12" width="488" height="488" rx="100" fill="none" stroke="#ffffff" stroke-opacity="0.2" stroke-width="6"/>
+  <rect x="126" y="188" width="44" height="136" rx="22" fill="url(#mv-bar)"/>
+  <rect x="198" y="128" width="44" height="256" rx="22" fill="url(#mv-bar)"/>
+  <rect x="270" y="160" width="44" height="192" rx="22" fill="url(#mv-bar)"/>
+  <rect x="342" y="188" width="44" height="136" rx="22" fill="url(#mv-bar)"/>
+</svg>

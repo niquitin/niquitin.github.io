@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="vi" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f6f8fb" id="meta-theme-color">
+  <meta name="description" content="NiQuitin Hub — Cổng tổng hợp các ứng dụng và dự án thực tế phát triển bởi Nguyễn Dũng: MeloVault (nghe nhạc & xem video đa nguồn) và Vua Bàn Nhậu (bộ 10 mini-game tiệc tùng).">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="vi_VN">
+  <meta property="og:title" content="NiQuitin Hub — Kho ứng dụng phát triển bởi Nguyễn Dũng">
+  <meta property="og:description" content="Một địa chỉ chung để nhận biết, xem ảnh giao diện thật và truy cập đúng trang chính thức của MeloVault, Vua Bàn Nhậu cùng các dự án mới.">
+  <title>NiQuitin Hub — Kho ứng dụng &amp; dự án số · Phát triển bởi Nguyễn Dũng</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap">
+  <script>
+    try {
+      var saved = localStorage.getItem('nq_theme');
+      if (saved === 'light' || saved === 'dark' || saved === 'auto') {
+        document.documentElement.dataset.theme = saved;
+      }
+    } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="styles.css?v=20261127-1">
+  <script src="projects.js?v=20261127-1" defer></script>
+  <script src="main.js?v=20261127-1" defer></script>
+</head>
+<body id="dau-trang">
+  <a class="skip-link" href="#ung-dung">Đến danh sách ứng dụng</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand-lockup" href="#dau-trang" aria-label="NiQuitin Hub — Về đầu trang">
+        <span class="brand-badge" aria-hidden="true">
+          <svg viewBox="0 0 64 64" width="36" height="36">
+            <defs>
+              <linearGradient id="hdr-nq-bg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#0f766e"/>
+                <stop offset="55%" stop-color="#0284c7"/>
+                <stop offset="100%" stop-color="#1d4ed8"/>
+              </linearGradient>
+            </defs>
+            <rect width="64" height="64" rx="16" fill="url(#hdr-nq-bg)"/>
+            <path d="M14 43V21l14 22V21" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="42" cy="31" r="9.5" fill="none" stroke="#ffffff" stroke-width="5"/>
+            <path d="M44.5 36.5L51 43.5" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="brand-copy">
+          <span class="brand-name">NiQuitin Hub</span>
+          <span class="brand-author">Phát triển bởi Nguyễn Dũng</span>
+        </span>
+      </a>
+
+      <nav class="site-nav" aria-label="Điều hướng chính">
+        <a href="#ung-dung">Ứng dụng</a>
+        <a href="#huong-dan">Cách dùng nhanh</a>
+        <a href="#thong-tin">Về trang này</a>
+      </nav>
+
+      <div class="theme-switcher" role="group" aria-label="Chế độ hiển thị">
+        <button type="button" class="theme-btn" data-theme-value="auto" aria-pressed="true" title="Tự động theo thiết bị">
+          <svg class="ui-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+          <span>Tự động</span>
+        </button>
+        <button type="button" class="theme-btn" data-theme-value="light" aria-pressed="false" title="Chế độ Sáng">
+          <svg class="ui-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <span>Sáng</span>
+        </button>
+        <button type="button" class="theme-btn" data-theme-value="dark" aria-pressed="false" title="Chế độ Tối">
+          <svg class="ui-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+          <span>Tối</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="noi-dung" tabindex="-1">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow-pill">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            NIQUITIN HUB · KHO ỨNG DỤNG CHÍNH CHỦ
+          </p>
+          <h1 id="hero-title">Một địa chỉ chung cho mọi ứng dụng của <span>NiQuitin</span> — dễ tìm, mở đúng bản chuẩn.</h1>
+          <p class="hero-lead">Gom toàn bộ các ứng dụng do Nguyễn Dũng phát triển về một nơi duy nhất. Bạn không cần nhớ rời rạc từng đường dẫn: xem nhanh ảnh giao diện thật, kiểm tra phiên bản mới nhất và bấm mở ngay trên Web hoặc Google Play.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#ung-dung">
+              <span>Xem danh sách ứng dụng</span>
+              <svg class="ui-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+            </a>
+            <a class="btn btn-secondary" href="#huong-dan">
+              <span>Hướng dẫn cài đặt nhanh</span>
+            </a>
+          </div>
+        </div>
+
+        <aside class="hero-bento" aria-label="Tổng quan hệ sinh thái">
+          <div class="bento-stat bento-stat-accent">
+            <span class="bento-kicker">Sản phẩm đang phục vụ</span>
+            <strong class="bento-value" id="stat-project-count">02</strong>
+            <span class="bento-note">MeloVault &amp; Vua Bàn Nhậu đã sẵn sàng trải nghiệm</span>
+          </div>
+          <div class="bento-stat">
+            <span class="bento-kicker">Đa nền tảng</span>
+            <strong class="bento-value">Web · Android</strong>
+            <span class="bento-note">Tối ưu cho Điện thoại, Máy tính bảng và Desktop</span>
+          </div>
+          <div class="bento-stat">
+            <span class="bento-kicker">An toàn &amp; Rõ nguồn</span>
+            <strong class="bento-value">100% Chính chủ</strong>
+            <span class="bento-note">Chỉ dẫn tới trang gốc của từng ứng dụng, không quảng cáo chen ngang</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="ung-dung" class="section" aria-labelledby="apps-heading">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">01 / DANH MỤC ỨNG DỤNG</p>
+            <h2 id="apps-heading">Các sản phẩm đang phát hành &amp; thử nghiệm</h2>
+          </div>
+          <p class="section-desc">Chọn nhanh theo nhóm hoặc gõ tên ứng dụng, tính năng cần tìm (hỗ trợ gõ tiếng Việt không dấu).</p>
+        </div>
+
+        <div class="catalog-toolbar">
+          <div class="filter-group" id="filter-group" role="group" aria-label="Lọc ứng dụng theo nhóm">
+            <button type="button" class="filter-chip" data-filter="all" aria-pressed="true">Tất cả <span class="chip-count">2</span></button>
+            <button type="button" class="filter-chip" data-filter="media" aria-pressed="false">Nghe nhìn &amp; Tiện ích <span class="chip-count">1</span></button>
+            <button type="button" class="filter-chip" data-filter="party" aria-pressed="false">Trò chơi &amp; Tiệc tùng <span class="chip-count">1</span></button>
+          </div>
+
+          <div class="search-box">
+            <label class="visually-hidden" for="project-search">Tìm ứng dụng hoặc tính năng</label>
+            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input id="project-search" type="search" placeholder="Tìm ứng dụng, tính năng..." autocomplete="off" spellcheck="false">
+            <button type="button" id="search-clear" class="search-clear" hidden aria-label="Xóa từ khóa tìm kiếm">
+              <svg class="ui-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <p id="filter-status" class="filter-status" role="status" aria-live="polite">Đang hiển thị 2 ứng dụng.</p>
+
+        <div class="project-list" id="project-list">
+          <!-- Thẻ 1: MeloVault -->
+          <article class="project-card" data-project-id="melovault" data-category="media" data-accent="teal" data-keywords="melovault nhac video lossless flac wav mp3 telegram tiktok facebook eq loi nhac android tablet hai khung hoang hon liquid glass">
+            <div class="project-info">
+              <div class="project-head">
+                <a class="app-icon-link" href="https://melovault.pages.dev/" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                  <img class="app-icon" src="assets/melovault/icon.svg" alt="Biểu tượng MeloVault" width="64" height="64">
+                </a>
+                <div class="project-titles">
+                  <div class="badge-row">
+                    <span class="badge-status">Google Play Alpha</span>
+                    <span class="badge-version" data-version-badge>v0.6.145</span>
+                    <span class="badge-meta">Cập nhật <span data-updated-date>26/11/2026</span></span>
+                  </div>
+                  <h3><a class="project-title-link" href="https://melovault.pages.dev/" target="_blank" rel="noopener noreferrer">MeloVault</a></h3>
+                  <p class="project-subtitle">Nhạc &amp; video đa nguồn cho Điện thoại và Máy tính bảng Android</p>
+                </div>
+              </div>
+
+              <p class="project-summary">Gom nhạc Lossless và video từ Telegram, Bộ sưu tập TikTok, Video Facebook cùng nhạc trên máy về một thư viện duy nhất — gạt Nhạc/Video liền mạch kiểu YouTube Music, tự đồng bộ giữa điện thoại và tablet.</p>
+
+              <ul class="highlight-list">
+                <li>
+                  <svg class="ui-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                  <span>Gạt Nhạc / Video tức thì</span>
+                </li>
+                <li>
+                  <svg class="ui-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                  <span>Telegram · TikTok · Facebook · Offline</span>
+                </li>
+                <li>
+                  <svg class="ui-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                  <span>Đồng bộ Điện thoại &amp; Tablet</span>
+                </li>
+                <li>
+                  <svg class="ui-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                  <span>3 giao diện: Liquid Glass · Hoàng hôn · Tối giản</span>
+                </li>
+              </ul>
+
+              <div class="project-tags">
+                <span>Nghe nhìn &amp; Tiện ích</span>
+                <span>Android 8.0+</span>
+              </div>
+
+              <div class="action-grid">
+                <a class="btn btn-card-primary" href="https://melovault.pages.dev/" target="_blank" rel="noopener noreferrer">
+                  <span>Khám phá trang MeloVault</span>
+                  <svg class="ui-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+                </a>
+                <a class="btn btn-card-secondary" href="https://groups.google.com/g/melovault-testers" target="_blank" rel="noopener noreferrer">
+                  <span>Bước 1: Vào nhóm Tester</span>
+                  <svg class="ui-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+                </a>
+                <a class="btn btn-card-secondary" href="https://play.google.com/apps/testing/app.melovault.player.open" target="_blank" rel="noopener noreferrer">
+                  <span>Bước 2: Cài trên Google Play</span>
+                  <svg class="ui-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+                </a>
+                <a class="btn btn-card-ghost" href="https://t.me/melovaultmusicplayer" target="_blank" rel="noopener noreferrer">
+                  <span>Nhóm hỗ trợ Telegram</span>
+                  <svg class="ui-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+                </a>
+              </div>
+
+              <p class="project-disclaimer">Ứng dụng đang thử nghiệm kín trên Google Play (cần dùng chung 1 tài khoản Gmail cho Bước 1 &amp; Bước 2). MeloVault là ứng dụng không chính thức, dùng Telegram API; không liên kết với Telegram, TikTok hay Facebook.</p>
+            </div>
+
+            <div class="project-stage">
+              <div class="stage-bar">
+                <span class="stage-label">Ảnh thật trên thiết bị</span>
+                <div class="device-switch" role="group" aria-label="Chọn giao diện minh họa của MeloVault">
+                  <button type="button" class="device-btn" data-device-target="phone" aria-pressed="true">
+                    <svg class="ui-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+                    <span>Điện thoại</span>
+                  </button>
+                  <button type="button" class="device-btn" data-device-target="tablet" aria-pressed="false">
+                    <svg class="ui-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M18 12h.01"/></svg>
+                    <span>Máy tính bảng</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="device-panel device-panel-phone" data-device-panel="phone">
+                <figure class="shot-card">
+                  <button type="button" class="shot-trigger" data-zoom-src="assets/melovault/phone-library.webp" data-zoom-caption="MeloVault — Thư viện đa nguồn · Giao diện Liquid Glass" aria-label="Phóng to ảnh Thư viện đa nguồn của MeloVault">
+                    <img src="assets/melovault/phone-library.webp" alt="Thư viện nhạc Lossless của MeloVault trên điện thoại ở giao diện Liquid Glass: tìm kiếm nhanh, lọc nguồn Telegram, Trên máy, TikTok và thanh phát kính mờ ở đáy" width="600" height="1283" loading="eager" decoding="async">
+                    <span class="zoom-badge" aria-hidden="true">Phóng to</span>
+                  </button>
+                  <figcaption>Thư viện · Liquid Glass</figcaption>
+                </figure>
+                <figure class="shot-card">
+                  <button type="button" class="shot-trigger" data-zoom-src="assets/melovault/phone-player.webp" data-zoom-caption="MeloVault — Màn Đang phát · Thanh gạt Nhạc / Video" aria-label="Phóng to ảnh Màn Đang phát của MeloVault">
+                    <img src="assets/melovault/phone-player.webp" alt="Màn hình Đang phát của MeloVault trên điện thoại ở giao diện Hoàng hôn: thanh gạt Nhạc và Video kiểu YouTube Music, ảnh bìa lớn, Lời nhạc, EQ và Hẹn giờ" width="600" height="1283" loading="eager" decoding="async">
+                    <span class="zoom-badge" aria-hidden="true">Phóng to</span>
+                  </button>
+                  <figcaption>Đang phát · Gạt Video</figcaption>
+                </figure>
+              </div>
+
+              <div class="device-panel device-panel-tablet" data-device-panel="tablet" hidden>
+                <figure class="shot-card shot-card-wide">
+                  <button type="button" class="shot-trigger" data-zoom-src="assets/melovault/tablet-split.webp" data-zoom-caption="MeloVault — Giao diện Hai khung trên Máy tính bảng xoay ngang" aria-label="Phóng to ảnh giao diện Hai khung trên máy tính bảng của MeloVault">
+                    <img src="assets/melovault/tablet-split.webp" alt="Giao diện Hai khung trên máy tính bảng xoay ngang của MeloVault với khung Đang phát ở cột trái và danh sách nhạc Lossless FLAC ở cột phải" width="1100" height="596" loading="lazy" decoding="async">
+                    <span class="zoom-badge" aria-hidden="true">Phóng to</span>
+                  </button>
+                  <figcaption>Hai khung xoay ngang · Máy tính bảng</figcaption>
+                </figure>
+              </div>
+            </div>
+          </article>
+
+          <!-- Thẻ 2: Vua Bàn Nhậu -->
+          <article class="project-card" data-project-id="vuabannhau" data-category="party" data-accent="party" data-keywords="vua ban nhau party king game tiec tung vong quay may man ca sau hai tac bom hen gio xuc xac pwa web android offline 18+">
+            <div class="project-info">
+              <div class="project-head">
+                <a class="app-icon-link" href="https://vuabannhau.pages.dev/" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                  <img class="app-icon" src="assets/vuabannhau/icon.svg" alt="Biểu tượng Vua Bàn Nhậu" width="64" height="64">
+                </a>
+                <div class="project-titles">
+                  <div class="badge-row">
+                    <span class="badge-status">Bản chính thức</span>
+                    <span class="badge-version" data-version-badge>v5.20.3</span>
+                    <span class="badge-meta">Cập nhật <span data-updated-date>26/11/2026</span></span>
+                  </div>
+                  <h3><a class="project-title-link" href="https://vuabannhau.pages.dev/" target="_blank" rel="noopener noreferrer">Vua Bàn Nhậu</a></h3>
+                  <p class="project-subtitle">Party King Edition — Bộ 10 mini-game khuấy động bàn tiệc trên 1 thiết bị</p>
+                </div>
+              </div>
+
+              <p class="project-summary">Mở lên là chơi ngay cùng hội bạn tại bàn tiệc, sinh nhật hay chuyến đi xa: Vòng quay may mắn, Khám răng cá sấu, Đâm hải tặc, Bom hẹn giờ, Xúc xắc... Thao tác gọn một tay, chọn linh hoạt chế độ Bia hoặc Không cồn, chơi mượt cả khi tắt mạng.</p>
+
+              <ul class="highlight-list">
+                <li>
+                  <svg class="ui-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                  <span>10 mini-game tiệc tùng sôi động</span>
+                </li>
+                <li>
+                  <svg class="ui-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                  <span>Chơi ngay trên Web không cần cài</span>
+                </li>
+                <li>
+                  <svg class="ui-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                  <span>Bản Android chơi offline 100%</span>
+                </li>
+                <li>
+                  <svg class="ui-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                  <span>Chế độ Bia / Không cồn vui văn minh</span>
+                </li>
+              </ul>
+
+              <div class="project-tags">
+                <span>Trò chơi &amp; Tiệc tùng</span>
+                <span>Web/PWA · Android 7.0+ · 18+</span>
+              </div>
+
+              <div class="action-grid">
+                <a class="btn btn-card-primary" href="https://vuabannhau.pages.dev/" target="_blank" rel="noopener noreferrer">
+                  <span>Chơi ngay trên Web</span>
+                  <svg class="ui-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+                </a>
+                <a class="btn btn-card-secondary" href="https://vuabannhau.pages.dev/android.html" target="_blank" rel="noopener noreferrer">
+                  <span>Trang cài cho Android</span>
+                  <svg class="ui-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+                </a>
+              </div>
+
+              <p class="project-disclaimer">Chỉ dành cho người từ 18 tuổi trở lên. Không ép uống; hỗ trợ đầy đủ chế độ đồ uống không cồn để mọi người cùng vui lành mạnh.</p>
+            </div>
+
+            <div class="project-stage">
+              <div class="stage-bar">
+                <span class="stage-label">Ảnh thật trên thiết bị</span>
+                <div class="device-switch" role="group" aria-label="Chọn giao diện minh họa của Vua Bàn Nhậu">
+                  <button type="button" class="device-btn" data-device-target="phone" aria-pressed="true">
+                    <svg class="ui-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+                    <span>Điện thoại</span>
+                  </button>
+                  <button type="button" class="device-btn" data-device-target="tablet" aria-pressed="false">
+                    <svg class="ui-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M18 12h.01"/></svg>
+                    <span>Máy tính bảng</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="device-panel device-panel-phone" data-device-panel="phone">
+                <figure class="shot-card">
+                  <button type="button" class="shot-trigger" data-zoom-src="assets/vuabannhau/phone-home.webp" data-zoom-caption="Vua Bàn Nhậu — Sảnh chính 10 mini-game" aria-label="Phóng to ảnh Sảnh chính Vua Bàn Nhậu trên điện thoại">
+                    <img src="assets/vuabannhau/phone-home.webp" alt="Màn hình chính Vua Bàn Nhậu trên điện thoại hiển thị các trò chơi tiệc tùng nổi bật như Vòng quay, Xoay chai, Khám răng cá sấu và Bom hẹn giờ" width="600" height="1067" loading="lazy" decoding="async">
+                    <span class="zoom-badge" aria-hidden="true">Phóng to</span>
+                  </button>
+                  <figcaption>Sảnh 10 mini-game</figcaption>
+                </figure>
+                <figure class="shot-card">
+                  <button type="button" class="shot-trigger" data-zoom-src="assets/vuabannhau/phone-wheel.webp" data-zoom-caption="Vua Bàn Nhậu — Vòng quay may mắn" aria-label="Phóng to ảnh Vòng quay may mắn Vua Bàn Nhậu trên điện thoại">
+                    <img src="assets/vuabannhau/phone-wheel.webp" alt="Màn hình Vòng quay may mắn của Vua Bàn Nhậu trên điện thoại với bảng chia ô sắc nét và nút quay lớn dễ bấm bằng một tay" width="600" height="1067" loading="lazy" decoding="async">
+                    <span class="zoom-badge" aria-hidden="true">Phóng to</span>
+                  </button>
+                  <figcaption>Vòng quay bàn tiệc</figcaption>
+                </figure>
+              </div>
+
+              <div class="device-panel device-panel-tablet" data-device-panel="tablet" hidden>
+                <figure class="shot-card shot-card-wide">
+                  <button type="button" class="shot-trigger" data-zoom-src="assets/vuabannhau/tablet-home.webp" data-zoom-caption="Vua Bàn Nhậu — Sảnh rộng trên Máy tính bảng" aria-label="Phóng to ảnh Sảnh chính Vua Bàn Nhậu trên máy tính bảng">
+                    <img src="assets/vuabannhau/tablet-home.webp" alt="Giao diện sảnh chính Vua Bàn Nhậu trên máy tính bảng xoay ngang hiển thị đầy đủ bộ mini-game đặt giữa bàn tiệc" width="1100" height="619" loading="lazy" decoding="async">
+                    <span class="zoom-badge" aria-hidden="true">Phóng to</span>
+                  </button>
+                  <figcaption>Bố cục rộng trên Máy tính bảng</figcaption>
+                </figure>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div id="empty-filter-state" class="empty-state" hidden>
+          <h3>Không tìm thấy ứng dụng phù hợp</h3>
+          <p>Thử từ khóa ngắn hơn như <strong>nhạc</strong>, <strong>video</strong>, <strong>tiệc tùng</strong> hoặc bấm nút bên dưới để xem toàn bộ danh sách.</p>
+          <button type="button" id="reset-filters-btn" class="btn btn-primary">Hiện tất cả ứng dụng</button>
+        </div>
+
+        <div class="roadmap-banner">
+          <svg class="ui-svg roadmap-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12"/></svg>
+          <p><strong>Đang tiếp tục mở rộng:</strong> Các dự án và công cụ mới của NiQuitin sẽ lần lượt được bổ sung tại đây ngay khi hoàn thiện giai đoạn kiểm thử.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="huong-dan" class="section section-alt" aria-labelledby="guide-heading">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">02 / CÁCH DÙNG NHANH</p>
+            <h2 id="guide-heading">Chọn đúng cách mở trên thiết bị của bạn</h2>
+          </div>
+          <p class="section-desc">Mỗi sản phẩm được tối ưu cho một tình huống sử dụng khác nhau. Làm theo 3 gợi ý ngắn gọn dưới đây để bắt đầu thuận tiện nhất.</p>
+        </div>
+
+        <div class="guide-grid">
+          <article class="guide-card">
+            <span class="guide-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </span>
+            <span class="guide-step">01 · Web &amp; iPhone / Máy tính</span>
+            <h3>Chơi hoặc dùng ngay trên trình duyệt</h3>
+            <p>Với <strong>Vua Bàn Nhậu</strong>, bạn chỉ cần bấm <em>“Chơi ngay trên Web”</em> là mở được trên iPhone, Android, iPad hay laptop mà không phải cài đặt. Có thể chọn <em>“Thêm vào màn hình chính”</em> để dùng như ứng dụng độc lập.</p>
+          </article>
+
+          <article class="guide-card">
+            <span class="guide-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </span>
+            <span class="guide-step">02 · Thử nghiệm Google Play</span>
+            <h3>Tham gia nhóm Tester cho MeloVault</h3>
+            <p>Dùng <strong>cùng 1 tài khoản Gmail</strong> đang đăng nhập trên điện thoại Android để hoàn tất <strong>Bước 1 (vào nhóm Google Groups)</strong> rồi mở <strong>Bước 2 (đăng ký trên Google Play)</strong> và giữ app ít nhất 14 ngày.</p>
+          </article>
+
+          <article class="guide-card">
+            <span class="guide-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            </span>
+            <span class="guide-step">03 · Chính chủ &amp; Offline</span>
+            <h3>Kiểm tra nguồn trước khi cài ngoài cửa hàng</h3>
+            <p>Trang Hub chỉ liên kết tới tên miền chính thức của dự án. Với bản cài Android của <strong>Vua Bàn Nhậu</strong>, hãy mở trang tải chính chủ để xem hướng dẫn cài đặt và đối chiếu mã kiểm tra toàn vẹn.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="thong-tin" class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <strong>NiQuitin Hub · Phát triển bởi Nguyễn Dũng</strong>
+          <p>Trang cổng tĩnh giúp người dùng nhận diện thương hiệu và tìm đúng địa chỉ chính thức của từng dự án. Hub không thu thập dữ liệu cá nhân và không chạy quảng cáo.</p>
+        </div>
+
+        <div class="footer-links-grid">
+          <div class="footer-col">
+            <h4>MeloVault</h4>
+            <a href="https://melovault.pages.dev/" target="_blank" rel="noopener noreferrer">Trang chính thức</a>
+            <a href="https://t.me/melovaultmusicplayer" target="_blank" rel="noopener noreferrer">Nhóm hỗ trợ Telegram</a>
+            <a href="https://melovault.pages.dev/privacy.html" target="_blank" rel="noopener noreferrer">Quyền riêng tư</a>
+            <a href="https://melovault.pages.dev/terms.html" target="_blank" rel="noopener noreferrer">Điều khoản sử dụng</a>
+          </div>
+          <div class="footer-col">
+            <h4>Vua Bàn Nhậu</h4>
+            <a href="https://vuabannhau.pages.dev/" target="_blank" rel="noopener noreferrer">Mở Web App</a>
+            <a href="https://vuabannhau.pages.dev/android.html" target="_blank" rel="noopener noreferrer">Trang tải Android</a>
+            <a href="https://vuabannhau.pages.dev/privacy.html" target="_blank" rel="noopener noreferrer">Quyền riêng tư</a>
+            <a href="https://vuabannhau.pages.dev/terms.html" target="_blank" rel="noopener noreferrer">Điều khoản sử dụng</a>
+          </div>
+          <div class="footer-col">
+            <h4>Liên kết chung</h4>
+            <a href="#ung-dung">Danh mục ứng dụng</a>
+            <a href="#huong-dan">Cách dùng nhanh</a>
+            <a href="#dau-trang">Về đầu trang ↑</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 NiQuitin Hub · Phát triển bởi Nguyễn Dũng</p>
+        <p>Giao diện tự thích ứng Sáng / Tối · Tối ưu cho Di động, Tablet &amp; Máy tính</p>
+      </div>
+    </div>
+  </footer>
+
+  <dialog id="screen-lightbox" class="lightbox" aria-labelledby="lightbox-caption">
+    <div class="lightbox-frame">
+      <div class="lightbox-bar">
+        <p id="lightbox-caption" class="lightbox-caption"></p>
+        <button type="button" id="lightbox-close" class="lightbox-close" aria-label="Đóng ảnh phóng to">
+          <svg class="ui-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="lightbox-media">
+        <img id="lightbox-img" src="data:," alt="">
+      </div>
+    </div>
+  </dialog>
+</body>
+</html>
